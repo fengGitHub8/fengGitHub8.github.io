@@ -6,7 +6,7 @@
   <link href="https://fenggithub8.github.io/atom.xml" rel="self"/>
   
   <link href="https://fenggithub8.github.io/"/>
-  <updated>2022-03-21T08:58:07.208Z</updated>
+  <updated>2022-03-22T07:30:11.444Z</updated>
   <id>https://fenggithub8.github.io/</id>
   
   <author>
@@ -17,11 +17,74 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>领域模型</title>
+    <link href="https://fenggithub8.github.io/2022/03/22/20220322lingyumoxing/"/>
+    <id>https://fenggithub8.github.io/2022/03/22/20220322lingyumoxing/</id>
+    <published>2022-03-22T07:29:08.000Z</published>
+    <updated>2022-03-22T07:30:11.444Z</updated>
+    
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>JVM内存模型</title>
+    <link href="https://fenggithub8.github.io/2022/03/22/02jvmneicunmoxingshendupouxiyuyouhua/"/>
+    <id>https://fenggithub8.github.io/2022/03/22/02jvmneicunmoxingshendupouxiyuyouhua/</id>
+    <published>2022-03-22T02:51:09.000Z</published>
+    <updated>2022-03-22T02:55:14.857Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h4 id=&quot;JDK体系结构&quot;&gt;&lt;a href=&quot;#JDK体系结构&quot; class=&quot;headerlink&quot; title=&quot;JDK体系结构&quot;&gt;&lt;/a&gt;JDK体系结构&lt;/h4&gt;&lt;p&gt;&lt;img</summary>
+        
+      
+    
+    
+    
+    <category term="Java后端" scheme="https://fenggithub8.github.io/categories/Java%E5%90%8E%E7%AB%AF/"/>
+    
+    
+    <category term="JVM" scheme="https://fenggithub8.github.io/tags/JVM/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JVM指令手册</title>
+    <link href="https://fenggithub8.github.io/2022/03/22/00jvmzhilingshouce/"/>
+    <id>https://fenggithub8.github.io/2022/03/22/00jvmzhilingshouce/</id>
+    <published>2022-03-22T01:43:09.000Z</published>
+    <updated>2022-03-22T02:16:27.417Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h4 id=&quot;栈和局部变量操作&quot;&gt;&lt;a href=&quot;#栈和局部变量操作&quot; class=&quot;headerlink&quot; title=&quot;栈和局部变量操作&quot;&gt;&lt;/a&gt;栈和局部变量操作&lt;/h4&gt;&lt;h5 id=&quot;将常量压入栈的指令&quot;&gt;&lt;a href=&quot;#将常量压入栈的指令&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Java后端" scheme="https://fenggithub8.github.io/categories/Java%E5%90%8E%E7%AB%AF/"/>
+    
+    
+    <category term="JVM指令" scheme="https://fenggithub8.github.io/tags/JVM%E6%8C%87%E4%BB%A4/"/>
+    
+  </entry>
+  
+  <entry>
     <title>JVM类加载机制</title>
     <link href="https://fenggithub8.github.io/2022/03/21/01congjdkyuanmajibiechedipouxijvmleijiazaijizhi/"/>
     <id>https://fenggithub8.github.io/2022/03/21/01congjdkyuanmajibiechedipouxijvmleijiazaijizhi/</id>
     <published>2022-03-21T05:43:09.000Z</published>
-    <updated>2022-03-21T08:58:07.208Z</updated>
+    <updated>2022-03-22T02:16:29.638Z</updated>
     
     
       
@@ -34,6 +97,10 @@
     
     
     
+    <category term="Java后端" scheme="https://fenggithub8.github.io/categories/Java%E5%90%8E%E7%AB%AF/"/>
+    
+    
+    <category term="JDK源码" scheme="https://fenggithub8.github.io/tags/JDK%E6%BA%90%E7%A0%81/"/>
     
   </entry>
   
