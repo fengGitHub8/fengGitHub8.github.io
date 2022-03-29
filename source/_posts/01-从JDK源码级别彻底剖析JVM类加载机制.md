@@ -34,7 +34,7 @@ public class Math {
 
 #### **通过Java命令执行代码的大体流程如下:**
 
-![YYWZBe](https://gitee.com/fengGitee129/oos/raw/master/uPic/YYWZBe.png)
+![](https://gitee.com/fengGitee129/oss/raw/master/images/20220329151014.png)
 
 其中loadClass的类加载过程有如下几步:
 
@@ -43,11 +43,14 @@ public class Math {
 - **加载**：在硬盘上查找并通过IO读入字节码文件，使用到类时才会加载，例如调用类的 main()方法，new对象等等，在加载阶段会在内存中生成一个代表这个类的 java.lang.Class对象，作为方法区这个类的各种数据的访问入口
 
 - **验证**：校验字节码文件的正确性 
+
 - **准备**：给类的静态变量分配内存，并赋予默认值 
+
 - **解析**：将符号引用替换为直接引用，该阶段会把一些静态方法(符号引用，比如main()方法)替换为指向数据所存内存的指针或句柄等(直接引用)，这是所谓的静态链接过 程(类加载期间完成)，动态链接是在程序运行期间完成的将符号引用替换为直接引用
+
 - **初始化**：对类的静态变量初始化为指定的值，执行静态代码块
 
-![image-20220317104520708](https://gitee.com/fengGitee129/oos/raw/master/uPic/image-20220317104520708.png)
+  ![](https://gitee.com/fengGitee129/oss/raw/master/images/20220329152737.png)
 
 类被加载到方法区中后主要包含 **运行时常量池、类型信息、字段信息、方法信息、类加载器的 引用、对应class实例的引用**等信息。
 
@@ -267,7 +270,7 @@ public Launcher() {
 
  JVM类加载器是有亲子层级结构的，如下图
 
-<img src="https://gitee.com/fengGitee129/oos/raw/master/uPic/image-20220317111210486.png" alt="image-20220317111210486" style="zoom:50%;" />
+<img src="https://gitee.com/fengGitee129/oss/raw/master/images/20220329153318.png" style="zoom:50%;" />
 
 这里类加载其实就有一个**双亲委派机制**，加载某个类时会先委托父加载器寻找目标类，找不到再 委托上层父加载器加载，如果所有父加载器在自己的加载类路径下都找不到目标类，则在自己的类加载路径中查找并载入目标类。
 
@@ -524,7 +527,7 @@ java.lang.SecurityException: Prohibited package name: java.lang
 
 **Tomcat自定义加载器详解**
 
-![image-20220317171509240](https://gitee.com/fengGitee129/oos/raw/master/uPic/image-20220317171509240.png)
+![](https://gitee.com/fengGitee129/oss/raw/master/images/20220329153415.png)
 
 tomcat的几个主要类加载器：
 
