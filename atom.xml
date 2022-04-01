@@ -6,7 +6,7 @@
   <link href="https://fenggithub8.github.io/atom.xml" rel="self"/>
   
   <link href="https://fenggithub8.github.io/"/>
-  <updated>2022-03-22T07:30:11.444Z</updated>
+  <updated>2022-04-01T05:12:21.927Z</updated>
   <id>https://fenggithub8.github.io/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>01-SpringBoot自动配置原理</title>
+    <link href="https://fenggithub8.github.io/2022/03/29/01springbootzidongpeizhiyuanli/"/>
+    <id>https://fenggithub8.github.io/2022/03/29/01springbootzidongpeizhiyuanli/</id>
+    <published>2022-03-29T08:04:09.000Z</published>
+    <updated>2022-04-01T05:12:21.927Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h4 id=&quot;1、SpringBoot的自动配置原理&quot;&gt;&lt;a href=&quot;#1、SpringBoot的自动配置原理&quot; class=&quot;headerlink&quot; title=&quot;1、SpringBoot的自动配置原理&quot;&gt;&lt;/a&gt;1、SpringBoot的自动配置原理&lt;/h4&gt;&lt;h5</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>领域模型</title>
@@ -34,7 +55,7 @@
     <link href="https://fenggithub8.github.io/2022/03/22/02jvmneicunmoxingshendupouxiyuyouhua/"/>
     <id>https://fenggithub8.github.io/2022/03/22/02jvmneicunmoxingshendupouxiyuyouhua/</id>
     <published>2022-03-22T02:51:09.000Z</published>
-    <updated>2022-03-22T02:55:14.857Z</updated>
+    <updated>2022-03-29T07:46:51.848Z</updated>
     
     
       
@@ -84,7 +105,7 @@
     <link href="https://fenggithub8.github.io/2022/03/21/01congjdkyuanmajibiechedipouxijvmleijiazaijizhi/"/>
     <id>https://fenggithub8.github.io/2022/03/21/01congjdkyuanmajibiechedipouxijvmleijiazaijizhi/</id>
     <published>2022-03-21T05:43:09.000Z</published>
-    <updated>2022-03-22T02:16:29.638Z</updated>
+    <updated>2022-03-29T07:34:43.206Z</updated>
     
     
       

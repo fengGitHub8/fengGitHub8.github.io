@@ -590,9 +590,6 @@ public class Math {
         <hr class="clearfix">
 
         
-        <!-- 是否加载使用自带的 prismjs. -->
-        <link rel="stylesheet" href="/libs/prism/prism.css">
-        
 
         
 
@@ -619,7 +616,7 @@ public class Math {
     }
 }<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h4 id="通过Java命令执行代码的大体流程如下"><a href="#通过Java命令执行代码的大体流程如下" class="headerlink" title="通过Java命令执行代码的大体流程如下:"></a><strong>通过Java命令执行代码的大体流程如下:</strong></h4><p><img src="https://gitee.com/fengGitee129/oos/raw/master/uPic/YYWZBe.png" alt="YYWZBe"></p>
+<h4 id="通过Java命令执行代码的大体流程如下"><a href="#通过Java命令执行代码的大体流程如下" class="headerlink" title="通过Java命令执行代码的大体流程如下:"></a><strong>通过Java命令执行代码的大体流程如下:</strong></h4><p><img src="https://gitee.com/fengGitee129/oss/raw/master/images/20220329151014.png"></p>
 <p>其中loadClass的类加载过程有如下几步:</p>
 <p>**加载 &gt;&gt; 验证 &gt;&gt; 准备 &gt;&gt; 解析 &gt;&gt; 初始化 **&gt;&gt; 使用 &gt;&gt; 卸载</p>
 <ul>
@@ -632,9 +629,9 @@ public class Math {
 <li><p><strong>解析</strong>：将符号引用替换为直接引用，该阶段会把一些静态方法(符号引用，比如main()方法)替换为指向数据所存内存的指针或句柄等(直接引用)，这是所谓的静态链接过 程(类加载期间完成)，动态链接是在程序运行期间完成的将符号引用替换为直接引用</p>
 </li>
 <li><p><strong>初始化</strong>：对类的静态变量初始化为指定的值，执行静态代码块</p>
+<p><img src="https://gitee.com/fengGitee129/oss/raw/master/images/20220329152737.png"></p>
 </li>
 </ul>
-<p><img src="https://gitee.com/fengGitee129/oos/raw/master/uPic/image-20220317104520708.png" alt="image-20220317104520708"></p>
 <p>类被加载到方法区中后主要包含 <strong>运行时常量池、类型信息、字段信息、方法信息、类加载器的 引用、对应class实例的引用</strong>等信息。</p>
 <p><strong>类加载器的引用</strong>：这个类到类加载器实例的引用 </p>
 <p><strong>对应class实例的引用</strong>：类加载器在加载类信息放到方法区中后，会创建一个对应的Class 类型的 对象实例放到堆(Heap)中, 作为开发人员访问方法区中类定义的入口和切入点。</p>
@@ -835,7 +832,7 @@ public Launcher() {
 
 <p><strong>双亲委派机制</strong></p>
 <p> JVM类加载器是有亲子层级结构的，如下图</p>
-<img src="https://gitee.com/fengGitee129/oos/raw/master/uPic/image-20220317111210486.png" alt="image-20220317111210486" style="zoom:50%;">
+<img src="https://gitee.com/fengGitee129/oss/raw/master/images/20220329153318.png" style="zoom:50%;">
 
 <p>这里类加载其实就有一个<strong>双亲委派机制</strong>，加载某个类时会先委托父加载器寻找目标类，找不到再 委托上层父加载器加载，如果所有父加载器在自己的加载类路径下都找不到目标类，则在自己的类加载路径中查找并载入目标类。</p>
 <p>比如我们的Math类，最先会找应用程序类加载器加载，应用程序类加载器会先委托扩展类加载 器加载，扩展类加载器再委托引导类加载器，顶层引导类加载器在自己的类加载路径里找了半天 没找到Math类，则向下退回加载Math类的请求，扩展类加载器收到回复就自己加载，在自己的 类加载路径里找了半天也没找到Math类，又向下退回Math类的加载请求给应用程序类加载器， 应用程序类加载器于是在自己的类加载路径里找Math类，结果找到了就自己加载了。。</p>
@@ -1066,7 +1063,7 @@ java.lang.SecurityException: Prohibited package name: java.lang
 <p>第三个问题和第一个问题一样。 </p>
 <p>我们再看第四个问题，我们想我们要怎么实现jsp文件的热加载，jsp 文件其实也就是class文 件，那么如果修改了，但类名还是一样，类加载器会直接取方法区中已经存在的，修改后的jsp 是不会重新加载的。那么怎么办呢？我们可以直接卸载掉这jsp文件的类加载器，所以你应该想 到了，每个jsp文件对应一个唯一的类加载器，当一个jsp文件修改了，就直接卸载这个jsp类加载 器。重新创建类加载器，重新加载jsp文件。</p>
 <p><strong>Tomcat自定义加载器详解</strong></p>
-<p><img src="https://gitee.com/fengGitee129/oos/raw/master/uPic/image-20220317171509240.png" alt="image-20220317171509240"></p>
+<p><img src="https://gitee.com/fengGitee129/oss/raw/master/images/20220329153415.png"></p>
 <p>tomcat的几个主要类加载器：</p>
 <ul>
 <li><p>commonLoader：Tomcat最基本的类加载器，加载路径中的class可以被Tomcat容 器本身以及各个Webapp访问；</p>
@@ -1713,7 +1710,7 @@ com.learn.jvm.source01.MyClassLoaderTest03$MyClassLoader@610455d6
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">8.8k</span>
+                        class="white-color">12.3k</span>
             
             
             

@@ -7,11 +7,12 @@
     <meta name="keywords" content="JVM内存模型, 菜鸟，努力">
     <meta name="description" content="JDK体系结构
 Java语言的跨平台特性
+
 JVM整体结构及内存模型
 二、JVM内存参数设置
 
 Spring Boot程序的JVM参数设置格式(Tomcat启动直接加在bin目录下catalina.sh文件里)：
-java ‐Xms2048M">
+java ‐Xms2048">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -592,18 +593,16 @@ java ‐Xms2048M">
         <hr class="clearfix">
 
         
-        <!-- 是否加载使用自带的 prismjs. -->
-        <link rel="stylesheet" href="/libs/prism/prism.css">
-        
 
         
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h4 id="JDK体系结构"><a href="#JDK体系结构" class="headerlink" title="JDK体系结构"></a>JDK体系结构</h4><p><img src="https://gitee.com/fengGitee129/oos/raw/master/uPic/image-20220321104141541.png" alt="image-20220321104141541"></p>
-<h4 id="Java语言的跨平台特性"><a href="#Java语言的跨平台特性" class="headerlink" title="Java语言的跨平台特性"></a>Java语言的跨平台特性</h4><p><img src="https://gitee.com/fengGitee129/oos/raw/master/uPic/image-20220321104211469.png" alt="image-20220321104211469"></p>
-<h4 id="JVM整体结构及内存模型"><a href="#JVM整体结构及内存模型" class="headerlink" title="JVM整体结构及内存模型"></a>JVM整体结构及内存模型</h4><p><img src="https://gitee.com/fengGitee129/oos/raw/master/uPic/image-20220321104241505.png" alt="image-20220321104241505"></p>
-<h4 id="二、JVM内存参数设置"><a href="#二、JVM内存参数设置" class="headerlink" title="二、JVM内存参数设置"></a>二、JVM内存参数设置</h4><img src="https://gitee.com/fengGitee129/oos/raw/master/uPic/image-20220321104339564.png" alt="image-20220321104339564" style="zoom:50%;">
+                <h4 id="JDK体系结构"><a href="#JDK体系结构" class="headerlink" title="JDK体系结构"></a>JDK体系结构</h4><p><img src="https://gitee.com/fengGitee129/oss/raw/master/images/20220329154246.png"></p>
+<h4 id="Java语言的跨平台特性"><a href="#Java语言的跨平台特性" class="headerlink" title="Java语言的跨平台特性"></a>Java语言的跨平台特性</h4><img src="https://gitee.com/fengGitee129/oss/raw/master/images/20220329154313.png" style="zoom:50%;">
+
+<h4 id="JVM整体结构及内存模型"><a href="#JVM整体结构及内存模型" class="headerlink" title="JVM整体结构及内存模型"></a>JVM整体结构及内存模型</h4><p><img src="https://gitee.com/fengGitee129/oss/raw/master/images/20220329154345.png"></p>
+<h4 id="二、JVM内存参数设置"><a href="#二、JVM内存参数设置" class="headerlink" title="二、JVM内存参数设置"></a>二、JVM内存参数设置</h4><img src="https://gitee.com/fengGitee129/oss/raw/master/images/20220329154411.png" style="zoom:50%;">
 
 <p>Spring Boot程序的JVM参数设置格式(Tomcat启动直接加在bin目录下catalina.sh文件里)：</p>
 <pre class="line-numbers language-none"><code class="language-none">java ‐Xms2048M ‐Xmx2048M ‐Xmn1024M ‐Xss512K ‐XX:MetaspaceSize=256M ‐XX:MaxMetaspaceSize=256M ‐jar microservice‐eurek a‐server.jar<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
@@ -653,8 +652,8 @@ java.lang.StackOverflowError
 <p><strong>JVM内存参数大小该如何设置？</strong></p>
 <p>JVM参数大小设置并没有固定标准，需要根据实际项目情况分析，给大家举个例子</p>
 <p><strong>日均百万级订单交易系统如何设置JVM参数</strong></p>
-<p><img src="https://gitee.com/fengGitee129/oos/raw/master/uPic/image-20220321105452030.png" alt="image-20220321105452030"></p>
-<p><img src="https://gitee.com/fengGitee129/oos/raw/master/uPic/image-20220321105518450.png" alt="image-20220321105518450"></p>
+<p><img src="https://gitee.com/fengGitee129/oss/raw/master/images/20220329154624.png"></p>
+<p><img src="https://gitee.com/fengGitee129/oss/raw/master/images/20220329154641.png"></p>
 <p><strong>结论：通过上面这些内容介绍，大家应该对JVM优化有些概念了，就是尽可能让对象都在新生代里分配和回收，尽量别 让太多对象频繁进入老年代，避免频繁对老年代进行垃圾回收，同时给系统充足的内存大小，避免新生代频繁的进行垃圾回收。</strong></p>
 
                 
@@ -1173,7 +1172,7 @@ java.lang.StackOverflowError
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">8.8k</span>
+                        class="white-color">12.3k</span>
             
             
             
