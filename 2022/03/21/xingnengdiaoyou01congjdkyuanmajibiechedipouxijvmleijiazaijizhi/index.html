@@ -34,10 +34,10 @@ public class Math {
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0">
+<meta name="generator" content="Hexo 5.0.0"><link rel="alternate" href="/atom.xml" title="偶染风寒" type="application/atom+xml">
+
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-<link rel="alternate" href="/atom.xml" title="偶染风寒" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+</head>
 
 
 
@@ -599,25 +599,25 @@ public class Math {
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h4 id="类加载运行全过程"><a href="#类加载运行全过程" class="headerlink" title="类加载运行全过程"></a><strong>类加载运行全过程</strong></h4><p>当我们用java命令运行某个类的main函数启动程序时，首先需要通过类加载器把主类加载到 JVM。</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java">package com.learn.jvm.source01;
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">package</span> <span class="token namespace">com<span class="token punctuation">.</span>learn<span class="token punctuation">.</span>jvm<span class="token punctuation">.</span>source01</span><span class="token punctuation">;</span>
 
-public class Math {
-    public static final int initData = 666;
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Math</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token keyword">int</span> initData <span class="token operator">=</span> <span class="token number">666</span><span class="token punctuation">;</span>
 
-    public static User user = new User();
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token class-name">User</span> user <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">User</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    public int compute() { //一个方法对应一块栈帧内存区域
-        int a = 1;
-        int b = 2;
-        int c = (a + b) * 10;
-        return c;
-    }
+    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">compute</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">//一个方法对应一块栈帧内存区域</span>
+        <span class="token keyword">int</span> a <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> b <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> c <span class="token operator">=</span> <span class="token punctuation">(</span>a <span class="token operator">+</span> b<span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">10</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> c<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-    public static void main(String[] args) {
-        Math math = new Math();
-        math.compute();
-    }
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">Math</span> math <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Math</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        math<span class="token punctuation">.</span><span class="token function">compute</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h4 id="通过Java命令执行代码的大体流程如下"><a href="#通过Java命令执行代码的大体流程如下" class="headerlink" title="通过Java命令执行代码的大体流程如下:"></a><strong>通过Java命令执行代码的大体流程如下:</strong></h4><p><img src="http://feng.mynatapp.cc/blog/20220329151014.png"></p>
 <p>其中loadClass的类加载过程有如下几步:</p>
@@ -639,45 +639,45 @@ public class Math {
 <p><strong>类加载器的引用</strong>：这个类到类加载器实例的引用 </p>
 <p><strong>对应class实例的引用</strong>：类加载器在加载类信息放到方法区中后，会创建一个对应的Class 类型的 对象实例放到堆(Heap)中, 作为开发人员访问方法区中类定义的入口和切入点。</p>
 <p><strong>！注意</strong>，主类在运行过程中如果使用到其它类，会逐步加载这些类。 jar包或war包里的类不是一次性全部加载的，是使用到时才加载。</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java">package com.learn.jvm.source01;
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">package</span> <span class="token namespace">com<span class="token punctuation">.</span>learn<span class="token punctuation">.</span>jvm<span class="token punctuation">.</span>source01</span><span class="token punctuation">;</span>
 
-public class TestDynamicLoad {
-    static {
-        System.out.println("*************load TestDynamicLoad************");
-    }
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">TestDynamicLoad</span> <span class="token punctuation">{</span>
+    <span class="token keyword">static</span> <span class="token punctuation">{</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"*************load TestDynamicLoad************"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-    public static void main(String[] args) {
-        new A();
-        System.out.println("*************load test************");
-        B b = null; // B不会加载，除非这里执行 new B()
-    }
-}
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">new</span> <span class="token class-name">A</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"*************load test************"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">B</span> b <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span> <span class="token comment">// B不会加载，除非这里执行 new B()</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 
-class A {
-    static {
-        System.out.println("*************load A************");
-    }
+<span class="token keyword">class</span> <span class="token class-name">A</span> <span class="token punctuation">{</span>
+    <span class="token keyword">static</span> <span class="token punctuation">{</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"*************load A************"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-    public A() {
-        System.out.println("*************initial A************");
-    }
-}
+    <span class="token keyword">public</span> <span class="token class-name">A</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"*************initial A************"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 
-class B {
-    static {
-        System.out.println("*************load B************");
-    }
+<span class="token keyword">class</span> <span class="token class-name">B</span> <span class="token punctuation">{</span>
+    <span class="token keyword">static</span> <span class="token punctuation">{</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"*************load B************"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-    public B() {
-        System.out.println("*************initial B************");
-    }
-}
+    <span class="token keyword">public</span> <span class="token class-name">B</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"*************initial B************"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 
-运行结果:
-*************loadTestDynamicLoad************
-*************loadA************
-*************initialA************
-*************loadtest************<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+运行结果<span class="token operator">:</span>
+<span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span>loadTestDynamicLoad<span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span>
+<span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span>loadA<span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span>
+<span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span>initialA<span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span>
+<span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span>loadtest<span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p><strong>类加载器和双亲委派机制</strong></p>
 <p>上面的类加载过程主要是通过类加载器来实现的，Java里有如下几种类加载器</p>
@@ -688,150 +688,150 @@ class B {
 <li>自定义加载器：负责加载用户自定义路径下的类包</li>
 </ul>
 <p>看一个<strong>类加载器</strong>示例</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java">package com.learn.jvm.source01;
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">package</span> <span class="token namespace">com<span class="token punctuation">.</span>learn<span class="token punctuation">.</span>jvm<span class="token punctuation">.</span>source01</span><span class="token punctuation">;</span>
 
-import sun.misc.Launcher;
+<span class="token keyword">import</span> <span class="token namespace">sun<span class="token punctuation">.</span>misc<span class="token punctuation">.</span></span><span class="token class-name">Launcher</span><span class="token punctuation">;</span>
 
-import java.net.URL;
+<span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>net<span class="token punctuation">.</span></span>URL<span class="token punctuation">;</span>
 
-public class TestJDKClassLoader {
-    public static void main(String[] args) {
-        System.out.println(String.class.getClassLoader());
-        System.out.println(com.sun.crypto.provider.DESKeyFactory.class.getClassLoader().getClass().getName());
-        System.out.println(TestJDKClassLoader.class.getClassLoader().getClass().getName());
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">TestJDKClassLoader</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">.</span><span class="token function">getClassLoader</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token class-name"><span class="token namespace">com<span class="token punctuation">.</span>sun<span class="token punctuation">.</span>crypto<span class="token punctuation">.</span>provider<span class="token punctuation">.</span></span>DESKeyFactory</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">.</span><span class="token function">getClassLoader</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token class-name">TestJDKClassLoader</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">.</span><span class="token function">getClassLoader</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-        System.out.println();
-        ClassLoader appClassLoader = ClassLoader.getSystemClassLoader();
-        ClassLoader extClassloader = appClassLoader.getParent();
-        ClassLoader bootstrapLoader = extClassloader.getParent();
-        System.out.println("the bootstrapLoader : " + bootstrapLoader);
-        System.out.println("the extClassloader : " + extClassloader);
-        System.out.println("the appClassLoader : " + appClassLoader);
-        System.out.println();
-        System.out.println("bootstrapLoader加载以下文件:");
-        URL[] urls = Launcher.getBootstrapClassPath().getURLs();
-        for (URL url : urls) {
-            System.out.println(url);
-        }
-        System.out.println();
-        System.out.println("extClassloader加载以下文件:");
-        String property = System.getProperty("java.ext.dirs");
-        for (String s : property.split(":")) {
-            System.out.println(s);
-        }
-        System.out.println();
-        System.out.println("appClassLoader加载以下文件:");
-        String property1 = System.getProperty("java.class.path");
-        for (String s : property1.split(":")) {
-            System.out.println(s);
-        }
-    }
-}
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">ClassLoader</span> appClassLoader <span class="token operator">=</span> <span class="token class-name">ClassLoader</span><span class="token punctuation">.</span><span class="token function">getSystemClassLoader</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">ClassLoader</span> extClassloader <span class="token operator">=</span> appClassLoader<span class="token punctuation">.</span><span class="token function">getParent</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">ClassLoader</span> bootstrapLoader <span class="token operator">=</span> extClassloader<span class="token punctuation">.</span><span class="token function">getParent</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"the bootstrapLoader : "</span> <span class="token operator">+</span> bootstrapLoader<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"the extClassloader : "</span> <span class="token operator">+</span> extClassloader<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"the appClassLoader : "</span> <span class="token operator">+</span> appClassLoader<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"bootstrapLoader加载以下文件:"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        URL<span class="token punctuation">[</span><span class="token punctuation">]</span> urls <span class="token operator">=</span> <span class="token class-name">Launcher</span><span class="token punctuation">.</span><span class="token function">getBootstrapClassPath</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getURLs</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span>URL url <span class="token operator">:</span> urls<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>url<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"extClassloader加载以下文件:"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">String</span> property <span class="token operator">=</span> <span class="token class-name">System</span><span class="token punctuation">.</span><span class="token function">getProperty</span><span class="token punctuation">(</span><span class="token string">"java.ext.dirs"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name">String</span> s <span class="token operator">:</span> property<span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token string">":"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"appClassLoader加载以下文件:"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">String</span> property1 <span class="token operator">=</span> <span class="token class-name">System</span><span class="token punctuation">.</span><span class="token function">getProperty</span><span class="token punctuation">(</span><span class="token string">"java.class.path"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name">String</span> s <span class="token operator">:</span> property1<span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token string">":"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 
 
 运行结果：
-null
-sun.misc.Launcher$ExtClassLoader
-sun.misc.Launcher$AppClassLoader
+<span class="token keyword">null</span>
+<span class="token class-name"><span class="token namespace">sun<span class="token punctuation">.</span>misc<span class="token punctuation">.</span></span>Launcher</span>$<span class="token class-name">ExtClassLoader</span>
+<span class="token class-name"><span class="token namespace">sun<span class="token punctuation">.</span>misc<span class="token punctuation">.</span></span>Launcher</span>$<span class="token class-name">AppClassLoader</span>
 
-the bootstrapLoader : null
-the extClassloader : sun.misc.Launcher$ExtClassLoader@355da254
-the appClassLoader : sun.misc.Launcher$AppClassLoader@18b4aac2
+the bootstrapLoader <span class="token operator">:</span> <span class="token keyword">null</span>
+the extClassloader <span class="token operator">:</span> <span class="token class-name"><span class="token namespace">sun<span class="token punctuation">.</span>misc<span class="token punctuation">.</span></span>Launcher</span>$<span class="token class-name">ExtClassLoader</span><span class="token annotation punctuation">@355da254</span>
+the appClassLoader <span class="token operator">:</span> <span class="token class-name"><span class="token namespace">sun<span class="token punctuation">.</span>misc<span class="token punctuation">.</span></span>Launcher</span>$<span class="token class-name">AppClassLoader</span><span class="token annotation punctuation">@18b4aac2</span>
 
-bootstrapLoader加载以下文件:
-file:/Library/Java/JavaVirtualMachines/jdk1.8.0_212.jdk/Contents/Home/jre/lib/resources.jar
-file:/Library/Java/JavaVirtualMachines/jdk1.8.0_212.jdk/Contents/Home/jre/lib/rt.jar
-file:/Library/Java/JavaVirtualMachines/jdk1.8.0_212.jdk/Contents/Home/jre/lib/sunrsasign.jar
-file:/Library/Java/JavaVirtualMachines/jdk1.8.0_212.jdk/Contents/Home/jre/lib/jsse.jar
-file:/Library/Java/JavaVirtualMachines/jdk1.8.0_212.jdk/Contents/Home/jre/lib/jce.jar
-file:/Library/Java/JavaVirtualMachines/jdk1.8.0_212.jdk/Contents/Home/jre/lib/charsets.jar
-file:/Library/Java/JavaVirtualMachines/jdk1.8.0_212.jdk/Contents/Home/jre/lib/jfr.jar
-file:/Library/Java/JavaVirtualMachines/jdk1.8.0_212.jdk/Contents/Home/jre/classes
+bootstrapLoader加载以下文件<span class="token operator">:</span>
+file<span class="token operator">:</span><span class="token operator">/</span><span class="token class-name">Library</span><span class="token operator">/</span><span class="token class-name">Java</span><span class="token operator">/</span><span class="token class-name">JavaVirtualMachines</span><span class="token operator">/</span>jdk1<span class="token punctuation">.</span><span class="token number">8.0_212</span><span class="token punctuation">.</span>jdk<span class="token operator">/</span><span class="token class-name">Contents</span><span class="token operator">/</span><span class="token class-name">Home</span><span class="token operator">/</span>jre<span class="token operator">/</span>lib<span class="token operator">/</span>resources<span class="token punctuation">.</span>jar
+file<span class="token operator">:</span><span class="token operator">/</span><span class="token class-name">Library</span><span class="token operator">/</span><span class="token class-name">Java</span><span class="token operator">/</span><span class="token class-name">JavaVirtualMachines</span><span class="token operator">/</span>jdk1<span class="token punctuation">.</span><span class="token number">8.0_212</span><span class="token punctuation">.</span>jdk<span class="token operator">/</span><span class="token class-name">Contents</span><span class="token operator">/</span><span class="token class-name">Home</span><span class="token operator">/</span>jre<span class="token operator">/</span>lib<span class="token operator">/</span>rt<span class="token punctuation">.</span>jar
+file<span class="token operator">:</span><span class="token operator">/</span><span class="token class-name">Library</span><span class="token operator">/</span><span class="token class-name">Java</span><span class="token operator">/</span><span class="token class-name">JavaVirtualMachines</span><span class="token operator">/</span>jdk1<span class="token punctuation">.</span><span class="token number">8.0_212</span><span class="token punctuation">.</span>jdk<span class="token operator">/</span><span class="token class-name">Contents</span><span class="token operator">/</span><span class="token class-name">Home</span><span class="token operator">/</span>jre<span class="token operator">/</span>lib<span class="token operator">/</span>sunrsasign<span class="token punctuation">.</span>jar
+file<span class="token operator">:</span><span class="token operator">/</span><span class="token class-name">Library</span><span class="token operator">/</span><span class="token class-name">Java</span><span class="token operator">/</span><span class="token class-name">JavaVirtualMachines</span><span class="token operator">/</span>jdk1<span class="token punctuation">.</span><span class="token number">8.0_212</span><span class="token punctuation">.</span>jdk<span class="token operator">/</span><span class="token class-name">Contents</span><span class="token operator">/</span><span class="token class-name">Home</span><span class="token operator">/</span>jre<span class="token operator">/</span>lib<span class="token operator">/</span>jsse<span class="token punctuation">.</span>jar
+file<span class="token operator">:</span><span class="token operator">/</span><span class="token class-name">Library</span><span class="token operator">/</span><span class="token class-name">Java</span><span class="token operator">/</span><span class="token class-name">JavaVirtualMachines</span><span class="token operator">/</span>jdk1<span class="token punctuation">.</span><span class="token number">8.0_212</span><span class="token punctuation">.</span>jdk<span class="token operator">/</span><span class="token class-name">Contents</span><span class="token operator">/</span><span class="token class-name">Home</span><span class="token operator">/</span>jre<span class="token operator">/</span>lib<span class="token operator">/</span>jce<span class="token punctuation">.</span>jar
+file<span class="token operator">:</span><span class="token operator">/</span><span class="token class-name">Library</span><span class="token operator">/</span><span class="token class-name">Java</span><span class="token operator">/</span><span class="token class-name">JavaVirtualMachines</span><span class="token operator">/</span>jdk1<span class="token punctuation">.</span><span class="token number">8.0_212</span><span class="token punctuation">.</span>jdk<span class="token operator">/</span><span class="token class-name">Contents</span><span class="token operator">/</span><span class="token class-name">Home</span><span class="token operator">/</span>jre<span class="token operator">/</span>lib<span class="token operator">/</span>charsets<span class="token punctuation">.</span>jar
+file<span class="token operator">:</span><span class="token operator">/</span><span class="token class-name">Library</span><span class="token operator">/</span><span class="token class-name">Java</span><span class="token operator">/</span><span class="token class-name">JavaVirtualMachines</span><span class="token operator">/</span>jdk1<span class="token punctuation">.</span><span class="token number">8.0_212</span><span class="token punctuation">.</span>jdk<span class="token operator">/</span><span class="token class-name">Contents</span><span class="token operator">/</span><span class="token class-name">Home</span><span class="token operator">/</span>jre<span class="token operator">/</span>lib<span class="token operator">/</span>jfr<span class="token punctuation">.</span>jar
+file<span class="token operator">:</span><span class="token operator">/</span><span class="token class-name">Library</span><span class="token operator">/</span><span class="token class-name">Java</span><span class="token operator">/</span><span class="token class-name">JavaVirtualMachines</span><span class="token operator">/</span>jdk1<span class="token punctuation">.</span><span class="token number">8.0_212</span><span class="token punctuation">.</span>jdk<span class="token operator">/</span><span class="token class-name">Contents</span><span class="token operator">/</span><span class="token class-name">Home</span><span class="token operator">/</span>jre<span class="token operator">/</span>classes
 
-extClassloader加载以下文件:
-/Users/panyangfeng/Library/Java/Extensions
-/Library/Java/JavaVirtualMachines/jdk1.8.0_212.jdk/Contents/Home/jre/lib/ext
-/Library/Java/Extensions
-/Network/Library/Java/Extensions
-/System/Library/Java/Extensions
-/usr/lib/java
+extClassloader加载以下文件<span class="token operator">:</span>
+<span class="token operator">/</span><span class="token class-name">Users</span><span class="token operator">/</span>panyangfeng<span class="token operator">/</span><span class="token class-name">Library</span><span class="token operator">/</span><span class="token class-name">Java</span><span class="token operator">/</span><span class="token class-name">Extensions</span>
+<span class="token operator">/</span><span class="token class-name">Library</span><span class="token operator">/</span><span class="token class-name">Java</span><span class="token operator">/</span><span class="token class-name">JavaVirtualMachines</span><span class="token operator">/</span>jdk1<span class="token punctuation">.</span><span class="token number">8.0_212</span><span class="token punctuation">.</span>jdk<span class="token operator">/</span><span class="token class-name">Contents</span><span class="token operator">/</span><span class="token class-name">Home</span><span class="token operator">/</span>jre<span class="token operator">/</span>lib<span class="token operator">/</span>ext
+<span class="token operator">/</span><span class="token class-name">Library</span><span class="token operator">/</span><span class="token class-name">Java</span><span class="token operator">/</span><span class="token class-name">Extensions</span>
+<span class="token operator">/</span><span class="token class-name">Network</span><span class="token operator">/</span><span class="token class-name">Library</span><span class="token operator">/</span><span class="token class-name">Java</span><span class="token operator">/</span><span class="token class-name">Extensions</span>
+<span class="token operator">/</span><span class="token class-name">System</span><span class="token operator">/</span><span class="token class-name">Library</span><span class="token operator">/</span><span class="token class-name">Java</span><span class="token operator">/</span><span class="token class-name">Extensions</span>
+<span class="token operator">/</span>usr<span class="token operator">/</span>lib<span class="token operator">/</span>java
 
-appClassLoader加载以下文件:
-/Library/Java/JavaVirtualMachines/jdk1.8.0_212.jdk/Contents/Home/jre/lib/charsets.jar
-/Library/Java/JavaVirtualMachines/jdk1.8.0_212.jdk/Contents/Home/jre/lib/deploy.jar
-/Library/Java/JavaVirtualMachines/jdk1.8.0_212.jdk/Contents/Home/jre/lib/ext/cldrdata.jar
-/Library/Java/JavaVirtualMachines/jdk1.8.0_212.jdk/Contents/Home/jre/lib/ext/dnsns.jar
-/Library/Java/JavaVirtualMachines/jdk1.8.0_212.jdk/Contents/Home/jre/lib/ext/jaccess.jar
-/Library/Java/JavaVirtualMachines/jdk1.8.0_212.jdk/Contents/Home/jre/lib/ext/jfxrt.jar
-/Library/Java/JavaVirtualMachines/jdk1.8.0_212.jdk/Contents/Home/jre/lib/ext/localedata.jar
-/Library/Java/JavaVirtualMachines/jdk1.8.0_212.jdk/Contents/Home/jre/lib/ext/nashorn.jar
-/Library/Java/JavaVirtualMachines/jdk1.8.0_212.jdk/Contents/Home/jre/lib/ext/sunec.jar
-/Library/Java/JavaVirtualMachines/jdk1.8.0_212.jdk/Contents/Home/jre/lib/ext/sunjce_provider.jar
-/Library/Java/JavaVirtualMachines/jdk1.8.0_212.jdk/Contents/Home/jre/lib/ext/sunpkcs11.jar
-/Library/Java/JavaVirtualMachines/jdk1.8.0_212.jdk/Contents/Home/jre/lib/ext/zipfs.jar
-/Library/Java/JavaVirtualMachines/jdk1.8.0_212.jdk/Contents/Home/jre/lib/javaws.jar
-/Library/Java/JavaVirtualMachines/jdk1.8.0_212.jdk/Contents/Home/jre/lib/jce.jar
-/Library/Java/JavaVirtualMachines/jdk1.8.0_212.jdk/Contents/Home/jre/lib/jfr.jar
-/Library/Java/JavaVirtualMachines/jdk1.8.0_212.jdk/Contents/Home/jre/lib/jfxswt.jar
-/Library/Java/JavaVirtualMachines/jdk1.8.0_212.jdk/Contents/Home/jre/lib/jsse.jar
-/Library/Java/JavaVirtualMachines/jdk1.8.0_212.jdk/Contents/Home/jre/lib/management-agent.jar
-/Library/Java/JavaVirtualMachines/jdk1.8.0_212.jdk/Contents/Home/jre/lib/plugin.jar
-/Library/Java/JavaVirtualMachines/jdk1.8.0_212.jdk/Contents/Home/jre/lib/resources.jar
-/Library/Java/JavaVirtualMachines/jdk1.8.0_212.jdk/Contents/Home/jre/lib/rt.jar
-/Library/Java/JavaVirtualMachines/jdk1.8.0_212.jdk/Contents/Home/lib/ant-javafx.jar
-/Library/Java/JavaVirtualMachines/jdk1.8.0_212.jdk/Contents/Home/lib/dt.jar
-/Library/Java/JavaVirtualMachines/jdk1.8.0_212.jdk/Contents/Home/lib/javafx-mx.jar
-/Library/Java/JavaVirtualMachines/jdk1.8.0_212.jdk/Contents/Home/lib/jconsole.jar
-/Library/Java/JavaVirtualMachines/jdk1.8.0_212.jdk/Contents/Home/lib/packager.jar
-/Library/Java/JavaVirtualMachines/jdk1.8.0_212.jdk/Contents/Home/lib/sa-jdi.jar
-/Library/Java/JavaVirtualMachines/jdk1.8.0_212.jdk/Contents/Home/lib/tools.jar
-/Users/panyangfeng/Documents/study-source/tuling架构/source-code/jvm-learn/out/production/jvm-learn
-/Applications/IntelliJ IDEA.app/Contents/lib/idea_rt.jar
+appClassLoader加载以下文件<span class="token operator">:</span>
+<span class="token operator">/</span><span class="token class-name">Library</span><span class="token operator">/</span><span class="token class-name">Java</span><span class="token operator">/</span><span class="token class-name">JavaVirtualMachines</span><span class="token operator">/</span>jdk1<span class="token punctuation">.</span><span class="token number">8.0_212</span><span class="token punctuation">.</span>jdk<span class="token operator">/</span><span class="token class-name">Contents</span><span class="token operator">/</span><span class="token class-name">Home</span><span class="token operator">/</span>jre<span class="token operator">/</span>lib<span class="token operator">/</span>charsets<span class="token punctuation">.</span>jar
+<span class="token operator">/</span><span class="token class-name">Library</span><span class="token operator">/</span><span class="token class-name">Java</span><span class="token operator">/</span><span class="token class-name">JavaVirtualMachines</span><span class="token operator">/</span>jdk1<span class="token punctuation">.</span><span class="token number">8.0_212</span><span class="token punctuation">.</span>jdk<span class="token operator">/</span><span class="token class-name">Contents</span><span class="token operator">/</span><span class="token class-name">Home</span><span class="token operator">/</span>jre<span class="token operator">/</span>lib<span class="token operator">/</span>deploy<span class="token punctuation">.</span>jar
+<span class="token operator">/</span><span class="token class-name">Library</span><span class="token operator">/</span><span class="token class-name">Java</span><span class="token operator">/</span><span class="token class-name">JavaVirtualMachines</span><span class="token operator">/</span>jdk1<span class="token punctuation">.</span><span class="token number">8.0_212</span><span class="token punctuation">.</span>jdk<span class="token operator">/</span><span class="token class-name">Contents</span><span class="token operator">/</span><span class="token class-name">Home</span><span class="token operator">/</span>jre<span class="token operator">/</span>lib<span class="token operator">/</span>ext<span class="token operator">/</span>cldrdata<span class="token punctuation">.</span>jar
+<span class="token operator">/</span><span class="token class-name">Library</span><span class="token operator">/</span><span class="token class-name">Java</span><span class="token operator">/</span><span class="token class-name">JavaVirtualMachines</span><span class="token operator">/</span>jdk1<span class="token punctuation">.</span><span class="token number">8.0_212</span><span class="token punctuation">.</span>jdk<span class="token operator">/</span><span class="token class-name">Contents</span><span class="token operator">/</span><span class="token class-name">Home</span><span class="token operator">/</span>jre<span class="token operator">/</span>lib<span class="token operator">/</span>ext<span class="token operator">/</span>dnsns<span class="token punctuation">.</span>jar
+<span class="token operator">/</span><span class="token class-name">Library</span><span class="token operator">/</span><span class="token class-name">Java</span><span class="token operator">/</span><span class="token class-name">JavaVirtualMachines</span><span class="token operator">/</span>jdk1<span class="token punctuation">.</span><span class="token number">8.0_212</span><span class="token punctuation">.</span>jdk<span class="token operator">/</span><span class="token class-name">Contents</span><span class="token operator">/</span><span class="token class-name">Home</span><span class="token operator">/</span>jre<span class="token operator">/</span>lib<span class="token operator">/</span>ext<span class="token operator">/</span>jaccess<span class="token punctuation">.</span>jar
+<span class="token operator">/</span><span class="token class-name">Library</span><span class="token operator">/</span><span class="token class-name">Java</span><span class="token operator">/</span><span class="token class-name">JavaVirtualMachines</span><span class="token operator">/</span>jdk1<span class="token punctuation">.</span><span class="token number">8.0_212</span><span class="token punctuation">.</span>jdk<span class="token operator">/</span><span class="token class-name">Contents</span><span class="token operator">/</span><span class="token class-name">Home</span><span class="token operator">/</span>jre<span class="token operator">/</span>lib<span class="token operator">/</span>ext<span class="token operator">/</span>jfxrt<span class="token punctuation">.</span>jar
+<span class="token operator">/</span><span class="token class-name">Library</span><span class="token operator">/</span><span class="token class-name">Java</span><span class="token operator">/</span><span class="token class-name">JavaVirtualMachines</span><span class="token operator">/</span>jdk1<span class="token punctuation">.</span><span class="token number">8.0_212</span><span class="token punctuation">.</span>jdk<span class="token operator">/</span><span class="token class-name">Contents</span><span class="token operator">/</span><span class="token class-name">Home</span><span class="token operator">/</span>jre<span class="token operator">/</span>lib<span class="token operator">/</span>ext<span class="token operator">/</span>localedata<span class="token punctuation">.</span>jar
+<span class="token operator">/</span><span class="token class-name">Library</span><span class="token operator">/</span><span class="token class-name">Java</span><span class="token operator">/</span><span class="token class-name">JavaVirtualMachines</span><span class="token operator">/</span>jdk1<span class="token punctuation">.</span><span class="token number">8.0_212</span><span class="token punctuation">.</span>jdk<span class="token operator">/</span><span class="token class-name">Contents</span><span class="token operator">/</span><span class="token class-name">Home</span><span class="token operator">/</span>jre<span class="token operator">/</span>lib<span class="token operator">/</span>ext<span class="token operator">/</span>nashorn<span class="token punctuation">.</span>jar
+<span class="token operator">/</span><span class="token class-name">Library</span><span class="token operator">/</span><span class="token class-name">Java</span><span class="token operator">/</span><span class="token class-name">JavaVirtualMachines</span><span class="token operator">/</span>jdk1<span class="token punctuation">.</span><span class="token number">8.0_212</span><span class="token punctuation">.</span>jdk<span class="token operator">/</span><span class="token class-name">Contents</span><span class="token operator">/</span><span class="token class-name">Home</span><span class="token operator">/</span>jre<span class="token operator">/</span>lib<span class="token operator">/</span>ext<span class="token operator">/</span>sunec<span class="token punctuation">.</span>jar
+<span class="token operator">/</span><span class="token class-name">Library</span><span class="token operator">/</span><span class="token class-name">Java</span><span class="token operator">/</span><span class="token class-name">JavaVirtualMachines</span><span class="token operator">/</span>jdk1<span class="token punctuation">.</span><span class="token number">8.0_212</span><span class="token punctuation">.</span>jdk<span class="token operator">/</span><span class="token class-name">Contents</span><span class="token operator">/</span><span class="token class-name">Home</span><span class="token operator">/</span>jre<span class="token operator">/</span>lib<span class="token operator">/</span>ext<span class="token operator">/</span>sunjce_provider<span class="token punctuation">.</span>jar
+<span class="token operator">/</span><span class="token class-name">Library</span><span class="token operator">/</span><span class="token class-name">Java</span><span class="token operator">/</span><span class="token class-name">JavaVirtualMachines</span><span class="token operator">/</span>jdk1<span class="token punctuation">.</span><span class="token number">8.0_212</span><span class="token punctuation">.</span>jdk<span class="token operator">/</span><span class="token class-name">Contents</span><span class="token operator">/</span><span class="token class-name">Home</span><span class="token operator">/</span>jre<span class="token operator">/</span>lib<span class="token operator">/</span>ext<span class="token operator">/</span>sunpkcs11<span class="token punctuation">.</span>jar
+<span class="token operator">/</span><span class="token class-name">Library</span><span class="token operator">/</span><span class="token class-name">Java</span><span class="token operator">/</span><span class="token class-name">JavaVirtualMachines</span><span class="token operator">/</span>jdk1<span class="token punctuation">.</span><span class="token number">8.0_212</span><span class="token punctuation">.</span>jdk<span class="token operator">/</span><span class="token class-name">Contents</span><span class="token operator">/</span><span class="token class-name">Home</span><span class="token operator">/</span>jre<span class="token operator">/</span>lib<span class="token operator">/</span>ext<span class="token operator">/</span>zipfs<span class="token punctuation">.</span>jar
+<span class="token operator">/</span><span class="token class-name">Library</span><span class="token operator">/</span><span class="token class-name">Java</span><span class="token operator">/</span><span class="token class-name">JavaVirtualMachines</span><span class="token operator">/</span>jdk1<span class="token punctuation">.</span><span class="token number">8.0_212</span><span class="token punctuation">.</span>jdk<span class="token operator">/</span><span class="token class-name">Contents</span><span class="token operator">/</span><span class="token class-name">Home</span><span class="token operator">/</span>jre<span class="token operator">/</span>lib<span class="token operator">/</span>javaws<span class="token punctuation">.</span>jar
+<span class="token operator">/</span><span class="token class-name">Library</span><span class="token operator">/</span><span class="token class-name">Java</span><span class="token operator">/</span><span class="token class-name">JavaVirtualMachines</span><span class="token operator">/</span>jdk1<span class="token punctuation">.</span><span class="token number">8.0_212</span><span class="token punctuation">.</span>jdk<span class="token operator">/</span><span class="token class-name">Contents</span><span class="token operator">/</span><span class="token class-name">Home</span><span class="token operator">/</span>jre<span class="token operator">/</span>lib<span class="token operator">/</span>jce<span class="token punctuation">.</span>jar
+<span class="token operator">/</span><span class="token class-name">Library</span><span class="token operator">/</span><span class="token class-name">Java</span><span class="token operator">/</span><span class="token class-name">JavaVirtualMachines</span><span class="token operator">/</span>jdk1<span class="token punctuation">.</span><span class="token number">8.0_212</span><span class="token punctuation">.</span>jdk<span class="token operator">/</span><span class="token class-name">Contents</span><span class="token operator">/</span><span class="token class-name">Home</span><span class="token operator">/</span>jre<span class="token operator">/</span>lib<span class="token operator">/</span>jfr<span class="token punctuation">.</span>jar
+<span class="token operator">/</span><span class="token class-name">Library</span><span class="token operator">/</span><span class="token class-name">Java</span><span class="token operator">/</span><span class="token class-name">JavaVirtualMachines</span><span class="token operator">/</span>jdk1<span class="token punctuation">.</span><span class="token number">8.0_212</span><span class="token punctuation">.</span>jdk<span class="token operator">/</span><span class="token class-name">Contents</span><span class="token operator">/</span><span class="token class-name">Home</span><span class="token operator">/</span>jre<span class="token operator">/</span>lib<span class="token operator">/</span>jfxswt<span class="token punctuation">.</span>jar
+<span class="token operator">/</span><span class="token class-name">Library</span><span class="token operator">/</span><span class="token class-name">Java</span><span class="token operator">/</span><span class="token class-name">JavaVirtualMachines</span><span class="token operator">/</span>jdk1<span class="token punctuation">.</span><span class="token number">8.0_212</span><span class="token punctuation">.</span>jdk<span class="token operator">/</span><span class="token class-name">Contents</span><span class="token operator">/</span><span class="token class-name">Home</span><span class="token operator">/</span>jre<span class="token operator">/</span>lib<span class="token operator">/</span>jsse<span class="token punctuation">.</span>jar
+<span class="token operator">/</span><span class="token class-name">Library</span><span class="token operator">/</span><span class="token class-name">Java</span><span class="token operator">/</span><span class="token class-name">JavaVirtualMachines</span><span class="token operator">/</span>jdk1<span class="token punctuation">.</span><span class="token number">8.0_212</span><span class="token punctuation">.</span>jdk<span class="token operator">/</span><span class="token class-name">Contents</span><span class="token operator">/</span><span class="token class-name">Home</span><span class="token operator">/</span>jre<span class="token operator">/</span>lib<span class="token operator">/</span>management<span class="token operator">-</span>agent<span class="token punctuation">.</span>jar
+<span class="token operator">/</span><span class="token class-name">Library</span><span class="token operator">/</span><span class="token class-name">Java</span><span class="token operator">/</span><span class="token class-name">JavaVirtualMachines</span><span class="token operator">/</span>jdk1<span class="token punctuation">.</span><span class="token number">8.0_212</span><span class="token punctuation">.</span>jdk<span class="token operator">/</span><span class="token class-name">Contents</span><span class="token operator">/</span><span class="token class-name">Home</span><span class="token operator">/</span>jre<span class="token operator">/</span>lib<span class="token operator">/</span>plugin<span class="token punctuation">.</span>jar
+<span class="token operator">/</span><span class="token class-name">Library</span><span class="token operator">/</span><span class="token class-name">Java</span><span class="token operator">/</span><span class="token class-name">JavaVirtualMachines</span><span class="token operator">/</span>jdk1<span class="token punctuation">.</span><span class="token number">8.0_212</span><span class="token punctuation">.</span>jdk<span class="token operator">/</span><span class="token class-name">Contents</span><span class="token operator">/</span><span class="token class-name">Home</span><span class="token operator">/</span>jre<span class="token operator">/</span>lib<span class="token operator">/</span>resources<span class="token punctuation">.</span>jar
+<span class="token operator">/</span><span class="token class-name">Library</span><span class="token operator">/</span><span class="token class-name">Java</span><span class="token operator">/</span><span class="token class-name">JavaVirtualMachines</span><span class="token operator">/</span>jdk1<span class="token punctuation">.</span><span class="token number">8.0_212</span><span class="token punctuation">.</span>jdk<span class="token operator">/</span><span class="token class-name">Contents</span><span class="token operator">/</span><span class="token class-name">Home</span><span class="token operator">/</span>jre<span class="token operator">/</span>lib<span class="token operator">/</span>rt<span class="token punctuation">.</span>jar
+<span class="token operator">/</span><span class="token class-name">Library</span><span class="token operator">/</span><span class="token class-name">Java</span><span class="token operator">/</span><span class="token class-name">JavaVirtualMachines</span><span class="token operator">/</span>jdk1<span class="token punctuation">.</span><span class="token number">8.0_212</span><span class="token punctuation">.</span>jdk<span class="token operator">/</span><span class="token class-name">Contents</span><span class="token operator">/</span><span class="token class-name">Home</span><span class="token operator">/</span>lib<span class="token operator">/</span>ant<span class="token operator">-</span>javafx<span class="token punctuation">.</span>jar
+<span class="token operator">/</span><span class="token class-name">Library</span><span class="token operator">/</span><span class="token class-name">Java</span><span class="token operator">/</span><span class="token class-name">JavaVirtualMachines</span><span class="token operator">/</span>jdk1<span class="token punctuation">.</span><span class="token number">8.0_212</span><span class="token punctuation">.</span>jdk<span class="token operator">/</span><span class="token class-name">Contents</span><span class="token operator">/</span><span class="token class-name">Home</span><span class="token operator">/</span>lib<span class="token operator">/</span>dt<span class="token punctuation">.</span>jar
+<span class="token operator">/</span><span class="token class-name">Library</span><span class="token operator">/</span><span class="token class-name">Java</span><span class="token operator">/</span><span class="token class-name">JavaVirtualMachines</span><span class="token operator">/</span>jdk1<span class="token punctuation">.</span><span class="token number">8.0_212</span><span class="token punctuation">.</span>jdk<span class="token operator">/</span><span class="token class-name">Contents</span><span class="token operator">/</span><span class="token class-name">Home</span><span class="token operator">/</span>lib<span class="token operator">/</span>javafx<span class="token operator">-</span>mx<span class="token punctuation">.</span>jar
+<span class="token operator">/</span><span class="token class-name">Library</span><span class="token operator">/</span><span class="token class-name">Java</span><span class="token operator">/</span><span class="token class-name">JavaVirtualMachines</span><span class="token operator">/</span>jdk1<span class="token punctuation">.</span><span class="token number">8.0_212</span><span class="token punctuation">.</span>jdk<span class="token operator">/</span><span class="token class-name">Contents</span><span class="token operator">/</span><span class="token class-name">Home</span><span class="token operator">/</span>lib<span class="token operator">/</span>jconsole<span class="token punctuation">.</span>jar
+<span class="token operator">/</span><span class="token class-name">Library</span><span class="token operator">/</span><span class="token class-name">Java</span><span class="token operator">/</span><span class="token class-name">JavaVirtualMachines</span><span class="token operator">/</span>jdk1<span class="token punctuation">.</span><span class="token number">8.0_212</span><span class="token punctuation">.</span>jdk<span class="token operator">/</span><span class="token class-name">Contents</span><span class="token operator">/</span><span class="token class-name">Home</span><span class="token operator">/</span>lib<span class="token operator">/</span>packager<span class="token punctuation">.</span>jar
+<span class="token operator">/</span><span class="token class-name">Library</span><span class="token operator">/</span><span class="token class-name">Java</span><span class="token operator">/</span><span class="token class-name">JavaVirtualMachines</span><span class="token operator">/</span>jdk1<span class="token punctuation">.</span><span class="token number">8.0_212</span><span class="token punctuation">.</span>jdk<span class="token operator">/</span><span class="token class-name">Contents</span><span class="token operator">/</span><span class="token class-name">Home</span><span class="token operator">/</span>lib<span class="token operator">/</span>sa<span class="token operator">-</span>jdi<span class="token punctuation">.</span>jar
+<span class="token operator">/</span><span class="token class-name">Library</span><span class="token operator">/</span><span class="token class-name">Java</span><span class="token operator">/</span><span class="token class-name">JavaVirtualMachines</span><span class="token operator">/</span>jdk1<span class="token punctuation">.</span><span class="token number">8.0_212</span><span class="token punctuation">.</span>jdk<span class="token operator">/</span><span class="token class-name">Contents</span><span class="token operator">/</span><span class="token class-name">Home</span><span class="token operator">/</span>lib<span class="token operator">/</span>tools<span class="token punctuation">.</span>jar
+<span class="token operator">/</span><span class="token class-name">Users</span><span class="token operator">/</span>panyangfeng<span class="token operator">/</span><span class="token class-name">Documents</span><span class="token operator">/</span>study<span class="token operator">-</span>source<span class="token operator">/</span>tuling架构<span class="token operator">/</span>source<span class="token operator">-</span>code<span class="token operator">/</span>jvm<span class="token operator">-</span>learn<span class="token operator">/</span>out<span class="token operator">/</span>production<span class="token operator">/</span>jvm<span class="token operator">-</span>learn
+<span class="token operator">/</span><span class="token class-name">Applications</span><span class="token operator">/</span><span class="token class-name">IntelliJ</span> IDEA<span class="token punctuation">.</span>app<span class="token operator">/</span><span class="token class-name">Contents</span><span class="token operator">/</span>lib<span class="token operator">/</span>idea_rt<span class="token punctuation">.</span>jar
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p><strong>类加载器初始化过程:</strong></p>
 <p>参见类运行加载全过程图可知其中会创建JVM启动器实例sun.misc.Launcher。 sun.misc.Launcher初始化使用了单例模式设计，保证一个JVM虚拟机内只有一个 sun.misc.Launcher实例。</p>
 <p>在Launcher构造方法内部，其创建了两个类加载器，分别是 sun.misc.Launcher.ExtClassLoader(扩展类加载器)和sun.misc.Launcher.AppClassLoader(应 用类加载器)。 </p>
 <p>JVM默认使用Launcher的getClassLoader()方法返回的类加载器AppClassLoader的实例加载我们的应用程序。</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java">// Launcher的构造方法
-public Launcher() {
-        Launcher.ExtClassLoader var1;
-        try {
-            var1 = Launcher.ExtClassLoader.getExtClassLoader();
-        } catch (IOException var10) {
-            throw new InternalError("Could not create extension class loader", var10);
-        }
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// Launcher的构造方法</span>
+<span class="token keyword">public</span> <span class="token class-name">Launcher</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">Launcher<span class="token punctuation">.</span>ExtClassLoader</span> var1<span class="token punctuation">;</span>
+        <span class="token keyword">try</span> <span class="token punctuation">{</span>
+            var1 <span class="token operator">=</span> <span class="token class-name">Launcher<span class="token punctuation">.</span>ExtClassLoader</span><span class="token punctuation">.</span><span class="token function">getExtClassLoader</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">IOException</span> var10<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">InternalError</span><span class="token punctuation">(</span><span class="token string">"Could not create extension class loader"</span><span class="token punctuation">,</span> var10<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
 
-        try {
-            this.loader = Launcher.AppClassLoader.getAppClassLoader(var1);
-        } catch (IOException var9) {
-            throw new InternalError("Could not create application class loader", var9);
-        }
+        <span class="token keyword">try</span> <span class="token punctuation">{</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span>loader <span class="token operator">=</span> <span class="token class-name">Launcher<span class="token punctuation">.</span>AppClassLoader</span><span class="token punctuation">.</span><span class="token function">getAppClassLoader</span><span class="token punctuation">(</span>var1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">IOException</span> var9<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">InternalError</span><span class="token punctuation">(</span><span class="token string">"Could not create application class loader"</span><span class="token punctuation">,</span> var9<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
 
-        Thread.currentThread().setContextClassLoader(this.loader);
-        String var2 = System.getProperty("java.security.manager");
-        if (var2 != null) {
-            SecurityManager var3 = null;
-            if (!"".equals(var2) &amp;&amp; !"default".equals(var2)) {
-                try {
-                    var3 = (SecurityManager)this.loader.loadClass(var2).newInstance();
-                } catch (IllegalAccessException var5) {
-                } catch (InstantiationException var6) {
-                } catch (ClassNotFoundException var7) {
-                } catch (ClassCastException var8) {
-                }
-            } else {
-                var3 = new SecurityManager();
-            }
+        <span class="token class-name">Thread</span><span class="token punctuation">.</span><span class="token function">currentThread</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">setContextClassLoader</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>loader<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">String</span> var2 <span class="token operator">=</span> <span class="token class-name">System</span><span class="token punctuation">.</span><span class="token function">getProperty</span><span class="token punctuation">(</span><span class="token string">"java.security.manager"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>var2 <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token class-name">SecurityManager</span> var3 <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token string">""</span><span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>var2<span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span><span class="token string">"default"</span><span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>var2<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">try</span> <span class="token punctuation">{</span>
+                    var3 <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token class-name">SecurityManager</span><span class="token punctuation">)</span><span class="token keyword">this</span><span class="token punctuation">.</span>loader<span class="token punctuation">.</span><span class="token function">loadClass</span><span class="token punctuation">(</span>var2<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">newInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">IllegalAccessException</span> var5<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">InstantiationException</span> var6<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">ClassNotFoundException</span> var7<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">ClassCastException</span> var8<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+                var3 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">SecurityManager</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
 
-            if (var3 == null) {
-                throw new InternalError("Could not create SecurityManager: " + var2);
-            }
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>var3 <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">InternalError</span><span class="token punctuation">(</span><span class="token string">"Could not create SecurityManager: "</span> <span class="token operator">+</span> var2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
 
-            System.setSecurityManager(var3);
-        }
+            <span class="token class-name">System</span><span class="token punctuation">.</span><span class="token function">setSecurityManager</span><span class="token punctuation">(</span>var3<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
 
-    }<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p><strong>双亲委派机制</strong></p>
 <p> JVM类加载器是有亲子层级结构的，如下图</p>
@@ -849,46 +849,46 @@ public Launcher() {
 <li><p>如果父加载器及bootstrap类加载器都没有找到指定的类，那么调用当前类加载器的 findClass方法来完成类加载。</p>
 </li>
 </ol>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java">// ClassLoader的loadClass方法，里面实现了双亲委派机制
-protected Class&lt;?&gt; loadClass(String name, boolean resolve)
-        throws ClassNotFoundException
-    {
-        synchronized (getClassLoadingLock(name)) {
-            // First, check if the class has already been loaded
-          	// 检查当前类加载器是否已经加载了该类
-            Class&lt;?&gt; c = findLoadedClass(name);
-            if (c == null) {
-                long t0 = System.nanoTime();
-                try {
-                    if (parent != null) { //如果当前加载器父加载器不为空则委托父加载器加载该类
-                        c = parent.loadClass(name, false);
-                    } else { //如果当前加载器父加载器为空则委托引导类加载器加载该类
-                        c = findBootstrapClassOrNull(name);
-                    }
-                } catch (ClassNotFoundException e) {
-                    // ClassNotFoundException thrown if class not found
-                    // from the non-null parent class loader
-                }
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// ClassLoader的loadClass方法，里面实现了双亲委派机制</span>
+<span class="token keyword">protected</span> <span class="token class-name">Class</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token operator">?</span><span class="token punctuation">&gt;</span></span> <span class="token function">loadClass</span><span class="token punctuation">(</span><span class="token class-name">String</span> name<span class="token punctuation">,</span> <span class="token keyword">boolean</span> resolve<span class="token punctuation">)</span>
+        <span class="token keyword">throws</span> <span class="token class-name">ClassNotFoundException</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">synchronized</span> <span class="token punctuation">(</span><span class="token function">getClassLoadingLock</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment">// First, check if the class has already been loaded</span>
+              <span class="token comment">// 检查当前类加载器是否已经加载了该类</span>
+            <span class="token class-name">Class</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token operator">?</span><span class="token punctuation">&gt;</span></span> c <span class="token operator">=</span> <span class="token function">findLoadedClass</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>c <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">long</span> t0 <span class="token operator">=</span> <span class="token class-name">System</span><span class="token punctuation">.</span><span class="token function">nanoTime</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">try</span> <span class="token punctuation">{</span>
+                    <span class="token keyword">if</span> <span class="token punctuation">(</span>parent <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">//如果当前加载器父加载器不为空则委托父加载器加载该类</span>
+                        c <span class="token operator">=</span> parent<span class="token punctuation">.</span><span class="token function">loadClass</span><span class="token punctuation">(</span>name<span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span> <span class="token comment">//如果当前加载器父加载器为空则委托引导类加载器加载该类</span>
+                        c <span class="token operator">=</span> <span class="token function">findBootstrapClassOrNull</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token punctuation">}</span>
+                <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">ClassNotFoundException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    <span class="token comment">// ClassNotFoundException thrown if class not found</span>
+                    <span class="token comment">// from the non-null parent class loader</span>
+                <span class="token punctuation">}</span>
 
-                if (c == null) {
-                    // If still not found, then invoke findClass in order
-                    // to find the class.
-                    long t1 = System.nanoTime();
-                  	// 都会调用URLClassLoader的findClass方法在加载器的类路径里查找并加载该类
-                    c = findClass(name);
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>c <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    <span class="token comment">// If still not found, then invoke findClass in order</span>
+                    <span class="token comment">// to find the class.</span>
+                    <span class="token keyword">long</span> t1 <span class="token operator">=</span> <span class="token class-name">System</span><span class="token punctuation">.</span><span class="token function">nanoTime</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                      <span class="token comment">// 都会调用URLClassLoader的findClass方法在加载器的类路径里查找并加载该类</span>
+                    c <span class="token operator">=</span> <span class="token function">findClass</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-                    // this is the defining class loader; record the stats
-                    sun.misc.PerfCounter.getParentDelegationTime().addTime(t1 - t0);
-                    sun.misc.PerfCounter.getFindClassTime().addElapsedTimeFrom(t1);
-                    sun.misc.PerfCounter.getFindClasses().increment();
-                }
-            }
-            if (resolve) { // 不会执行
-                resolveClass(c);
-            }
-            return c;
-        }
-    }<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+                    <span class="token comment">// this is the defining class loader; record the stats</span>
+                    <span class="token class-name"><span class="token namespace">sun<span class="token punctuation">.</span>misc<span class="token punctuation">.</span></span>PerfCounter</span><span class="token punctuation">.</span><span class="token function">getParentDelegationTime</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">addTime</span><span class="token punctuation">(</span>t1 <span class="token operator">-</span> t0<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token class-name"><span class="token namespace">sun<span class="token punctuation">.</span>misc<span class="token punctuation">.</span></span>PerfCounter</span><span class="token punctuation">.</span><span class="token function">getFindClassTime</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">addElapsedTimeFrom</span><span class="token punctuation">(</span>t1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token class-name"><span class="token namespace">sun<span class="token punctuation">.</span>misc<span class="token punctuation">.</span></span>PerfCounter</span><span class="token punctuation">.</span><span class="token function">getFindClasses</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">increment</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>resolve<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">// 不会执行</span>
+                <span class="token function">resolveClass</span><span class="token punctuation">(</span>c<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">return</span> c<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p><strong>为什么要设计双亲委派机制?</strong> </p>
 <ul>
@@ -896,156 +896,156 @@ protected Class&lt;?&gt; loadClass(String name, boolean resolve)
 <li>避免类的重复加载：当父亲已经加载了该类时，就没有必要子ClassLoader再加载一次，保证<strong>被加载类的唯一性</strong></li>
 </ul>
 <p>看一个类加载示例:</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java">package java.lang;
-public class String {
-  public static void main(String[] args) { 
-    System.out.println("**************My String Class**************");
-  }
-}
-运行结果:
-错误: 在类 java.lang.String 中找不到 main 方法, 请将 main 方法定义为: public static void main(String[] args)
-否则 JavaFX 应用程序类必须扩展javafx.application.Application<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">package</span> <span class="token namespace">java<span class="token punctuation">.</span>lang</span><span class="token punctuation">;</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">String</span> <span class="token punctuation">{</span>
+  <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+    <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"**************My String Class**************"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+运行结果<span class="token operator">:</span>
+错误<span class="token operator">:</span> 在类 <span class="token class-name"><span class="token namespace">java<span class="token punctuation">.</span>lang<span class="token punctuation">.</span></span>String</span> 中找不到 main 方法<span class="token punctuation">,</span> 请将 main 方法定义为<span class="token operator">:</span> <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span>
+否则 <span class="token class-name">JavaFX</span> 应用程序类必须扩展<span class="token class-name"><span class="token namespace">javafx<span class="token punctuation">.</span>application<span class="token punctuation">.</span></span>Application</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p><strong>全盘负责委托机制</strong></p>
 <p>**”全盘负责”**是指当一个ClassLoder装载一个类时，除非显示的使用另外一个ClassLoder，该类所依赖及引用的类也由这个ClassLoder载入。</p>
 <p><strong>自定义类加载器示例：</strong></p>
 <p>自定义类加载器只需要继承 java.lang.ClassLoader 类，该类有两个核心方法，一个是 loadClass(String, boolean)，实现了<strong>双亲委派机制</strong>，还有一个方法是findClass，默认实现是空方法，所以我们自定义类加载器主要是<strong>重写</strong>findClass<strong>方法</strong></p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java">package com.learn.jvm.source01;
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">package</span> <span class="token namespace">com<span class="token punctuation">.</span>learn<span class="token punctuation">.</span>jvm<span class="token punctuation">.</span>source01</span><span class="token punctuation">;</span>
 
-import java.io.FileInputStream;
-import java.lang.reflect.Method;
+<span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>io<span class="token punctuation">.</span></span><span class="token class-name">FileInputStream</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>lang<span class="token punctuation">.</span>reflect<span class="token punctuation">.</span></span><span class="token class-name">Method</span><span class="token punctuation">;</span>
 
-public class MyClassLoaderTest01 {
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MyClassLoaderTest01</span> <span class="token punctuation">{</span>
 
-    static class MyClassLoader extends ClassLoader {
-        private final String classPath;
+    <span class="token keyword">static</span> <span class="token keyword">class</span> <span class="token class-name">MyClassLoader</span> <span class="token keyword">extends</span> <span class="token class-name">ClassLoader</span> <span class="token punctuation">{</span>
+        <span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token class-name">String</span> classPath<span class="token punctuation">;</span>
 
-        public MyClassLoader(String classPath) {
-            this.classPath = classPath;
-        }
+        <span class="token keyword">public</span> <span class="token class-name">MyClassLoader</span><span class="token punctuation">(</span><span class="token class-name">String</span> classPath<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span>classPath <span class="token operator">=</span> classPath<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
 
-        private byte[] loadByte(String name) throws Exception {
-            name = name.replaceAll("\\.", "/");
-            FileInputStream fis = new FileInputStream(classPath + "/" + name + ".class");
-            int len = fis.available();
-            byte[] data = new byte[len];
-            fis.read(data);
-            fis.close();
-            return data;
-        }
+        <span class="token keyword">private</span> <span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token function">loadByte</span><span class="token punctuation">(</span><span class="token class-name">String</span> name<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Exception</span> <span class="token punctuation">{</span>
+            name <span class="token operator">=</span> name<span class="token punctuation">.</span><span class="token function">replaceAll</span><span class="token punctuation">(</span><span class="token string">"\\."</span><span class="token punctuation">,</span> <span class="token string">"/"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token class-name">FileInputStream</span> fis <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FileInputStream</span><span class="token punctuation">(</span>classPath <span class="token operator">+</span> <span class="token string">"/"</span> <span class="token operator">+</span> name <span class="token operator">+</span> <span class="token string">".class"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">int</span> len <span class="token operator">=</span> fis<span class="token punctuation">.</span><span class="token function">available</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> data <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token keyword">byte</span><span class="token punctuation">[</span>len<span class="token punctuation">]</span><span class="token punctuation">;</span>
+            fis<span class="token punctuation">.</span><span class="token function">read</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            fis<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> data<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
 
-        @Override
-        protected Class&lt;?&gt; findClass(String name) throws ClassNotFoundException {
-            try {
-                byte[] data = loadByte(name);
-                // defineClass将一个字节数组转为Class对象，这个字节数组是class文件读取后最终的字节数组。
-                return defineClass(name, data, 0, data.length);
-            } catch (Exception e) {
-                e.printStackTrace();
-                throw new ClassNotFoundException();
-            }
-        }
-    }
+        <span class="token annotation punctuation">@Override</span>
+        <span class="token keyword">protected</span> <span class="token class-name">Class</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token operator">?</span><span class="token punctuation">&gt;</span></span> <span class="token function">findClass</span><span class="token punctuation">(</span><span class="token class-name">String</span> name<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">ClassNotFoundException</span> <span class="token punctuation">{</span>
+            <span class="token keyword">try</span> <span class="token punctuation">{</span>
+                <span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> data <span class="token operator">=</span> <span class="token function">loadByte</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token comment">// defineClass将一个字节数组转为Class对象，这个字节数组是class文件读取后最终的字节数组。</span>
+                <span class="token keyword">return</span> <span class="token function">defineClass</span><span class="token punctuation">(</span>name<span class="token punctuation">,</span> data<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> data<span class="token punctuation">.</span>length<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">ClassNotFoundException</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
 
-    public static void main(String args[]) throws Exception {
-        // 初始化自定义类加载器，会先初始化父类ClassLoader，其中会把自定义类加载器的父加载器设置为应用程序类加载器AppClassLoader
-        // 创建 test/com/learn/jvm/source01 几级目录，将User类的复制类User1.class丢入该目录
-        MyClassLoader classLoader = new MyClassLoader("/Users/panyangfeng/test");
-        Class&lt;?&gt; clazz = classLoader.loadClass("com.learn.jvm.source01.User1");
-        Object obj = clazz.newInstance();
-        Method method = clazz.getDeclaredMethod("sout", null);
-        method.invoke(obj, null);
-        System.out.println(clazz.getClassLoader().getClass().getName());
-    }
-}
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span> args<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Exception</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 初始化自定义类加载器，会先初始化父类ClassLoader，其中会把自定义类加载器的父加载器设置为应用程序类加载器AppClassLoader</span>
+        <span class="token comment">// 创建 test/com/learn/jvm/source01 几级目录，将User类的复制类User1.class丢入该目录</span>
+        <span class="token class-name">MyClassLoader</span> classLoader <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">MyClassLoader</span><span class="token punctuation">(</span><span class="token string">"/Users/panyangfeng/test"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">Class</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token operator">?</span><span class="token punctuation">&gt;</span></span> clazz <span class="token operator">=</span> classLoader<span class="token punctuation">.</span><span class="token function">loadClass</span><span class="token punctuation">(</span><span class="token string">"com.learn.jvm.source01.User1"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">Object</span> obj <span class="token operator">=</span> clazz<span class="token punctuation">.</span><span class="token function">newInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">Method</span> method <span class="token operator">=</span> clazz<span class="token punctuation">.</span><span class="token function">getDeclaredMethod</span><span class="token punctuation">(</span><span class="token string">"sout"</span><span class="token punctuation">,</span> <span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        method<span class="token punctuation">.</span><span class="token function">invoke</span><span class="token punctuation">(</span>obj<span class="token punctuation">,</span> <span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>clazz<span class="token punctuation">.</span><span class="token function">getClassLoader</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 
 运行结果： 
-=======自己的加载器加载类调用方法======= 
-com.learn.jvm.source01.MyClassLoaderTest01$MyClassLoader<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">=</span>自己的加载器加载类调用方法<span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">=</span> 
+<span class="token class-name"><span class="token namespace">com<span class="token punctuation">.</span>learn<span class="token punctuation">.</span>jvm<span class="token punctuation">.</span>source01<span class="token punctuation">.</span></span>MyClassLoaderTest01</span>$<span class="token class-name">MyClassLoader</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p><strong>打破双亲委派机制</strong></p>
 <p>再来一个沙箱安全机制示例，尝试打破双亲委派机制，用自定义类加载器加载我们自己实现java.lang.String.class</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java">package com.learn.jvm.source01;
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">package</span> <span class="token namespace">com<span class="token punctuation">.</span>learn<span class="token punctuation">.</span>jvm<span class="token punctuation">.</span>source01</span><span class="token punctuation">;</span>
 
-import java.io.FileInputStream;
-import java.lang.reflect.Method;
+<span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>io<span class="token punctuation">.</span></span><span class="token class-name">FileInputStream</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>lang<span class="token punctuation">.</span>reflect<span class="token punctuation">.</span></span><span class="token class-name">Method</span><span class="token punctuation">;</span>
 
-public class MyClassLoaderTest02 {
-    static class MyClassLoader extends ClassLoader {
-        private String classPath;
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MyClassLoaderTest02</span> <span class="token punctuation">{</span>
+    <span class="token keyword">static</span> <span class="token keyword">class</span> <span class="token class-name">MyClassLoader</span> <span class="token keyword">extends</span> <span class="token class-name">ClassLoader</span> <span class="token punctuation">{</span>
+        <span class="token keyword">private</span> <span class="token class-name">String</span> classPath<span class="token punctuation">;</span>
 
-        public MyClassLoader(String classPath) {
-            this.classPath = classPath;
-        }
+        <span class="token keyword">public</span> <span class="token class-name">MyClassLoader</span><span class="token punctuation">(</span><span class="token class-name">String</span> classPath<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span>classPath <span class="token operator">=</span> classPath<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
 
-        private byte[] loadByte(String name) throws Exception {
-            name = name.replaceAll("\\.", "/");
-            FileInputStream fis = new FileInputStream(classPath + "/" + name + ".class");
-            int len = fis.available();
-            byte[] data = new byte[len];
-            fis.read(data);
-            fis.close();
-            return data;
-        }
+        <span class="token keyword">private</span> <span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token function">loadByte</span><span class="token punctuation">(</span><span class="token class-name">String</span> name<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Exception</span> <span class="token punctuation">{</span>
+            name <span class="token operator">=</span> name<span class="token punctuation">.</span><span class="token function">replaceAll</span><span class="token punctuation">(</span><span class="token string">"\\."</span><span class="token punctuation">,</span> <span class="token string">"/"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token class-name">FileInputStream</span> fis <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FileInputStream</span><span class="token punctuation">(</span>classPath <span class="token operator">+</span> <span class="token string">"/"</span> <span class="token operator">+</span> name <span class="token operator">+</span> <span class="token string">".class"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">int</span> len <span class="token operator">=</span> fis<span class="token punctuation">.</span><span class="token function">available</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> data <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token keyword">byte</span><span class="token punctuation">[</span>len<span class="token punctuation">]</span><span class="token punctuation">;</span>
+            fis<span class="token punctuation">.</span><span class="token function">read</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            fis<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> data<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
 
-        @Override
-        protected Class&lt;?&gt; findClass(String name) throws ClassNotFoundException {
-            try {
-                byte[] data = loadByte(name);
-                return defineClass(name, data, 0, data.length);
-            } catch (Exception e) {
-                e.printStackTrace();
-                throw new ClassNotFoundException();
-            }
-        }
+        <span class="token annotation punctuation">@Override</span>
+        <span class="token keyword">protected</span> <span class="token class-name">Class</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token operator">?</span><span class="token punctuation">&gt;</span></span> <span class="token function">findClass</span><span class="token punctuation">(</span><span class="token class-name">String</span> name<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">ClassNotFoundException</span> <span class="token punctuation">{</span>
+            <span class="token keyword">try</span> <span class="token punctuation">{</span>
+                <span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> data <span class="token operator">=</span> <span class="token function">loadByte</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">return</span> <span class="token function">defineClass</span><span class="token punctuation">(</span>name<span class="token punctuation">,</span> data<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> data<span class="token punctuation">.</span>length<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">ClassNotFoundException</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
 
-        /**
+        <span class="token comment">/**
          * 重写类加载方法，实现自己的加载逻辑，不委派给双亲加载
          *
          * @param name
          * @param resolve
          * @return
          * @throws ClassNotFoundException
-         */
-        @Override
-        protected Class&lt;?&gt; loadClass(String name, boolean resolve) throws ClassNotFoundException {
-            synchronized (getClassLoadingLock(name)) {
-                // First, check if the class has already been loaded
-                Class&lt;?&gt; c = findLoadedClass(name);
-                if (c == null) {
-                    // If still not found, then invoke findClass in order
-                    // to find the class.
-                    long t1 = System.nanoTime();
-                    c = findClass(name);
-                    // this is the defining class loader; record the stats
-                    sun.misc.PerfCounter.getFindClassTime().addElapsedTimeFrom(t1);
-                    sun.misc.PerfCounter.getFindClasses().increment();
-                }
-                if (resolve) {
-                    resolveClass(c);
-                }
-                return c;
-            }
-        }
-    }
+         */</span>
+        <span class="token annotation punctuation">@Override</span>
+        <span class="token keyword">protected</span> <span class="token class-name">Class</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token operator">?</span><span class="token punctuation">&gt;</span></span> <span class="token function">loadClass</span><span class="token punctuation">(</span><span class="token class-name">String</span> name<span class="token punctuation">,</span> <span class="token keyword">boolean</span> resolve<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">ClassNotFoundException</span> <span class="token punctuation">{</span>
+            <span class="token keyword">synchronized</span> <span class="token punctuation">(</span><span class="token function">getClassLoadingLock</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token comment">// First, check if the class has already been loaded</span>
+                <span class="token class-name">Class</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token operator">?</span><span class="token punctuation">&gt;</span></span> c <span class="token operator">=</span> <span class="token function">findLoadedClass</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>c <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    <span class="token comment">// If still not found, then invoke findClass in order</span>
+                    <span class="token comment">// to find the class.</span>
+                    <span class="token keyword">long</span> t1 <span class="token operator">=</span> <span class="token class-name">System</span><span class="token punctuation">.</span><span class="token function">nanoTime</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    c <span class="token operator">=</span> <span class="token function">findClass</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token comment">// this is the defining class loader; record the stats</span>
+                    <span class="token class-name"><span class="token namespace">sun<span class="token punctuation">.</span>misc<span class="token punctuation">.</span></span>PerfCounter</span><span class="token punctuation">.</span><span class="token function">getFindClassTime</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">addElapsedTimeFrom</span><span class="token punctuation">(</span>t1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token class-name"><span class="token namespace">sun<span class="token punctuation">.</span>misc<span class="token punctuation">.</span></span>PerfCounter</span><span class="token punctuation">.</span><span class="token function">getFindClasses</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">increment</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>resolve<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    <span class="token function">resolveClass</span><span class="token punctuation">(</span>c<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+                <span class="token keyword">return</span> c<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
 
-    public static void main(String args[]) throws Exception {
-        // 尝试用自己改写类加载机制去加载自己写的java.lang.String.class 65
-        MyClassLoader classLoader = new MyClassLoader("/Users/panyangfeng/test");
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span> args<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Exception</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 尝试用自己改写类加载机制去加载自己写的java.lang.String.class 65</span>
+        <span class="token class-name">MyClassLoader</span> classLoader <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">MyClassLoader</span><span class="token punctuation">(</span><span class="token string">"/Users/panyangfeng/test"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-        Class&lt;?&gt; clazz = classLoader.loadClass("java.lang.String");
-        Object obj = clazz.newInstance();
-        Method method = clazz.getDeclaredMethod("sout", null);
-        method.invoke(obj, null);
-        System.out.println(clazz.getClassLoader().getClass().getName());
-    }
-}
+        <span class="token class-name">Class</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token operator">?</span><span class="token punctuation">&gt;</span></span> clazz <span class="token operator">=</span> classLoader<span class="token punctuation">.</span><span class="token function">loadClass</span><span class="token punctuation">(</span><span class="token string">"java.lang.String"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">Object</span> obj <span class="token operator">=</span> clazz<span class="token punctuation">.</span><span class="token function">newInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">Method</span> method <span class="token operator">=</span> clazz<span class="token punctuation">.</span><span class="token function">getDeclaredMethod</span><span class="token punctuation">(</span><span class="token string">"sout"</span><span class="token punctuation">,</span> <span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        method<span class="token punctuation">.</span><span class="token function">invoke</span><span class="token punctuation">(</span>obj<span class="token punctuation">,</span> <span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>clazz<span class="token punctuation">.</span><span class="token function">getClassLoader</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 
 运行结果：
 
-java.lang.SecurityException: Prohibited package name: java.lang
-	at java.lang.ClassLoader.preDefineClass(ClassLoader.java:662)
-	at java.lang.ClassLoader.defineClass(ClassLoader.java:761)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token class-name"><span class="token namespace">java<span class="token punctuation">.</span>lang<span class="token punctuation">.</span></span>SecurityException</span><span class="token operator">:</span> <span class="token class-name">Prohibited</span> <span class="token keyword">package</span> <span class="token namespace">name</span><span class="token operator">:</span> java<span class="token punctuation">.</span>lang
+    at <span class="token class-name"><span class="token namespace">java<span class="token punctuation">.</span>lang<span class="token punctuation">.</span></span>ClassLoader</span><span class="token punctuation">.</span><span class="token function">preDefineClass</span><span class="token punctuation">(</span><span class="token class-name">ClassLoader</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">662</span><span class="token punctuation">)</span>
+    at <span class="token class-name"><span class="token namespace">java<span class="token punctuation">.</span>lang<span class="token punctuation">.</span></span>ClassLoader</span><span class="token punctuation">.</span><span class="token function">defineClass</span><span class="token punctuation">(</span><span class="token class-name">ClassLoader</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">761</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p><strong>Tomcat打破双亲委派机制</strong></p>
 <p>以Tomcat类加载为例，Tomcat 如果使用默认的双亲委派类加载机制行不行？ 我们思考一下：Tomcat是个web容器， 那么它要解决什么问题：</p>
@@ -1084,103 +1084,103 @@ java.lang.SecurityException: Prohibited package name: java.lang
 <p> 而JasperLoader的加载范围仅仅是这个JSP文件所编译出来的那一个.Class文件，它出现的目的 就是为了被丢弃：当Web容器检测到JSP文件被修改时，会替换掉目前的JasperLoader的实例， 并通过再建立一个新的Jsp类加载器来实现JSP文件的热加载功能。</p>
 <p>tomcat 这种类加载机制违背了java 推荐的双亲委派模型了吗？答案是：违背了。 很显然，tomcat 不是这样实现，tomcat 为了实现隔离性，没有遵守这个约定，<strong>每个 webappClassLoader加载自己的目录下的class文件，不会传递给父类加载器，打破了双亲委派机制</strong>。</p>
 <p><strong>模拟实现Tomcat的webappClassLoader加载自己war包应用内不同版本类实现相互共存与隔离</strong></p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java">package com.learn.jvm.source01;
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">package</span> <span class="token namespace">com<span class="token punctuation">.</span>learn<span class="token punctuation">.</span>jvm<span class="token punctuation">.</span>source01</span><span class="token punctuation">;</span>
 
-import java.io.FileInputStream;
-import java.lang.reflect.Method;
+<span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>io<span class="token punctuation">.</span></span><span class="token class-name">FileInputStream</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>lang<span class="token punctuation">.</span>reflect<span class="token punctuation">.</span></span><span class="token class-name">Method</span><span class="token punctuation">;</span>
 
-public class MyClassLoaderTest03 {
-    static class MyClassLoader extends ClassLoader {
-        private String classPath;
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MyClassLoaderTest03</span> <span class="token punctuation">{</span>
+    <span class="token keyword">static</span> <span class="token keyword">class</span> <span class="token class-name">MyClassLoader</span> <span class="token keyword">extends</span> <span class="token class-name">ClassLoader</span> <span class="token punctuation">{</span>
+        <span class="token keyword">private</span> <span class="token class-name">String</span> classPath<span class="token punctuation">;</span>
 
-        public MyClassLoader(String classPath) {
-            this.classPath = classPath;
-        }
+        <span class="token keyword">public</span> <span class="token class-name">MyClassLoader</span><span class="token punctuation">(</span><span class="token class-name">String</span> classPath<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span>classPath <span class="token operator">=</span> classPath<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
 
-        private byte[] loadByte(String name) throws Exception {
-            name = name.replaceAll("\\.", "/");
-            FileInputStream fis = new FileInputStream(classPath + "/" + name + ".class");
-            int len = fis.available();
-            byte[] data = new byte[len];
-            fis.read(data);
-            fis.close();
-            return data;
-        }
+        <span class="token keyword">private</span> <span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token function">loadByte</span><span class="token punctuation">(</span><span class="token class-name">String</span> name<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Exception</span> <span class="token punctuation">{</span>
+            name <span class="token operator">=</span> name<span class="token punctuation">.</span><span class="token function">replaceAll</span><span class="token punctuation">(</span><span class="token string">"\\."</span><span class="token punctuation">,</span> <span class="token string">"/"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token class-name">FileInputStream</span> fis <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FileInputStream</span><span class="token punctuation">(</span>classPath <span class="token operator">+</span> <span class="token string">"/"</span> <span class="token operator">+</span> name <span class="token operator">+</span> <span class="token string">".class"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">int</span> len <span class="token operator">=</span> fis<span class="token punctuation">.</span><span class="token function">available</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> data <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token keyword">byte</span><span class="token punctuation">[</span>len<span class="token punctuation">]</span><span class="token punctuation">;</span>
+            fis<span class="token punctuation">.</span><span class="token function">read</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            fis<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> data<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
 
 
-        @Override
-        protected Class&lt;?&gt; findClass(String name) throws ClassNotFoundException {
-            try {
-                byte[] data = loadByte(name);
-                return defineClass(name, data, 0, data.length);
-            } catch (Exception e) {
-                e.printStackTrace();
-                throw new ClassNotFoundException();
-            }
-        }
+        <span class="token annotation punctuation">@Override</span>
+        <span class="token keyword">protected</span> <span class="token class-name">Class</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token operator">?</span><span class="token punctuation">&gt;</span></span> <span class="token function">findClass</span><span class="token punctuation">(</span><span class="token class-name">String</span> name<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">ClassNotFoundException</span> <span class="token punctuation">{</span>
+            <span class="token keyword">try</span> <span class="token punctuation">{</span>
+                <span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> data <span class="token operator">=</span> <span class="token function">loadByte</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">return</span> <span class="token function">defineClass</span><span class="token punctuation">(</span>name<span class="token punctuation">,</span> data<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> data<span class="token punctuation">.</span>length<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">ClassNotFoundException</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
 
-        /**
+        <span class="token comment">/**
          * 重写类加载方法，实现自己的加载逻辑，不委派给双亲加载
          *
          * @param name
          * @param resolve
          * @return
          * @throws ClassNotFoundException
-         */
-        @Override
-        protected Class&lt;?&gt; loadClass(String name, boolean resolve) throws ClassNotFoundException {
-            synchronized (getClassLoadingLock(name)) {
-                // First, check if the class has already been loaded
-                Class&lt;?&gt; c = findLoadedClass(name);
+         */</span>
+        <span class="token annotation punctuation">@Override</span>
+        <span class="token keyword">protected</span> <span class="token class-name">Class</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token operator">?</span><span class="token punctuation">&gt;</span></span> <span class="token function">loadClass</span><span class="token punctuation">(</span><span class="token class-name">String</span> name<span class="token punctuation">,</span> <span class="token keyword">boolean</span> resolve<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">ClassNotFoundException</span> <span class="token punctuation">{</span>
+            <span class="token keyword">synchronized</span> <span class="token punctuation">(</span><span class="token function">getClassLoadingLock</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token comment">// First, check if the class has already been loaded</span>
+                <span class="token class-name">Class</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token operator">?</span><span class="token punctuation">&gt;</span></span> c <span class="token operator">=</span> <span class="token function">findLoadedClass</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-                if (c == null) {
-                    // If still not found, then invoke findClass in order
-                    // to find the class.
-                    long t1 = System.nanoTime();
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>c <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    <span class="token comment">// If still not found, then invoke findClass in order</span>
+                    <span class="token comment">// to find the class.</span>
+                    <span class="token keyword">long</span> t1 <span class="token operator">=</span> <span class="token class-name">System</span><span class="token punctuation">.</span><span class="token function">nanoTime</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-                    //非自定义的类还是走双亲委派加载
-                    if (!name.startsWith("com.learn.jvm")) {
-                        c = this.getParent().loadClass(name);
-                    } else {
-                        c = findClass(name);
-                    }
+                    <span class="token comment">//非自定义的类还是走双亲委派加载</span>
+                    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>name<span class="token punctuation">.</span><span class="token function">startsWith</span><span class="token punctuation">(</span><span class="token string">"com.learn.jvm"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                        c <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">getParent</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">loadClass</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+                        c <span class="token operator">=</span> <span class="token function">findClass</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token punctuation">}</span>
 
-                    // this is the defining class loader; record the stats
-                    sun.misc.PerfCounter.getFindClassTime().addElapsedTimeFrom(t1);
-                    sun.misc.PerfCounter.getFindClasses().increment();
-                }
-                if (resolve) {
-                    resolveClass(c);
-                }
-                return c;
-            }
-        }
-    }
+                    <span class="token comment">// this is the defining class loader; record the stats</span>
+                    <span class="token class-name"><span class="token namespace">sun<span class="token punctuation">.</span>misc<span class="token punctuation">.</span></span>PerfCounter</span><span class="token punctuation">.</span><span class="token function">getFindClassTime</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">addElapsedTimeFrom</span><span class="token punctuation">(</span>t1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token class-name"><span class="token namespace">sun<span class="token punctuation">.</span>misc<span class="token punctuation">.</span></span>PerfCounter</span><span class="token punctuation">.</span><span class="token function">getFindClasses</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">increment</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>resolve<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    <span class="token function">resolveClass</span><span class="token punctuation">(</span>c<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+                <span class="token keyword">return</span> c<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
 
-    public static void main(String args[]) throws Exception {
-        MyClassLoader classLoader = new MyClassLoader("/Users/panyangfeng/test");
-        Class&lt;?&gt; clazz = classLoader.loadClass("com.learn.jvm.source01.User1");
-        Object obj = clazz.newInstance();
-        Method method = clazz.getDeclaredMethod("sout", null);
-        method.invoke(obj, null);
-        System.out.println(clazz.getClassLoader());
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span> args<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Exception</span> <span class="token punctuation">{</span>
+        <span class="token class-name">MyClassLoader</span> classLoader <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">MyClassLoader</span><span class="token punctuation">(</span><span class="token string">"/Users/panyangfeng/test"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">Class</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token operator">?</span><span class="token punctuation">&gt;</span></span> clazz <span class="token operator">=</span> classLoader<span class="token punctuation">.</span><span class="token function">loadClass</span><span class="token punctuation">(</span><span class="token string">"com.learn.jvm.source01.User1"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">Object</span> obj <span class="token operator">=</span> clazz<span class="token punctuation">.</span><span class="token function">newInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">Method</span> method <span class="token operator">=</span> clazz<span class="token punctuation">.</span><span class="token function">getDeclaredMethod</span><span class="token punctuation">(</span><span class="token string">"sout"</span><span class="token punctuation">,</span> <span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        method<span class="token punctuation">.</span><span class="token function">invoke</span><span class="token punctuation">(</span>obj<span class="token punctuation">,</span> <span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>clazz<span class="token punctuation">.</span><span class="token function">getClassLoader</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-        System.out.println();
-        MyClassLoader classLoader1 = new MyClassLoader("/Users/panyangfeng/test1");
-        Class&lt;?&gt; clazz1 = classLoader1.loadClass("com.learn.jvm.source01.User1");
-        Object obj1 = clazz1.newInstance();
-        Method method1 = clazz1.getDeclaredMethod("sout", null);
-        method1.invoke(obj1, null);
-        System.out.println(clazz1.getClassLoader());
-    }
-}
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">MyClassLoader</span> classLoader1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">MyClassLoader</span><span class="token punctuation">(</span><span class="token string">"/Users/panyangfeng/test1"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">Class</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token operator">?</span><span class="token punctuation">&gt;</span></span> clazz1 <span class="token operator">=</span> classLoader1<span class="token punctuation">.</span><span class="token function">loadClass</span><span class="token punctuation">(</span><span class="token string">"com.learn.jvm.source01.User1"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">Object</span> obj1 <span class="token operator">=</span> clazz1<span class="token punctuation">.</span><span class="token function">newInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">Method</span> method1 <span class="token operator">=</span> clazz1<span class="token punctuation">.</span><span class="token function">getDeclaredMethod</span><span class="token punctuation">(</span><span class="token string">"sout"</span><span class="token punctuation">,</span> <span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        method1<span class="token punctuation">.</span><span class="token function">invoke</span><span class="token punctuation">(</span>obj1<span class="token punctuation">,</span> <span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>clazz1<span class="token punctuation">.</span><span class="token function">getClassLoader</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 
 运行结果：
 
-=======自己的加载器加载类调用方法======= 
-com.learn.jvm.source01.MyClassLoaderTest03$MyClassLoader@610455d6
+<span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">=</span>自己的加载器加载类调用方法<span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">=</span> 
+<span class="token class-name"><span class="token namespace">com<span class="token punctuation">.</span>learn<span class="token punctuation">.</span>jvm<span class="token punctuation">.</span>source01<span class="token punctuation">.</span></span>MyClassLoaderTest03</span>$<span class="token class-name">MyClassLoader</span><span class="token annotation punctuation">@610455d6</span>
 
-=======另外一个User1版本：自己的加载器加载类调用方法======= com.learn.jvm.source01.MyClassLoaderTest03$MyClassLoader@5e2de80c<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">=</span>另外一个<span class="token class-name">User1</span>版本：自己的加载器加载类调用方法<span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">=</span> <span class="token class-name"><span class="token namespace">com<span class="token punctuation">.</span>learn<span class="token punctuation">.</span>jvm<span class="token punctuation">.</span>source01<span class="token punctuation">.</span></span>MyClassLoaderTest03</span>$<span class="token class-name">MyClassLoader</span><span class="token annotation punctuation">@5e2de80c</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p><span style="color:red;">注意：</span>同一个JVM内，两个相同包名和类名的类对象可以共存，因为他们的类加载器可以不一 样，所以看两个类对象是否是同一个，除了看类的包名和类名是否都相同之外，还需要他们的类 加载器也是同一个才能认为他们是同一个。</p>
 
@@ -1713,7 +1713,7 @@ com.learn.jvm.source01.MyClassLoaderTest03$MyClassLoader@610455d6
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">13.9k</span>
+                        class="white-color">14.5k</span>
             
             
             
