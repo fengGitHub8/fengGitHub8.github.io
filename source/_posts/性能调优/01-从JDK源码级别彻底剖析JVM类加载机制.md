@@ -34,7 +34,7 @@ public class Math {
 
 #### **通过Java命令执行代码的大体流程如下:**
 
-![](https://gitee.com/fengGitee129/oss/raw/master/images/20220329151014.png)
+![](http://feng.mynatapp.cc/blog/20220329151014.png)
 
 其中loadClass的类加载过程有如下几步:
 
@@ -50,7 +50,7 @@ public class Math {
 
 - **初始化**：对类的静态变量初始化为指定的值，执行静态代码块
 
-  ![](https://gitee.com/fengGitee129/oss/raw/master/images/20220329152737.png)
+  ![](http://feng.mynatapp.cc/blog/20220329152737.png)
 
 类被加载到方法区中后主要包含 **运行时常量池、类型信息、字段信息、方法信息、类加载器的 引用、对应class实例的引用**等信息。
 
@@ -270,7 +270,7 @@ public Launcher() {
 
  JVM类加载器是有亲子层级结构的，如下图
 
-<img src="https://gitee.com/fengGitee129/oss/raw/master/images/20220329153318.png" style="zoom:50%;" />
+<img src="http://feng.mynatapp.cc/blog/20220329153318.png" style="zoom:50%;" />
 
 这里类加载其实就有一个**双亲委派机制**，加载某个类时会先委托父加载器寻找目标类，找不到再 委托上层父加载器加载，如果所有父加载器在自己的加载类路径下都找不到目标类，则在自己的类加载路径中查找并载入目标类。
 
@@ -527,7 +527,7 @@ java.lang.SecurityException: Prohibited package name: java.lang
 
 **Tomcat自定义加载器详解**
 
-![](https://gitee.com/fengGitee129/oss/raw/master/images/20220329153415.png)
+![](http://feng.mynatapp.cc/blog/20220329153415.png)
 
 tomcat的几个主要类加载器：
 
