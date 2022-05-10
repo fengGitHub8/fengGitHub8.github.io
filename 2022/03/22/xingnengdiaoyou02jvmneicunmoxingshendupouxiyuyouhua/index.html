@@ -4,8 +4,15 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="领域模型, 菜鸟，努力">
-    <meta name="description" content="领域模型 | 偶染风寒">
+    <meta name="keywords" content="JVM内存模型, 菜鸟，努力">
+    <meta name="description" content="JDK体系结构
+Java语言的跨平台特性
+
+JVM整体结构及内存模型
+二、JVM内存参数设置
+
+Spring Boot程序的JVM参数设置格式(Tomcat启动直接加在bin目录下catalina.sh文件里)：
+java ‐Xms2048">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +24,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>领域模型 | 偶染风寒</title>
+    <title>JVM内存模型 | 偶染风寒</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -419,12 +426,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/19.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">领域模型</h1>
+                    <h1 class="description center-align post-title">JVM内存模型</h1>
                 </div>
             </div>
         </div>
@@ -538,12 +545,25 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/JVM/">
+                                <span class="chip bg-color">JVM</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/Java%E5%90%8E%E7%AB%AF/" class="post-category">
+                                Java后端
+                            </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -561,7 +581,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    0
+                    685
                 </div>
                 
 
@@ -573,12 +593,72 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
 
         
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                
+                <h4 id="JDK体系结构"><a href="#JDK体系结构" class="headerlink" title="JDK体系结构"></a>JDK体系结构</h4><p><img src="http://feng.mynatapp.cc/blog/20220329154246.png"></p>
+<h4 id="Java语言的跨平台特性"><a href="#Java语言的跨平台特性" class="headerlink" title="Java语言的跨平台特性"></a>Java语言的跨平台特性</h4><img src="http://feng.mynatapp.cc/blog/20220329154313.png" style="zoom:50%;">
+
+<h4 id="JVM整体结构及内存模型"><a href="#JVM整体结构及内存模型" class="headerlink" title="JVM整体结构及内存模型"></a>JVM整体结构及内存模型</h4><p><img src="http://feng.mynatapp.cc/blog/20220329154345.png"></p>
+<h4 id="二、JVM内存参数设置"><a href="#二、JVM内存参数设置" class="headerlink" title="二、JVM内存参数设置"></a>二、JVM内存参数设置</h4><img src="http://feng.mynatapp.cc/blog/20220329154411.png" style="zoom:50%;">
+
+<p>Spring Boot程序的JVM参数设置格式(Tomcat启动直接加在bin目录下catalina.sh文件里)：</p>
+<pre class="line-numbers language-none"><code class="language-none">java ‐Xms2048M ‐Xmx2048M ‐Xmn1024M ‐Xss512K ‐XX:MetaspaceSize=256M ‐XX:MaxMetaspaceSize=256M ‐jar microservice‐eurek a‐server.jar<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>关于元空间的JVM参数有两个：-XX:MetaspaceSize=N和 -XX:MaxMetaspaceSize=N</p>
+<p><strong>-XX：MaxMetaspaceSize</strong>： 设置元空间最大值， 默认是-1， 即不限制， 或者说只受限于本地内存大小。</p>
+<p><strong>-XX：MetaspaceSize</strong>： 指定元空间触发Fullgc的初始阈值(元空间无固定初始大小)， 以字节为单位，默认是21M，达到该值就会触发 full gc进行类型卸载， 同时收集器会对该值进行调整： 如果释放了大量的空间， 就适当降低该值； 如果释放了很少的空间， 那么在不超 过-XX：MaxMetaspaceSize（如果设置了的话） 的情况下， 适当提高该值。这个跟早期jdk版本的**-XX:PermSize<strong>参数意思不一样，</strong>XX:PermSize**代表永久代的初始容量。</p>
+<p>由于调整元空间的大小需要Full GC，这是非常昂贵的操作，如果应用在启动的时候发生大量Full GC，通常都是由于永久代或元空间发生 了大小调整，基于这种情况，一般建议在JVM参数中将MetaspaceSize和MaxMetaspaceSize设置成一样的值，并设置得比初始值要大， 对于8G物理内存的机器来说，一般我会将这两个值都设置为256M。</p>
+<p><strong>StackOverflowError</strong>示例：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">package com.learn.jvm.source02;
+
+/**
+ * &lt;p&gt;
+ * JVM设置 ‐Xss128k(默认1M)
+ * &lt;/p&gt;
+ *
+ * @author pyf 2022-03-21
+ */
+
+public class StackOverflowTest {
+    static int count = 0;
+
+    static void redo() {
+        count++;
+        redo();
+    }
+
+    public static void main(String[] args) {
+        try {
+            redo();
+        } catch (Throwable t) {
+            t.printStackTrace();
+            System.out.println(count);
+        }
+    }
+}
+
+运行结果：
+java.lang.StackOverflowError
+	at com.learn.jvm.StackOverflowTest.redo(StackOverflowTest.java:12) 
+  at com.learn.jvm.StackOverflowTest.redo(StackOverflowTest.java:13) 
+  at com.learn.jvm.StackOverflowTest.redo(StackOverflowTest.java:13) 
+  ......<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><strong>结论：</strong></p>
+<p>-Xss设置越小count值越小，说明一个线程栈里能分配的栈帧就越少，但是对JVM整体来说能开启的线程数会更多</p>
+<p><strong>JVM内存参数大小该如何设置？</strong></p>
+<p>JVM参数大小设置并没有固定标准，需要根据实际项目情况分析，给大家举个例子</p>
+<p><strong>日均百万级订单交易系统如何设置JVM参数</strong></p>
+<p><img src="http://feng.mynatapp.cc/blog/20220329154624.png"></p>
+<p><img src="http://feng.mynatapp.cc/blog/20220329154641.png"></p>
+<p><strong>结论：通过上面这些内容介绍，大家应该对JVM优化有些概念了，就是尽可能让对象都在新生代里分配和回收，尽量别 让太多对象频繁进入老年代，避免频繁对老年代进行垃圾回收，同时给系统充足的内存大小，避免新生代频繁的进行垃圾回收。</strong></p>
+
                 
             </div>
             <hr/>
@@ -604,7 +684,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://fenggithub8.github.io/2022/03/22/20220322lingyumoxing/">https://fenggithub8.github.io/2022/03/22/20220322lingyumoxing/</a>
+                    <a href="https://fenggithub8.github.io/2022/03/22/xingnengdiaoyou02jvmneicunmoxingshendupouxiyuyouhua/">https://fenggithub8.github.io/2022/03/22/xingnengdiaoyou02jvmneicunmoxingshendupouxiyuyouhua/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -641,7 +721,11 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
+                            
+                                <a href="/tags/JVM/">
+                                    <span class="chip bg-color">JVM</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -815,13 +899,13 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2022/03/29/01springbootzidongpeizhiyuanli/">
+                <a href="/2022/03/22/lingyumoxinglingyumoxingtx/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="01-SpringBoot自动配置原理">
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="领域模型">
                         
-                        <span class="card-title">01-SpringBoot自动配置原理</span>
+                        <span class="card-title">领域模型</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -832,7 +916,7 @@
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-03-29
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-03-22
                         </span>
                         <span class="publish-author">
                             
@@ -852,13 +936,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/03/22/02jvmneicunmoxingshendupouxiyuyouhua/">
+                <a href="/2022/03/22/xingnengdiaoyou00jvmzhilingshouce/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="JVM内存模型">
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="JVM指令手册">
                         
-                        <span class="card-title">JVM内存模型</span>
+                        <span class="card-title">JVM指令手册</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -886,8 +970,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/JVM/">
-                        <span class="chip bg-color">JVM</span>
+                    <a href="/tags/JVM%E6%8C%87%E4%BB%A4/">
+                        <span class="chip bg-color">JVM指令</span>
                     </a>
                     
                 </div>
@@ -1091,7 +1175,7 @@
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">12.3k</span>
+                        class="white-color">13.9k</span>
             
             
             

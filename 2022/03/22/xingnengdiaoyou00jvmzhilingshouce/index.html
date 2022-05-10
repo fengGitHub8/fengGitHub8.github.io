@@ -4,12 +4,12 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="JVM类加载机制, 菜鸟，努力">
-    <meta name="description" content="类加载运行全过程当我们用java命令运行某个类的main函数启动程序时，首先需要通过类加载器把主类加载到 JVM。
-package com.learn.jvm.source01;
-
-public class Math {
-    publi">
+    <meta name="keywords" content="JVM指令手册, 菜鸟，努力">
+    <meta name="description" content="栈和局部变量操作将常量压入栈的指令aconst_null 将null对象引用压入栈 
+iconst_m1 将int类型常量-1压入栈 
+iconst_0 将int类型常量0压入栈 
+iconst_1 将int类型常量1压入操作数栈 
+ico">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -21,7 +21,7 @@ public class Math {
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>JVM类加载机制 | 偶染风寒</title>
+    <title>JVM指令手册 | 偶染风寒</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -423,12 +423,12 @@ public class Math {
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/3.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/7.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">JVM类加载机制</h1>
+                    <h1 class="description center-align post-title">JVM指令手册</h1>
                 </div>
             </div>
         </div>
@@ -544,8 +544,8 @@ public class Math {
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/JDK%E6%BA%90%E7%A0%81/">
-                                <span class="chip bg-color">JDK源码</span>
+                            <a href="/tags/JVM%E6%8C%87%E4%BB%A4/">
+                                <span class="chip bg-color">JVM指令</span>
                             </a>
                         
                     </div>
@@ -569,7 +569,7 @@ public class Math {
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-03-21
+                    2022-03-22
                 </div>
                 
 
@@ -578,7 +578,7 @@ public class Math {
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    5.1k
+                    3.1k
                 </div>
                 
 
@@ -590,596 +590,300 @@ public class Math {
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
 
         
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h4 id="类加载运行全过程"><a href="#类加载运行全过程" class="headerlink" title="类加载运行全过程"></a><strong>类加载运行全过程</strong></h4><p>当我们用java命令运行某个类的main函数启动程序时，首先需要通过类加载器把主类加载到 JVM。</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java">package com.learn.jvm.source01;
-
-public class Math {
-    public static final int initData = 666;
-
-    public static User user = new User();
-
-    public int compute() { //一个方法对应一块栈帧内存区域
-        int a = 1;
-        int b = 2;
-        int c = (a + b) * 10;
-        return c;
-    }
-
-    public static void main(String[] args) {
-        Math math = new Math();
-        math.compute();
-    }
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h4 id="通过Java命令执行代码的大体流程如下"><a href="#通过Java命令执行代码的大体流程如下" class="headerlink" title="通过Java命令执行代码的大体流程如下:"></a><strong>通过Java命令执行代码的大体流程如下:</strong></h4><p><img src="https://gitee.com/fengGitee129/oss/raw/master/images/20220329151014.png"></p>
-<p>其中loadClass的类加载过程有如下几步:</p>
-<p>**加载 &gt;&gt; 验证 &gt;&gt; 准备 &gt;&gt; 解析 &gt;&gt; 初始化 **&gt;&gt; 使用 &gt;&gt; 卸载</p>
-<ul>
-<li><p><strong>加载</strong>：在硬盘上查找并通过IO读入字节码文件，使用到类时才会加载，例如调用类的 main()方法，new对象等等，在加载阶段会在内存中生成一个代表这个类的 java.lang.Class对象，作为方法区这个类的各种数据的访问入口</p>
-</li>
-<li><p><strong>验证</strong>：校验字节码文件的正确性 </p>
-</li>
-<li><p><strong>准备</strong>：给类的静态变量分配内存，并赋予默认值 </p>
-</li>
-<li><p><strong>解析</strong>：将符号引用替换为直接引用，该阶段会把一些静态方法(符号引用，比如main()方法)替换为指向数据所存内存的指针或句柄等(直接引用)，这是所谓的静态链接过 程(类加载期间完成)，动态链接是在程序运行期间完成的将符号引用替换为直接引用</p>
-</li>
-<li><p><strong>初始化</strong>：对类的静态变量初始化为指定的值，执行静态代码块</p>
-<p><img src="https://gitee.com/fengGitee129/oss/raw/master/images/20220329152737.png"></p>
-</li>
-</ul>
-<p>类被加载到方法区中后主要包含 <strong>运行时常量池、类型信息、字段信息、方法信息、类加载器的 引用、对应class实例的引用</strong>等信息。</p>
-<p><strong>类加载器的引用</strong>：这个类到类加载器实例的引用 </p>
-<p><strong>对应class实例的引用</strong>：类加载器在加载类信息放到方法区中后，会创建一个对应的Class 类型的 对象实例放到堆(Heap)中, 作为开发人员访问方法区中类定义的入口和切入点。</p>
-<p><strong>！注意</strong>，主类在运行过程中如果使用到其它类，会逐步加载这些类。 jar包或war包里的类不是一次性全部加载的，是使用到时才加载。</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java">package com.learn.jvm.source01;
-
-public class TestDynamicLoad {
-    static {
-        System.out.println("*************load TestDynamicLoad************");
-    }
-
-    public static void main(String[] args) {
-        new A();
-        System.out.println("*************load test************");
-        B b = null; // B不会加载，除非这里执行 new B()
-    }
-}
-
-class A {
-    static {
-        System.out.println("*************load A************");
-    }
-
-    public A() {
-        System.out.println("*************initial A************");
-    }
-}
-
-class B {
-    static {
-        System.out.println("*************load B************");
-    }
-
-    public B() {
-        System.out.println("*************initial B************");
-    }
-}
-
-运行结果:
-*************loadTestDynamicLoad************
-*************loadA************
-*************initialA************
-*************loadtest************<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p><strong>类加载器和双亲委派机制</strong></p>
-<p>上面的类加载过程主要是通过类加载器来实现的，Java里有如下几种类加载器</p>
-<ul>
-<li>引导类加载器：负责加载支撑JVM运行的位于JRE的lib目录下的核心类库，比如 rt.jar、charsets.jar等</li>
-<li>扩展类加载器：负责加载支撑JVM运行的位于JRE的lib目录下的ext扩展目录中的JAR 类包</li>
-<li>应用程序类加载器：负责加载ClassPath路径下的类包，主要就是加载你自己写的那 些类</li>
-<li>自定义加载器：负责加载用户自定义路径下的类包</li>
-</ul>
-<p>看一个<strong>类加载器</strong>示例</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java">package com.learn.jvm.source01;
-
-import sun.misc.Launcher;
-
-import java.net.URL;
-
-public class TestJDKClassLoader {
-    public static void main(String[] args) {
-        System.out.println(String.class.getClassLoader());
-        System.out.println(com.sun.crypto.provider.DESKeyFactory.class.getClassLoader().getClass().getName());
-        System.out.println(TestJDKClassLoader.class.getClassLoader().getClass().getName());
-
-        System.out.println();
-        ClassLoader appClassLoader = ClassLoader.getSystemClassLoader();
-        ClassLoader extClassloader = appClassLoader.getParent();
-        ClassLoader bootstrapLoader = extClassloader.getParent();
-        System.out.println("the bootstrapLoader : " + bootstrapLoader);
-        System.out.println("the extClassloader : " + extClassloader);
-        System.out.println("the appClassLoader : " + appClassLoader);
-        System.out.println();
-        System.out.println("bootstrapLoader加载以下文件:");
-        URL[] urls = Launcher.getBootstrapClassPath().getURLs();
-        for (URL url : urls) {
-            System.out.println(url);
-        }
-        System.out.println();
-        System.out.println("extClassloader加载以下文件:");
-        String property = System.getProperty("java.ext.dirs");
-        for (String s : property.split(":")) {
-            System.out.println(s);
-        }
-        System.out.println();
-        System.out.println("appClassLoader加载以下文件:");
-        String property1 = System.getProperty("java.class.path");
-        for (String s : property1.split(":")) {
-            System.out.println(s);
-        }
-    }
-}
-
-
-运行结果：
-null
-sun.misc.Launcher$ExtClassLoader
-sun.misc.Launcher$AppClassLoader
-
-the bootstrapLoader : null
-the extClassloader : sun.misc.Launcher$ExtClassLoader@355da254
-the appClassLoader : sun.misc.Launcher$AppClassLoader@18b4aac2
-
-bootstrapLoader加载以下文件:
-file:/Library/Java/JavaVirtualMachines/jdk1.8.0_212.jdk/Contents/Home/jre/lib/resources.jar
-file:/Library/Java/JavaVirtualMachines/jdk1.8.0_212.jdk/Contents/Home/jre/lib/rt.jar
-file:/Library/Java/JavaVirtualMachines/jdk1.8.0_212.jdk/Contents/Home/jre/lib/sunrsasign.jar
-file:/Library/Java/JavaVirtualMachines/jdk1.8.0_212.jdk/Contents/Home/jre/lib/jsse.jar
-file:/Library/Java/JavaVirtualMachines/jdk1.8.0_212.jdk/Contents/Home/jre/lib/jce.jar
-file:/Library/Java/JavaVirtualMachines/jdk1.8.0_212.jdk/Contents/Home/jre/lib/charsets.jar
-file:/Library/Java/JavaVirtualMachines/jdk1.8.0_212.jdk/Contents/Home/jre/lib/jfr.jar
-file:/Library/Java/JavaVirtualMachines/jdk1.8.0_212.jdk/Contents/Home/jre/classes
-
-extClassloader加载以下文件:
-/Users/panyangfeng/Library/Java/Extensions
-/Library/Java/JavaVirtualMachines/jdk1.8.0_212.jdk/Contents/Home/jre/lib/ext
-/Library/Java/Extensions
-/Network/Library/Java/Extensions
-/System/Library/Java/Extensions
-/usr/lib/java
-
-appClassLoader加载以下文件:
-/Library/Java/JavaVirtualMachines/jdk1.8.0_212.jdk/Contents/Home/jre/lib/charsets.jar
-/Library/Java/JavaVirtualMachines/jdk1.8.0_212.jdk/Contents/Home/jre/lib/deploy.jar
-/Library/Java/JavaVirtualMachines/jdk1.8.0_212.jdk/Contents/Home/jre/lib/ext/cldrdata.jar
-/Library/Java/JavaVirtualMachines/jdk1.8.0_212.jdk/Contents/Home/jre/lib/ext/dnsns.jar
-/Library/Java/JavaVirtualMachines/jdk1.8.0_212.jdk/Contents/Home/jre/lib/ext/jaccess.jar
-/Library/Java/JavaVirtualMachines/jdk1.8.0_212.jdk/Contents/Home/jre/lib/ext/jfxrt.jar
-/Library/Java/JavaVirtualMachines/jdk1.8.0_212.jdk/Contents/Home/jre/lib/ext/localedata.jar
-/Library/Java/JavaVirtualMachines/jdk1.8.0_212.jdk/Contents/Home/jre/lib/ext/nashorn.jar
-/Library/Java/JavaVirtualMachines/jdk1.8.0_212.jdk/Contents/Home/jre/lib/ext/sunec.jar
-/Library/Java/JavaVirtualMachines/jdk1.8.0_212.jdk/Contents/Home/jre/lib/ext/sunjce_provider.jar
-/Library/Java/JavaVirtualMachines/jdk1.8.0_212.jdk/Contents/Home/jre/lib/ext/sunpkcs11.jar
-/Library/Java/JavaVirtualMachines/jdk1.8.0_212.jdk/Contents/Home/jre/lib/ext/zipfs.jar
-/Library/Java/JavaVirtualMachines/jdk1.8.0_212.jdk/Contents/Home/jre/lib/javaws.jar
-/Library/Java/JavaVirtualMachines/jdk1.8.0_212.jdk/Contents/Home/jre/lib/jce.jar
-/Library/Java/JavaVirtualMachines/jdk1.8.0_212.jdk/Contents/Home/jre/lib/jfr.jar
-/Library/Java/JavaVirtualMachines/jdk1.8.0_212.jdk/Contents/Home/jre/lib/jfxswt.jar
-/Library/Java/JavaVirtualMachines/jdk1.8.0_212.jdk/Contents/Home/jre/lib/jsse.jar
-/Library/Java/JavaVirtualMachines/jdk1.8.0_212.jdk/Contents/Home/jre/lib/management-agent.jar
-/Library/Java/JavaVirtualMachines/jdk1.8.0_212.jdk/Contents/Home/jre/lib/plugin.jar
-/Library/Java/JavaVirtualMachines/jdk1.8.0_212.jdk/Contents/Home/jre/lib/resources.jar
-/Library/Java/JavaVirtualMachines/jdk1.8.0_212.jdk/Contents/Home/jre/lib/rt.jar
-/Library/Java/JavaVirtualMachines/jdk1.8.0_212.jdk/Contents/Home/lib/ant-javafx.jar
-/Library/Java/JavaVirtualMachines/jdk1.8.0_212.jdk/Contents/Home/lib/dt.jar
-/Library/Java/JavaVirtualMachines/jdk1.8.0_212.jdk/Contents/Home/lib/javafx-mx.jar
-/Library/Java/JavaVirtualMachines/jdk1.8.0_212.jdk/Contents/Home/lib/jconsole.jar
-/Library/Java/JavaVirtualMachines/jdk1.8.0_212.jdk/Contents/Home/lib/packager.jar
-/Library/Java/JavaVirtualMachines/jdk1.8.0_212.jdk/Contents/Home/lib/sa-jdi.jar
-/Library/Java/JavaVirtualMachines/jdk1.8.0_212.jdk/Contents/Home/lib/tools.jar
-/Users/panyangfeng/Documents/study-source/tuling架构/source-code/jvm-learn/out/production/jvm-learn
-/Applications/IntelliJ IDEA.app/Contents/lib/idea_rt.jar
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p><strong>类加载器初始化过程:</strong></p>
-<p>参见类运行加载全过程图可知其中会创建JVM启动器实例sun.misc.Launcher。 sun.misc.Launcher初始化使用了单例模式设计，保证一个JVM虚拟机内只有一个 sun.misc.Launcher实例。</p>
-<p>在Launcher构造方法内部，其创建了两个类加载器，分别是 sun.misc.Launcher.ExtClassLoader(扩展类加载器)和sun.misc.Launcher.AppClassLoader(应 用类加载器)。 </p>
-<p>JVM默认使用Launcher的getClassLoader()方法返回的类加载器AppClassLoader的实例加载我们的应用程序。</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java">// Launcher的构造方法
-public Launcher() {
-        Launcher.ExtClassLoader var1;
-        try {
-            var1 = Launcher.ExtClassLoader.getExtClassLoader();
-        } catch (IOException var10) {
-            throw new InternalError("Could not create extension class loader", var10);
-        }
-
-        try {
-            this.loader = Launcher.AppClassLoader.getAppClassLoader(var1);
-        } catch (IOException var9) {
-            throw new InternalError("Could not create application class loader", var9);
-        }
-
-        Thread.currentThread().setContextClassLoader(this.loader);
-        String var2 = System.getProperty("java.security.manager");
-        if (var2 != null) {
-            SecurityManager var3 = null;
-            if (!"".equals(var2) &amp;&amp; !"default".equals(var2)) {
-                try {
-                    var3 = (SecurityManager)this.loader.loadClass(var2).newInstance();
-                } catch (IllegalAccessException var5) {
-                } catch (InstantiationException var6) {
-                } catch (ClassNotFoundException var7) {
-                } catch (ClassCastException var8) {
-                }
-            } else {
-                var3 = new SecurityManager();
-            }
-
-            if (var3 == null) {
-                throw new InternalError("Could not create SecurityManager: " + var2);
-            }
-
-            System.setSecurityManager(var3);
-        }
-
-    }<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p><strong>双亲委派机制</strong></p>
-<p> JVM类加载器是有亲子层级结构的，如下图</p>
-<img src="https://gitee.com/fengGitee129/oss/raw/master/images/20220329153318.png" style="zoom:50%;">
-
-<p>这里类加载其实就有一个<strong>双亲委派机制</strong>，加载某个类时会先委托父加载器寻找目标类，找不到再 委托上层父加载器加载，如果所有父加载器在自己的加载类路径下都找不到目标类，则在自己的类加载路径中查找并载入目标类。</p>
-<p>比如我们的Math类，最先会找应用程序类加载器加载，应用程序类加载器会先委托扩展类加载 器加载，扩展类加载器再委托引导类加载器，顶层引导类加载器在自己的类加载路径里找了半天 没找到Math类，则向下退回加载Math类的请求，扩展类加载器收到回复就自己加载，在自己的 类加载路径里找了半天也没找到Math类，又向下退回Math类的加载请求给应用程序类加载器， 应用程序类加载器于是在自己的类加载路径里找Math类，结果找到了就自己加载了。。</p>
-<p><strong>双亲委派机制说简单点就是，先找父亲加载，不行再由儿子自己加载</strong></p>
-<p>我们来看下应用程序类加载器AppClassLoader加载类的双亲委派机制源码，AppClassLoader 的loadClass方法最终会调用其父类ClassLoader的loadClass方法，该方法的大体逻辑如下:</p>
-<ol>
-<li><p>首先，检查一下指定名称的类是否已经加载过，如果加载过了，就不需要再加载，直接 返回。</p>
-</li>
-<li><p>如果此类没有加载过，那么，再判断一下是否有父加载器;如果有父加载器，则由父加 载器加载(即调用parent.loadClass(name, false);).或者是调用bootstrap类加载器来加 载。</p>
-</li>
-<li><p>如果父加载器及bootstrap类加载器都没有找到指定的类，那么调用当前类加载器的 findClass方法来完成类加载。</p>
-</li>
-</ol>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java">// ClassLoader的loadClass方法，里面实现了双亲委派机制
-protected Class&lt;?&gt; loadClass(String name, boolean resolve)
-        throws ClassNotFoundException
-    {
-        synchronized (getClassLoadingLock(name)) {
-            // First, check if the class has already been loaded
-          	// 检查当前类加载器是否已经加载了该类
-            Class&lt;?&gt; c = findLoadedClass(name);
-            if (c == null) {
-                long t0 = System.nanoTime();
-                try {
-                    if (parent != null) { //如果当前加载器父加载器不为空则委托父加载器加载该类
-                        c = parent.loadClass(name, false);
-                    } else { //如果当前加载器父加载器为空则委托引导类加载器加载该类
-                        c = findBootstrapClassOrNull(name);
-                    }
-                } catch (ClassNotFoundException e) {
-                    // ClassNotFoundException thrown if class not found
-                    // from the non-null parent class loader
-                }
-
-                if (c == null) {
-                    // If still not found, then invoke findClass in order
-                    // to find the class.
-                    long t1 = System.nanoTime();
-                  	// 都会调用URLClassLoader的findClass方法在加载器的类路径里查找并加载该类
-                    c = findClass(name);
-
-                    // this is the defining class loader; record the stats
-                    sun.misc.PerfCounter.getParentDelegationTime().addTime(t1 - t0);
-                    sun.misc.PerfCounter.getFindClassTime().addElapsedTimeFrom(t1);
-                    sun.misc.PerfCounter.getFindClasses().increment();
-                }
-            }
-            if (resolve) { // 不会执行
-                resolveClass(c);
-            }
-            return c;
-        }
-    }<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p><strong>为什么要设计双亲委派机制?</strong> </p>
-<ul>
-<li>沙箱安全机制：自己写的java.lang.String.class类不会被加载，这样便可以防止核心API库被随意篡改 </li>
-<li>避免类的重复加载：当父亲已经加载了该类时，就没有必要子ClassLoader再加载一次，保证<strong>被加载类的唯一性</strong></li>
-</ul>
-<p>看一个类加载示例:</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java">package java.lang;
-public class String {
-  public static void main(String[] args) { 
-    System.out.println("**************My String Class**************");
-  }
-}
-运行结果:
-错误: 在类 java.lang.String 中找不到 main 方法, 请将 main 方法定义为: public static void main(String[] args)
-否则 JavaFX 应用程序类必须扩展javafx.application.Application<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p><strong>全盘负责委托机制</strong></p>
-<p>**”全盘负责”**是指当一个ClassLoder装载一个类时，除非显示的使用另外一个ClassLoder，该类所依赖及引用的类也由这个ClassLoder载入。</p>
-<p><strong>自定义类加载器示例：</strong></p>
-<p>自定义类加载器只需要继承 java.lang.ClassLoader 类，该类有两个核心方法，一个是 loadClass(String, boolean)，实现了<strong>双亲委派机制</strong>，还有一个方法是findClass，默认实现是空方法，所以我们自定义类加载器主要是<strong>重写</strong>findClass<strong>方法</strong></p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java">package com.learn.jvm.source01;
-
-import java.io.FileInputStream;
-import java.lang.reflect.Method;
-
-public class MyClassLoaderTest01 {
-
-    static class MyClassLoader extends ClassLoader {
-        private final String classPath;
-
-        public MyClassLoader(String classPath) {
-            this.classPath = classPath;
-        }
-
-        private byte[] loadByte(String name) throws Exception {
-            name = name.replaceAll("\\.", "/");
-            FileInputStream fis = new FileInputStream(classPath + "/" + name + ".class");
-            int len = fis.available();
-            byte[] data = new byte[len];
-            fis.read(data);
-            fis.close();
-            return data;
-        }
-
-        @Override
-        protected Class&lt;?&gt; findClass(String name) throws ClassNotFoundException {
-            try {
-                byte[] data = loadByte(name);
-                // defineClass将一个字节数组转为Class对象，这个字节数组是class文件读取后最终的字节数组。
-                return defineClass(name, data, 0, data.length);
-            } catch (Exception e) {
-                e.printStackTrace();
-                throw new ClassNotFoundException();
-            }
-        }
-    }
-
-    public static void main(String args[]) throws Exception {
-        // 初始化自定义类加载器，会先初始化父类ClassLoader，其中会把自定义类加载器的父加载器设置为应用程序类加载器AppClassLoader
-        // 创建 test/com/learn/jvm/source01 几级目录，将User类的复制类User1.class丢入该目录
-        MyClassLoader classLoader = new MyClassLoader("/Users/panyangfeng/test");
-        Class&lt;?&gt; clazz = classLoader.loadClass("com.learn.jvm.source01.User1");
-        Object obj = clazz.newInstance();
-        Method method = clazz.getDeclaredMethod("sout", null);
-        method.invoke(obj, null);
-        System.out.println(clazz.getClassLoader().getClass().getName());
-    }
-}
-
-运行结果： 
-=======自己的加载器加载类调用方法======= 
-com.learn.jvm.source01.MyClassLoaderTest01$MyClassLoader<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p><strong>打破双亲委派机制</strong></p>
-<p>再来一个沙箱安全机制示例，尝试打破双亲委派机制，用自定义类加载器加载我们自己实现java.lang.String.class</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java">package com.learn.jvm.source01;
-
-import java.io.FileInputStream;
-import java.lang.reflect.Method;
-
-public class MyClassLoaderTest02 {
-    static class MyClassLoader extends ClassLoader {
-        private String classPath;
-
-        public MyClassLoader(String classPath) {
-            this.classPath = classPath;
-        }
-
-        private byte[] loadByte(String name) throws Exception {
-            name = name.replaceAll("\\.", "/");
-            FileInputStream fis = new FileInputStream(classPath + "/" + name + ".class");
-            int len = fis.available();
-            byte[] data = new byte[len];
-            fis.read(data);
-            fis.close();
-            return data;
-        }
-
-        @Override
-        protected Class&lt;?&gt; findClass(String name) throws ClassNotFoundException {
-            try {
-                byte[] data = loadByte(name);
-                return defineClass(name, data, 0, data.length);
-            } catch (Exception e) {
-                e.printStackTrace();
-                throw new ClassNotFoundException();
-            }
-        }
-
-        /**
-         * 重写类加载方法，实现自己的加载逻辑，不委派给双亲加载
-         *
-         * @param name
-         * @param resolve
-         * @return
-         * @throws ClassNotFoundException
-         */
-        @Override
-        protected Class&lt;?&gt; loadClass(String name, boolean resolve) throws ClassNotFoundException {
-            synchronized (getClassLoadingLock(name)) {
-                // First, check if the class has already been loaded
-                Class&lt;?&gt; c = findLoadedClass(name);
-                if (c == null) {
-                    // If still not found, then invoke findClass in order
-                    // to find the class.
-                    long t1 = System.nanoTime();
-                    c = findClass(name);
-                    // this is the defining class loader; record the stats
-                    sun.misc.PerfCounter.getFindClassTime().addElapsedTimeFrom(t1);
-                    sun.misc.PerfCounter.getFindClasses().increment();
-                }
-                if (resolve) {
-                    resolveClass(c);
-                }
-                return c;
-            }
-        }
-    }
-
-    public static void main(String args[]) throws Exception {
-        // 尝试用自己改写类加载机制去加载自己写的java.lang.String.class 65
-        MyClassLoader classLoader = new MyClassLoader("/Users/panyangfeng/test");
-
-        Class&lt;?&gt; clazz = classLoader.loadClass("java.lang.String");
-        Object obj = clazz.newInstance();
-        Method method = clazz.getDeclaredMethod("sout", null);
-        method.invoke(obj, null);
-        System.out.println(clazz.getClassLoader().getClass().getName());
-    }
-}
-
-运行结果：
-
-java.lang.SecurityException: Prohibited package name: java.lang
-	at java.lang.ClassLoader.preDefineClass(ClassLoader.java:662)
-	at java.lang.ClassLoader.defineClass(ClassLoader.java:761)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p><strong>Tomcat打破双亲委派机制</strong></p>
-<p>以Tomcat类加载为例，Tomcat 如果使用默认的双亲委派类加载机制行不行？ 我们思考一下：Tomcat是个web容器， 那么它要解决什么问题：</p>
-<ol>
-<li><p>一个web容器可能需要部署两个应用程序，不同的应用程序可能会<strong>依赖同一个第三方类库的不同版本</strong>，不能要求同一个类库在同一个服务器只有一份，因此要保证每个应用程序的类库都是 独立的，保证相互隔离。</p>
-</li>
-<li><p>部署在同一个web容器中<strong>相同的类库相同的版本可以共享</strong>。否则，如果服务器有10个应用程 序，那么要有10份相同的类库加载进虚拟机。</p>
-</li>
-<li><p><strong>web容器也有自己依赖的类库，不能与应用程序的类库混淆</strong>。基于安全考虑，应该让容器的 类库和程序的类库隔离开来。</p>
-</li>
-<li><p>web容器要支持jsp的修改，我们知道，jsp 文件最终也是要编译成class文件才能在虚拟机中 运行，但程序运行后修改jsp已经是司空见惯的事情， web容器需要支持 jsp 修改后不用重启。</p>
-</li>
-</ol>
-<p>再看看我们的问题：<strong>Tomcat 如果使用默认的双亲委派类加载机制行不行？</strong></p>
-<p>答案是不行的。为什么？ </p>
-<p>第一个问题，如果使用默认的类加载器机制，那么是无法加载两个相同类库的不同版本的，默认 的类加器是不管你是什么版本的，只在乎你的全限定类名，并且只有一份。 </p>
-<p>第二个问题，默认的类加载器是能够实现的，因为他的职责就是保证唯一性。 </p>
-<p>第三个问题和第一个问题一样。 </p>
-<p>我们再看第四个问题，我们想我们要怎么实现jsp文件的热加载，jsp 文件其实也就是class文 件，那么如果修改了，但类名还是一样，类加载器会直接取方法区中已经存在的，修改后的jsp 是不会重新加载的。那么怎么办呢？我们可以直接卸载掉这jsp文件的类加载器，所以你应该想 到了，每个jsp文件对应一个唯一的类加载器，当一个jsp文件修改了，就直接卸载这个jsp类加载 器。重新创建类加载器，重新加载jsp文件。</p>
-<p><strong>Tomcat自定义加载器详解</strong></p>
-<p><img src="https://gitee.com/fengGitee129/oss/raw/master/images/20220329153415.png"></p>
-<p>tomcat的几个主要类加载器：</p>
-<ul>
-<li><p>commonLoader：Tomcat最基本的类加载器，加载路径中的class可以被Tomcat容 器本身以及各个Webapp访问；</p>
-</li>
-<li><p>catalinaLoader：Tomcat容器私有的类加载器，加载路径中的class对于Webapp不 可见；</p>
-</li>
-<li><p>sharedLoader：各个Webapp共享的类加载器，加载路径中的class对于所有 Webapp可见，但是对于Tomcat容器不可见；</p>
-</li>
-<li><p>WebappClassLoader：各个Webapp私有的类加载器，加载路径中的class只对当前 Webapp可见，比如加载war包里相关的类，每个war包应用都有自己的 WebappClassLoader，实现相互隔离，比如不同war包应用引入了不同的spring版本， 这样实现就能加载各自的spring版本；</p>
-</li>
-</ul>
-<p>从图中的委派关系中可以看出：</p>
-<p> CommonClassLoader能加载的类都可以被CatalinaClassLoader和SharedClassLoader使用， 从而实现了公有类库的共用，而CatalinaClassLoader和SharedClassLoader自己能加载的类则 与对方相互隔离。 </p>
-<p>WebAppClassLoader可以使用SharedClassLoader加载到的类，但各个WebAppClassLoader 实例之间相互隔离。</p>
-<p> 而JasperLoader的加载范围仅仅是这个JSP文件所编译出来的那一个.Class文件，它出现的目的 就是为了被丢弃：当Web容器检测到JSP文件被修改时，会替换掉目前的JasperLoader的实例， 并通过再建立一个新的Jsp类加载器来实现JSP文件的热加载功能。</p>
-<p>tomcat 这种类加载机制违背了java 推荐的双亲委派模型了吗？答案是：违背了。 很显然，tomcat 不是这样实现，tomcat 为了实现隔离性，没有遵守这个约定，<strong>每个 webappClassLoader加载自己的目录下的class文件，不会传递给父类加载器，打破了双亲委派机制</strong>。</p>
-<p><strong>模拟实现Tomcat的webappClassLoader加载自己war包应用内不同版本类实现相互共存与隔离</strong></p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java">package com.learn.jvm.source01;
-
-import java.io.FileInputStream;
-import java.lang.reflect.Method;
-
-public class MyClassLoaderTest03 {
-    static class MyClassLoader extends ClassLoader {
-        private String classPath;
-
-        public MyClassLoader(String classPath) {
-            this.classPath = classPath;
-        }
-
-        private byte[] loadByte(String name) throws Exception {
-            name = name.replaceAll("\\.", "/");
-            FileInputStream fis = new FileInputStream(classPath + "/" + name + ".class");
-            int len = fis.available();
-            byte[] data = new byte[len];
-            fis.read(data);
-            fis.close();
-            return data;
-        }
-
-
-        @Override
-        protected Class&lt;?&gt; findClass(String name) throws ClassNotFoundException {
-            try {
-                byte[] data = loadByte(name);
-                return defineClass(name, data, 0, data.length);
-            } catch (Exception e) {
-                e.printStackTrace();
-                throw new ClassNotFoundException();
-            }
-        }
-
-        /**
-         * 重写类加载方法，实现自己的加载逻辑，不委派给双亲加载
-         *
-         * @param name
-         * @param resolve
-         * @return
-         * @throws ClassNotFoundException
-         */
-        @Override
-        protected Class&lt;?&gt; loadClass(String name, boolean resolve) throws ClassNotFoundException {
-            synchronized (getClassLoadingLock(name)) {
-                // First, check if the class has already been loaded
-                Class&lt;?&gt; c = findLoadedClass(name);
-
-                if (c == null) {
-                    // If still not found, then invoke findClass in order
-                    // to find the class.
-                    long t1 = System.nanoTime();
-
-                    //非自定义的类还是走双亲委派加载
-                    if (!name.startsWith("com.learn.jvm")) {
-                        c = this.getParent().loadClass(name);
-                    } else {
-                        c = findClass(name);
-                    }
-
-                    // this is the defining class loader; record the stats
-                    sun.misc.PerfCounter.getFindClassTime().addElapsedTimeFrom(t1);
-                    sun.misc.PerfCounter.getFindClasses().increment();
-                }
-                if (resolve) {
-                    resolveClass(c);
-                }
-                return c;
-            }
-        }
-    }
-
-    public static void main(String args[]) throws Exception {
-        MyClassLoader classLoader = new MyClassLoader("/Users/panyangfeng/test");
-        Class&lt;?&gt; clazz = classLoader.loadClass("com.learn.jvm.source01.User1");
-        Object obj = clazz.newInstance();
-        Method method = clazz.getDeclaredMethod("sout", null);
-        method.invoke(obj, null);
-        System.out.println(clazz.getClassLoader());
-
-        System.out.println();
-        MyClassLoader classLoader1 = new MyClassLoader("/Users/panyangfeng/test1");
-        Class&lt;?&gt; clazz1 = classLoader1.loadClass("com.learn.jvm.source01.User1");
-        Object obj1 = clazz1.newInstance();
-        Method method1 = clazz1.getDeclaredMethod("sout", null);
-        method1.invoke(obj1, null);
-        System.out.println(clazz1.getClassLoader());
-    }
-}
-
-运行结果：
-
-=======自己的加载器加载类调用方法======= 
-com.learn.jvm.source01.MyClassLoaderTest03$MyClassLoader@610455d6
-
-=======另外一个User1版本：自己的加载器加载类调用方法======= com.learn.jvm.source01.MyClassLoaderTest03$MyClassLoader@5e2de80c<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p><span style="color:red;">注意：</span>同一个JVM内，两个相同包名和类名的类对象可以共存，因为他们的类加载器可以不一 样，所以看两个类对象是否是同一个，除了看类的包名和类名是否都相同之外，还需要他们的类 加载器也是同一个才能认为他们是同一个。</p>
+                <h4 id="栈和局部变量操作"><a href="#栈和局部变量操作" class="headerlink" title="栈和局部变量操作"></a>栈和局部变量操作</h4><h5 id="将常量压入栈的指令"><a href="#将常量压入栈的指令" class="headerlink" title="将常量压入栈的指令"></a>将常量压入栈的指令</h5><pre class="line-numbers language-none"><code class="language-none">aconst_null 将null对象引用压入栈 
+iconst_m1 将int类型常量-1压入栈 
+iconst_0 将int类型常量0压入栈 
+iconst_1 将int类型常量1压入操作数栈 
+iconst_2 将int类型常量2压入栈 
+iconst_3 将int类型常量3压入栈 
+iconst_4 将int类型常量4压入栈 
+iconst_5 将int类型常量5压入栈 
+lconst_0 将long类型常量0压入栈 
+lconst_1 将long类型常量1压入栈 
+fconst_0 将float类型常量0压入栈 
+fconst_1 将float类型常量1压入栈 
+dconst_0 将double类型常量0压入栈 
+dconst_1 将double类型常量1压入栈 
+bipush 将一个8位带符号整数压入栈 
+sipush 将16位带符号整数压入栈 
+ldc 把常量池中的项压入栈 
+ldc_w 把常量池中的项压入栈（使用宽索引） 
+ldc2_w 把常量池中long类型或者double类型的项压入栈（使用宽索引）<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h5 id="从栈中的局部变量中装载值的指令"><a href="#从栈中的局部变量中装载值的指令" class="headerlink" title="从栈中的局部变量中装载值的指令"></a>从栈中的局部变量中装载值的指令</h5><pre class="line-numbers language-none"><code class="language-none">iload 从局部变量中装载int类型值 
+lload 从局部变量中装载long类型值 
+fload 从局部变量中装载float类型值 
+dload 从局部变量中装载double类型值 
+aload 从局部变量中装载引用类型值（refernce） 
+iload_0 从局部变量0中装载int类型值 
+iload_1 从局部变量1中装载int类型值 
+iload_2 从局部变量2中装载int类型值 
+iload_3 从局部变量3中装载int类型值 
+lload_0 从局部变量0中装载long类型值 
+lload_1 从局部变量1中装载long类型值 
+lload_2 从局部变量2中装载long类型值 
+lload_3 从局部变量3中装载long类型值 
+fload_0 从局部变量0中装载float类型值 
+fload_1 从局部变量1中装载float类型值 
+fload_2 从局部变量2中装载float类型值 
+fload_3 从局部变量3中装载float类型值 
+dload_0 从局部变量0中装载double类型值 
+dload_1 从局部变量1中装载double类型值 
+dload_2 从局部变量2中装载double类型值 
+dload_3 从局部变量3中装载double类型值 
+aload_0 从局部变量0中装载引用类型值 
+aload_1 从局部变量1中装载引用类型值 
+aload_2 从局部变量2中装载引用类型值 
+aload_3 从局部变量3中装载引用类型值 
+iaload 从数组中装载int类型值 
+laload 从数组中装载long类型值 
+faload 从数组中装载float类型值 
+daload 从数组中装载double类型值 
+aaload 从数组中装载引用类型值 
+baload 从数组中装载byte类型或boolean类型值 
+caload 从数组中装载char类型值 
+saload 从数组中装载short类型值<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h5 id="将栈中的值存入局部变量的指令"><a href="#将栈中的值存入局部变量的指令" class="headerlink" title="将栈中的值存入局部变量的指令"></a>将栈中的值存入局部变量的指令</h5><pre class="line-numbers language-none"><code class="language-none">istore 将int类型值存入局部变量 
+lstore 将long类型值存入局部变量 
+fstore 将float类型值存入局部变量 
+dstore 将double类型值存入局部变量 
+astore 将将引用类型或returnAddress类型值存入局部变量 
+istore_0 将int类型值存入局部变量0 
+istore_1 将int类型值存入局部变量1 
+istore_2 将int类型值存入局部变量2 
+istore_3 将int类型值存入局部变量3 
+lstore_0 将long类型值存入局部变量0 
+lstore_1 将long类型值存入局部变量1 
+lstore_2 将long类型值存入局部变量2 
+lstore_3 将long类型值存入局部变量3 
+fstore_0 将float类型值存入局部变量0 
+fstore_1 将float类型值存入局部变量1 
+fstore_2 将float类型值存入局部变量2 
+fstore_3 将float类型值存入局部变量3 
+dstore_0 将double类型值存入局部变量0 
+dstore_1 将double类型值存入局部变量1 
+dstore_2 将double类型值存入局部变量2 
+dstore_3 将double类型值存入局部变量3 
+astore_0 将引用类型或returnAddress类型值存入局部变量0 
+astore_1 将引用类型或returnAddress类型值存入局部变量1 
+astore_2 将引用类型或returnAddress类型值存入局部变量2 
+astore_3 将引用类型或returnAddress类型值存入局部变量3 
+iastore 将int类型值存入数组中 
+lastore 将long类型值存入数组中 
+fastore 将float类型值存入数组中 
+dastore 将double类型值存入数组中 
+aastore 将引用类型值存入数组中 
+bastore 将byte类型或者boolean类型值存入数组中 
+castore 将char类型值存入数组中 
+sastore 将short类型值存入数组中<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h5 id="wide指令"><a href="#wide指令" class="headerlink" title="wide指令"></a>wide指令</h5><pre class="line-numbers language-none"><code class="language-none">wide 使用附加字节扩展局部变量索引<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h5 id="通用-无类型）栈操作"><a href="#通用-无类型）栈操作" class="headerlink" title="通用(无类型）栈操作"></a>通用(无类型）栈操作</h5><pre class="line-numbers language-none"><code class="language-none">nop 不做任何操作 
+pop 弹出栈顶端一个字长的内容 
+pop2 弹出栈顶端两个字长的内容 
+dup 复制栈顶部一个字长内容 
+dup_x1 复制栈顶部一个字长的内容，然后将复制内容及原来弹出的两个字长的内容压入 栈 
+dup_x2 复制栈顶部一个字长的内容，然后将复制内容及原来弹出的三个字长的内容压入 栈 
+dup2 复制栈顶部两个字长内容 
+dup2_x1 复制栈顶部两个字长的内容，然后将复制内容及原来弹出的三个字长的内容压入 栈 
+dup2_x2 复制栈顶部两个字长的内容，然后将复制内容及原来弹出的四个字长的内容压入 栈 
+swap 交换栈顶部两个字长内容<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h5 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h5><pre class="line-numbers language-none"><code class="language-none">i2l 把int类型的数据转化为long类型 
+i2f 把int类型的数据转化为float类型 
+i2d 把int类型的数据转化为double类型 
+l2i 把long类型的数据转化为int类型 
+l2f 把long类型的数据转化为float类型 
+l2d 把long类型的数据转化为double类型 
+f2i 把float类型的数据转化为int类型 
+f2l 把float类型的数据转化为long类型 
+f2d 把float类型的数据转化为double类型 
+d2i 把double类型的数据转化为int类型 
+d2l 把double类型的数据转化为long类型 
+d2f 把double类型的数据转化为float类型 
+i2b 把int类型的数据转化为byte类型 
+i2c 把int类型的数据转化为char类型 
+i2s 把int类型的数据转化为short类型<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h5 id="整数运算"><a href="#整数运算" class="headerlink" title="整数运算"></a>整数运算</h5><pre class="line-numbers language-none"><code class="language-none">iadd 执行int类型的加法 
+ladd 执行long类型的加法 
+isub 执行int类型的减法 
+lsub 执行long类型的减法 
+imul 执行int类型的乘法 
+lmul 执行long类型的乘法 
+idiv 执行int类型的除法 
+ldiv 执行long类型的除法 
+irem 计算int类型除法的余数 
+lrem 计算long类型除法的余数 
+ineg 对一个int类型值进行取反操作 
+lneg 对一个long类型值进行取反操作 
+iinc 把一个常量值加到一个int类型的局部变量上<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="逻辑运算"><a href="#逻辑运算" class="headerlink" title="逻辑运算"></a>逻辑运算</h4><h5 id="移位操作"><a href="#移位操作" class="headerlink" title="移位操作"></a>移位操作</h5><pre class="line-numbers language-none"><code class="language-none">ishl 执行int类型的向左移位操作 
+lshl 执行long类型的向左移位操作 
+ishr 执行int类型的向右移位操作 
+lshr 执行long类型的向右移位操作 
+iushr 执行int类型的向右逻辑移位操作 
+lushr 执行long类型的向右逻辑移位操作<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h5 id="按位布尔运算"><a href="#按位布尔运算" class="headerlink" title="按位布尔运算"></a>按位布尔运算</h5><pre class="line-numbers language-none"><code class="language-none">iand 对int类型值进行“逻辑与”操作 
+land 对long类型值进行“逻辑与”操作 
+ior 对int类型值进行“逻辑或”操作 
+lor 对long类型值进行“逻辑或”操作 
+ixor 对int类型值进行“逻辑异或”操作 
+lxor 对long类型值进行“逻辑异或”操作<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h5 id="浮点运算"><a href="#浮点运算" class="headerlink" title="浮点运算"></a>浮点运算</h5><pre class="line-numbers language-none"><code class="language-none">fadd 执行float类型的加法 
+dadd 执行double类型的加法 
+fsub 执行float类型的减法 
+dsub 执行double类型的减法 
+fmul 执行float类型的乘法 
+dmul 执行double类型的乘法 
+fdiv 执行float类型的除法 
+ddiv 执行double类型的除法 
+frem 计算float类型除法的余数 
+drem 计算double类型除法的余数 
+fneg 将一个float类型的数值取反 
+dneg 将一个double类型的数值取反<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="对象和数组"><a href="#对象和数组" class="headerlink" title="对象和数组"></a>对象和数组</h4><h5 id="对象操作指令"><a href="#对象操作指令" class="headerlink" title="对象操作指令"></a>对象操作指令</h5><pre class="line-numbers language-none"><code class="language-none">new 创建一个新对象 
+checkcast 确定对象为所给定的类型 
+getfield 从对象中获取字段 
+putfield 设置对象中字段的值 
+getstatic 从类中获取静态字段 
+putstatic 设置类中静态字段的值 
+instanceof 判断对象是否为给定的类型<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h5 id="数组操作指令"><a href="#数组操作指令" class="headerlink" title="数组操作指令"></a>数组操作指令</h5><pre class="line-numbers language-none"><code class="language-none">newarray 分配数据成员类型为基本上数据类型的新数组 
+anewarray 分配数据成员类型为引用类型的新数组 
+arraylength 获取数组长度 
+multianewarray 分配新的多维数组<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="控制流"><a href="#控制流" class="headerlink" title="控制流"></a>控制流</h4><h5 id="条件分支指令"><a href="#条件分支指令" class="headerlink" title="条件分支指令"></a>条件分支指令</h5><pre class="line-numbers language-none"><code class="language-none">ifeq 如果等于0，则跳转 
+ifne 如果不等于0，则跳转 
+iflt 如果小于0，则跳转 
+ifge 如果大于等于0，则跳转 
+ifgt 如果大于0，则跳转 
+ifle 如果小于等于0，则跳转 
+if_icmpcq 如果两个int值相等，则跳转 
+if_icmpne 如果两个int类型值不相等，则跳转 
+if_icmplt 如果一个int类型值小于另外一个int类型值，则跳转 
+if_icmpge 如果一个int类型值大于或者等于另外一个int类型值，则跳转 
+if_icmpgt 如果一个int类型值大于另外一个int类型值，则跳转 
+if_icmple 如果一个int类型值小于或者等于另外一个int类型值，则跳转 
+ifnull 如果等于null，则跳转 
+ifnonnull 如果不等于null，则跳转 
+if_acmpeq 如果两个对象引用相等，则跳转 
+if_acmpnc 如果两个对象引用不相等，则跳转<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h5 id="比较指令"><a href="#比较指令" class="headerlink" title="比较指令"></a>比较指令</h5><pre class="line-numbers language-none"><code class="language-none">lcmp 比较long类型值 
+fcmpl 比较float类型值（当遇到NaN时，返回-1） 
+fcmpg 比较float类型值（当遇到NaN时，返回1） 
+dcmpl 比较double类型值（当遇到NaN时，返回-1） 
+dcmpg 比较double类型值（当遇到NaN时，返回1）<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h5 id="无条件转移指令"><a href="#无条件转移指令" class="headerlink" title="无条件转移指令"></a>无条件转移指令</h5><pre class="line-numbers language-none"><code class="language-none">goto 无条件跳转 
+goto_w 无条件跳转（宽索引）<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h5 id="表跳转指令"><a href="#表跳转指令" class="headerlink" title="表跳转指令"></a>表跳转指令</h5><pre class="line-numbers language-none"><code class="language-none">tableswitch 通过索引访问跳转表，并跳转 
+lookupswitch 通过键值匹配访问跳转表，并执行跳转操作<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h5 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h5><pre class="line-numbers language-none"><code class="language-none">athrow 抛出异常或错误 
+finally子句 
+jsr 跳转到子例程 
+jsr_w 跳转到子例程（宽索引） 
+rct 从子例程返回<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="方法调用与返回"><a href="#方法调用与返回" class="headerlink" title="方法调用与返回"></a>方法调用与返回</h4><h5 id="方法调用指令"><a href="#方法调用指令" class="headerlink" title="方法调用指令"></a>方法调用指令</h5><pre class="line-numbers language-none"><code class="language-none">invokcvirtual 运行时按照对象的类来调用实例方法 
+invokespecial 根据编译时类型来调用实例方法 
+invokestatic 调用类（静态）方法 
+invokcinterface 调用接口方法<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h5 id="方法返回指令"><a href="#方法返回指令" class="headerlink" title="方法返回指令"></a>方法返回指令</h5><pre class="line-numbers language-none"><code class="language-none">ireturn 从方法中返回int类型的数据 
+lreturn 从方法中返回long类型的数据 
+freturn 从方法中返回float类型的数据 
+dreturn 从方法中返回double类型的数据 
+areturn 从方法中返回引用类型的数据 
+return 从方法中返回，返回值为void<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h5 id="线程同步"><a href="#线程同步" class="headerlink" title="线程同步"></a>线程同步</h5><pre class="line-numbers language-none"><code class="language-none">montiorenter 进入并获取对象监视器 
+monitorexit 释放并退出对象监视器<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h4 id="JVM指令助记符"><a href="#JVM指令助记符" class="headerlink" title="JVM指令助记符"></a>JVM指令助记符</h4><pre class="line-numbers language-none"><code class="language-none">变量到操作数栈：iload, iload_, lload, lload_, fload, fload_, dload, dload_, aload, aload_ 
+
+操作数栈到变量： istore, istore_, lstore, lstore_, fstore, fstore_, dstore,dstor_, astore,astore_ 
+
+常数到操作数栈：bipush, sipush, ldc, ldc_w, ldc2_w, aconst_null, iconst_ml, iconst_, lconst_, fconst_, dconst_ 
+
+加：iadd, ladd, fadd, dadd 
+
+减：isub, lsub, fsub, dsub 
+
+乘：imul, lmul, fmul, dmul 
+
+除：idiv, ldiv, fdiv, ddiv
+
+余数：irem, lrem, frem, drem
+
+取负：ineg, lneg, fneg, dneg
+
+移位：ishl, lshr, iushr, lshl, lshr, lushr 
+
+按位或：ior, lor 
+
+按位与：iand, land 
+
+按位异或：ixor, lxor 
+
+类型转换：i2l, i2f, i2d, l2f, l2d, f2d(放宽数值转换) i2b, i2c, i2s, l2i, f2i, f2l, d2i, d2l, d2f(缩窄数值转换) 
+
+创建类实便：new
+
+创建新数组：newarray, anewarray, multianwarray
+
+访问类的域和类实例域：getfield, putfield, getstatic, putstatic 
+
+把数据装载到操作数栈：baload, caload, saload, iaload, laload, faload, daload, aaload 
+
+从操作数栈存存储到数组： bastore, castore, sastore, iastore, lastore, fastore, dastore, aastore 
+
+获取数组长度：arraylength 
+
+检相类实例或数组属性：instanceof, checkcast 
+
+操作数栈管理：pop, pop2, dup, dup2, dup_xl, dup2_xl, dup_x2, dup2_x2, swap 
+
+有条件转移：ifeq, iflt, ifle, ifne, ifgt, ifge, ifnull, ifnonnull, if_icmpeq, if_icmpene, 
+if_icmplt, if_icmpgt, if_icmple, if_icmpge, if_acmpeq, if_acmpne, lcmp, fcmpl fcmpg, dcmpl, dcmpg 
+
+复合条件转移：tableswitch, lookupswitch 
+
+无条件转移：goto, goto_w, jsr, jsr_w, ret 
+
+调度对象的实便方法：invokevirtual 
+
+调用由接口实现的方法：invokeinterface 
+
+调用需要特殊处理的实例方法：invokespecial 
+
+调用命名类中的静态方法：invokestatic 
+
+方法返回：ireturn, lreturn, freturn, dreturn, areturn, return
+
+异常：athrow 
+
+finally关键字的实现使用：jsr, jsr_w, ret<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 
                 
             </div>
@@ -1206,7 +910,7 @@ com.learn.jvm.source01.MyClassLoaderTest03$MyClassLoader@610455d6
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://fenggithub8.github.io/2022/03/21/01congjdkyuanmajibiechedipouxijvmleijiazaijizhi/">https://fenggithub8.github.io/2022/03/21/01congjdkyuanmajibiechedipouxijvmleijiazaijizhi/</a>
+                    <a href="https://fenggithub8.github.io/2022/03/22/xingnengdiaoyou00jvmzhilingshouce/">https://fenggithub8.github.io/2022/03/22/xingnengdiaoyou00jvmzhilingshouce/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -1244,8 +948,8 @@ com.learn.jvm.source01.MyClassLoaderTest03$MyClassLoader@610455d6
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/JDK%E6%BA%90%E7%A0%81/">
-                                    <span class="chip bg-color">JDK源码</span>
+                                <a href="/tags/JVM%E6%8C%87%E4%BB%A4/">
+                                    <span class="chip bg-color">JVM指令</span>
                                 </a>
                             
                         </div>
@@ -1421,13 +1125,13 @@ com.learn.jvm.source01.MyClassLoaderTest03$MyClassLoader@610455d6
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2022/03/22/00jvmzhilingshouce/">
+                <a href="/2022/03/22/xingnengdiaoyou02jvmneicunmoxingshendupouxiyuyouhua/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="JVM指令手册">
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="JVM内存模型">
                         
-                        <span class="card-title">JVM指令手册</span>
+                        <span class="card-title">JVM内存模型</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1455,8 +1159,8 @@ com.learn.jvm.source01.MyClassLoaderTest03$MyClassLoader@610455d6
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/JVM%E6%8C%87%E4%BB%A4/">
-                        <span class="chip bg-color">JVM指令</span>
+                    <a href="/tags/JVM/">
+                        <span class="chip bg-color">JVM</span>
                     </a>
                     
                 </div>
@@ -1467,10 +1171,10 @@ com.learn.jvm.source01.MyClassLoaderTest03$MyClassLoader@610455d6
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/03/21/01congjdkyuanmajibiechedipouxijvmleijiazaijizhi/">
+                <a href="/2022/03/21/xingnengdiaoyou01congjdkyuanmajibiechedipouxijvmleijiazaijizhi/">
                     <div class="card-image">
                         
                         
@@ -1501,7 +1205,6 @@ com.learn.jvm.source01.MyClassLoaderTest03$MyClassLoader@610455d6
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
@@ -1710,7 +1413,7 @@ com.learn.jvm.source01.MyClassLoaderTest03$MyClassLoader@610455d6
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">12.3k</span>
+                        class="white-color">13.9k</span>
             
             
             
