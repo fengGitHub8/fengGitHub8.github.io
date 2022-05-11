@@ -1,7 +1,10 @@
 ---
 title: SpringBoot自动配置原理
 date: 2022-03-29 16:04:09
+categories: 
+- Java后端
 tags:
+- 微服务
 ---
 
 #### 1、SpringBoot的自动配置原理
@@ -563,7 +566,7 @@ public class HelloAutoConfiguration {
 
 application.yml 添加
 
-```tex
+```yaml
 #debug=true
 server:
   port: 8080
