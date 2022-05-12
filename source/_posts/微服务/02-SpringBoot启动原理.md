@@ -466,11 +466,11 @@ WarLauncher通过加载WEB-INF/classes目录及WEB-INF/lib和WEB-INF/lib-provide
 
 1.ApplicationStartingEvent
 
-<img src="http://feng.mynatapp.cc/blog/image-20220510165812583.png" alt="image-20220510165812583" style="zoom:50%;" align="left"/>
+<img src="https://feng.mynatapp.cc/blog/image-20220510165812583.png" alt="image-20220510165812583" style="zoom:50%;" align="left"/>
 
 2.ApplicationEnvironmentPreparedEvent
 
-<img src="http://feng.mynatapp.cc/blog/image-20220510170101286.png" alt="image-20220510170101286" style="zoom:50%;" align="left" />
+<img src="https://feng.mynatapp.cc/blog/image-20220510170101286.png" alt="image-20220510170101286" style="zoom:50%;" align="left" />
 
 1.调用SpringApplication.run启动springboot应用
 
@@ -510,11 +510,11 @@ public static ConfigurableApplicationContext run(Class<?>[] primarySources, Stri
 
 - org.springframework.context.ApplicationContextInitializer
 
-<img src="http://feng.mynatapp.cc/blog/image-20220510170823495.png" alt="image-20220510170823495" style="zoom:50%;" align="left"/>
+<img src="https://feng.mynatapp.cc/blog/image-20220510170823495.png" alt="image-20220510170823495" style="zoom:50%;" align="left"/>
 
 - org.springframework.context.ApplicationListener
 
-<img src="http://feng.mynatapp.cc/blog/image-20220510170847740.png" alt="image-20220510170847740" style="zoom:50%;" align="left"/>
+<img src="https://feng.mynatapp.cc/blog/image-20220510170847740.png" alt="image-20220510170847740" style="zoom:50%;" align="left"/>
 
 总结：
 
@@ -722,9 +722,9 @@ public class TomcatStartSpringBoot extends SpringBootServletInitializer {
 
 5.在idea中运行
 
-![image-20220510174558124](http://feng.mynatapp.cc/blog/image-20220510174558124.png)
+![image-20220510174558124](https://feng.mynatapp.cc/blog/image-20220510174558124.png)
 
-![image-20220510174613877](http://feng.mynatapp.cc/blog/image-20220510174613877.png)
+![image-20220510174613877](https://feng.mynatapp.cc/blog/image-20220510174613877.png)
 
 #### 外部Servlet容器启动SpringBoot应用原理
 
@@ -743,7 +743,7 @@ public class TomcatStartSpringBoot extends SpringBootServletInitializer {
 
 servlet3.0 规范官方文档： 8.2.4
 
-![image-20220510174855346](http://feng.mynatapp.cc/blog/image-20220510174855346.png)
+![image-20220510174855346](https://feng.mynatapp.cc/blog/image-20220510174855346.png)
 
 **什么是SPI**
 
@@ -797,7 +797,7 @@ public class SpringServletContainerInitializer implements ServletContainerInitia
 }
 ```
 
-![image-20220511103349840](http://feng.mynatapp.cc/blog/image-20220511103349840.png)
+![image-20220511103349840](https://feng.mynatapp.cc/blog/image-20220511103349840.png)
 
 ```java
 // SpringBootServletInitializer
@@ -898,7 +898,7 @@ public static void main(String[] args) {
 }
 ```
 
-<img src="http://feng.mynatapp.cc/blog/image-20220511103954893.png" alt="image-20220511103954893" style="zoom:50%;" align="left"/>
+<img src="https://feng.mynatapp.cc/blog/image-20220511103954893.png" alt="image-20220511103954893" style="zoom:50%;" align="left"/>
 
 其实这2个实现类就是帮我创建ContextLoaderListener 和DispatcherServlet
 
@@ -931,7 +931,7 @@ public static void main(String[] args) {
 </servlet‐mapping>
 ```
 
-![image-20220511104928458](http://feng.mynatapp.cc/blog/image-20220511104928458.png)
+![image-20220511104928458](https://feng.mynatapp.cc/blog/image-20220511104928458.png)
 
 附：[脑图地址](https://www.processon.com/view/link/60d865e85653bb049a4b77ff)
 

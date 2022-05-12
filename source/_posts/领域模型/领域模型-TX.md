@@ -1,7 +1,10 @@
 ---
 title: 领域模型
 date: 2022-03-22 15:29:08
+categories: 
+- Java后端
 tags:
+- 设计思想
 ---
 
 # 领域模型
@@ -166,8 +169,8 @@ CDSS系统中暂时没有业务步骤，也不需要领域事件
   - 文件
   - 其他
 
-![image-20220509175728519](http://feng.mynatapp.cc/blog/image-20220509175728519.png)
+![image-20220509175728519](https://feng.mynatapp.cc/blog/image-20220509175728519.png)
 
 ### ★整洁架构
 
-![image-20220509175757890](http://feng.mynatapp.cc/blog/image-20220509175757890.png)
+![image-20220509175757890](https://feng.mynatapp.cc/blog/image-20220509175757890.png)

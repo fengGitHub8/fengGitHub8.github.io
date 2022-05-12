@@ -9,19 +9,19 @@ tags:
 
 #### JDK体系结构
 
-![](http://feng.mynatapp.cc/blog/20220329154246.png)
+![](https://feng.mynatapp.cc/blog/20220329154246.png)
 
 #### Java语言的跨平台特性
 
-<img src="http://feng.mynatapp.cc/blog/20220329154313.png" style="zoom:50%;" />
+<img src="https://feng.mynatapp.cc/blog/20220329154313.png" style="zoom:50%;" />
 
 #### JVM整体结构及内存模型
 
-![](http://feng.mynatapp.cc/blog/20220329154345.png)
+![](https://feng.mynatapp.cc/blog/20220329154345.png)
 
 #### 二、JVM内存参数设置
 
-<img src="http://feng.mynatapp.cc/blog/20220329154411.png" style="zoom:50%;" />
+<img src="https://feng.mynatapp.cc/blog/20220329154411.png" style="zoom:50%;" />
 
 Spring Boot程序的JVM参数设置格式(Tomcat启动直接加在bin目录下catalina.sh文件里)：
 
@@ -86,9 +86,9 @@ JVM参数大小设置并没有固定标准，需要根据实际项目情况分�
 
 **日均百万级订单交易系统如何设置JVM参数**
 
-![](http://feng.mynatapp.cc/blog/20220329154624.png)
+![](https://feng.mynatapp.cc/blog/20220329154624.png)
 
-![](http://feng.mynatapp.cc/blog/20220329154641.png)
+![](https://feng.mynatapp.cc/blog/20220329154641.png)
 
 **结论：通过上面这些内容介绍，大家应该对JVM优化有些概念了，就是尽可能让对象都在新生代里分配和回收，尽量别 让太多对象频繁进入老年代，避免频繁对老年代进行垃圾回收，同时给系统充足的内存大小，避免新生代频繁的进行垃圾回收。**
 

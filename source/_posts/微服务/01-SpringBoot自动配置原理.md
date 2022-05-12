@@ -225,7 +225,7 @@ ActiveMQAutoConfiguration:
 
 下面我么就以**HttpEncodingAutoConfiguration（Http编码自动配置）**为例说明自动配置原理； 该注解如下：
 
-![](http://feng.mynatapp.cc/blog/20220330134658.png)
+![](https://feng.mynatapp.cc/blog/20220330134658.png)
 
 - @Configuration：表示这是一个配置类，以前编写的配置文件一样，也可以给容器中添加组件。
 - @ConditionalOnWebApplication：Spring底层@Conditional注解（Spring注解版），根据不同的条件，如果满足指定的条件，整个配置类里面的配置就会生效； 判断当前应用是否是web应用，如果是，当前配置类生效。
@@ -235,7 +235,7 @@ ActiveMQAutoConfiguration:
 
 **ServerProperties**
 
-![](http://feng.mynatapp.cc/blog/20220330135024.png)
+![](https://feng.mynatapp.cc/blog/20220330135024.png)
 
 ServerProperties通过 @ConfigurationProperties 注解将配置文件与自身属性绑定。
 
@@ -245,7 +245,7 @@ ServerProperties通过 @ConfigurationProperties 注解将配置文件与自身�
 
 所以只有知道了自动配置的原理及源码 才能灵活的配置SpringBoot
 
-![](http://feng.mynatapp.cc/blog/20220330135322.png)
+![](https://feng.mynatapp.cc/blog/20220330135322.png)
 
 #### 2、自定义starter
 
@@ -292,15 +292,15 @@ org.springframework.boot.autoconfigure.aop.AopAutoConfiguration,\
 
 我们参照 spring-boot-starter 我们发现其中没有代码：
 
-![](http://feng.mynatapp.cc/blog/20220330140554.png)
+![](https://feng.mynatapp.cc/blog/20220330140554.png)
 
 我们在看它的pom中的依赖中有个 springboot-starter
 
-![](http://feng.mynatapp.cc/blog/20220330141159.png)
+![](https://feng.mynatapp.cc/blog/20220330141159.png)
 
 我们再看看 spring-boot-starter 有个 spring-boot-autoconfigure
 
-![](http://feng.mynatapp.cc/blog/20220330141245.png)
+![](https://feng.mynatapp.cc/blog/20220330141245.png)
 
 关于web的一些自动配置都写在了这里 ，所以我们有总结：
 
@@ -542,9 +542,9 @@ public class HelloAutoConfiguration {
 
 **spring.factories**
 
-<img src="http://feng.mynatapp.cc/blog/20220330170814.png" style="zoom:50%;" />
+<img src="https://feng.mynatapp.cc/blog/20220330170814.png" style="zoom:50%;" />
 
-![](http://feng.mynatapp.cc/blog/20220330170845.png)
+![](https://feng.mynatapp.cc/blog/20220330170845.png)
 
 到这儿，我们的配置自定义的starter就写完了 ，我们demo-spring-boot-starter-autoconfigurer、demo-spring-boot-starter 安装成本地jar包。
 
@@ -562,7 +562,7 @@ public class HelloAutoConfiguration {
 
 浏览http://localhost:8080/  报错
 
-![](http://feng.mynatapp.cc/blog/20220330171219.png)
+![](https://feng.mynatapp.cc/blog/20220330171219.png)
 
 application.yml 添加
 
@@ -578,4 +578,4 @@ demo:
 
 再次访问 http://localhost:8080/ 
 
-![](http://feng.mynatapp.cc/blog/20220330174004.png)
+![](https://feng.mynatapp.cc/blog/20220330174004.png)
