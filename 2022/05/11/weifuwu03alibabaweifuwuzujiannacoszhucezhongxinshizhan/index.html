@@ -4,16 +4,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="领域模型, 菜鸟，努力">
-    <meta name="description" content="领域模型领域模型设计系统的过程步骤
-事件风暴 + 领域分析：用例分析、场景分析、用户旅程
-操作、命令、事件 –&amp;gt; 实体 与 聚合
-领域模型 –&amp;gt; 代码模型
-代码落地
-
-域的分类
-通用域：权限、认证，通常可以买到
-核心域：公司核心">
+    <meta name="keywords" content="Alibaba微服务组件Nacos注册中心实战, 菜鸟，努力">
+    <meta name="description" content="1. 什么是 Nacos官方文档： https://nacos.io/zh-cn/docs/what-is-nacos.html Nacos 致力于帮助您发现、配置和管理微服务。Nacos 提供了一组简单易用的特性集，帮助您快速实现动态 服">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -25,7 +17,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>领域模型 | 偶染风寒</title>
+    <title>Alibaba微服务组件Nacos注册中心实战 | 偶染风寒</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -427,12 +419,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/19.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/16.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">领域模型</h1>
+                    <h1 class="description center-align post-title">Alibaba微服务组件Nacos注册中心实战</h1>
                 </div>
             </div>
         </div>
@@ -548,8 +540,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3/">
-                                <span class="chip bg-color">设计思想</span>
+                            <a href="/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/">
+                                <span class="chip bg-color">微服务</span>
                             </a>
                         
                     </div>
@@ -573,7 +565,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-03-22
+                    2022-05-11
                 </div>
                 
 
@@ -582,7 +574,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.5k
+                    1.4k
                 </div>
                 
 
@@ -602,169 +594,150 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="领域模型"><a href="#领域模型" class="headerlink" title="领域模型"></a>领域模型</h1><h3 id="领域模型设计系统的过程步骤"><a href="#领域模型设计系统的过程步骤" class="headerlink" title="领域模型设计系统的过程步骤"></a>领域模型设计系统的过程步骤</h3><ol>
-<li>事件风暴 + 领域分析：用例分析、场景分析、用户旅程</li>
-<li>操作、命令、事件 –&gt; 实体 与 聚合</li>
-<li>领域模型 –&gt; 代码模型</li>
-<li>代码落地</li>
-</ol>
-<h3 id="域的分类"><a href="#域的分类" class="headerlink" title="域的分类"></a>域的分类</h3><ul>
-<li>通用域：权限、认证，通常可以买到</li>
-<li>核心域：公司核心竞争力 - 会随着公司战略、业务模式等不同，核心域会不同</li>
-<li>支撑域：根据公司业务个性化定制</li>
-</ul>
-<h3 id="上下文界限"><a href="#上下文界限" class="headerlink" title="上下文界限"></a>上下文界限</h3><p>上下文界限例子，四个阶段中保单的四个领域实体，</p>
-<ol>
-<li>客户投保时，业务人员记录投保信息，系统对应有投保单实体对象</li>
-<li>缴费完成后，业务人员将投保单转为<strong>保单</strong>，系统对应有保单实体对象，保单实体与投保单实体关联</li>
-<li>如客户需要修改保单信息，保单变为批单，系统对应有批单实体对象，批单实体与保单实体关联</li>
-<li>如果客户发生理赔，生成赔案，系统对应有报案实体对象，报案实体对象与保单或者批单实体关联</li>
-</ol>
-<h1 id="实体与值对象"><a href="#实体与值对象" class="headerlink" title="实体与值对象"></a>实体与值对象</h1><h3 id="实体"><a href="#实体" class="headerlink" title="实体"></a>实体</h3><ul>
-<li>业务形态<ul>
-<li>根据操作、命令、事件找到业务实体</li>
-<li>根据业务规则进行聚类</li>
-</ul>
-</li>
-<li>代码形态<ul>
-<li>完成自身的业务逻辑（通常是充血模型）</li>
-<li>*跨多个实体的领域逻辑，在Service中完成</li>
-</ul>
-</li>
-<li>运行形态<ul>
-<li>运行时，通过ID作为唯一标识</li>
-<li>通过ID判断相等</li>
-</ul>
-</li>
-<li>数据库形态<ul>
-<li>优先产生领域模型，再考虑计数据库的持久化</li>
-<li>多数情况下是与实体一对一的</li>
-<li>但是某些情况下也可以是一对多，多对一</li>
-<li>甚至是内存暂存状态，也就是一对0。</li>
-</ul>
-</li>
-</ul>
-<h3 id="值对象"><a href="#值对象" class="headerlink" title="值对象"></a>值对象</h3><ul>
-<li>业务形态<ul>
-<li>一种属性集合</li>
-<li>最典型的值对象就是数据字典</li>
-</ul>
-</li>
-<li>代码形态<ul>
-<li>基本不包含业务逻辑</li>
-<li>只有数据初始化操作、有限的不涉及修改数据的业务</li>
-</ul>
-</li>
-<li>运行形态<ul>
-<li>初始化构造</li>
-<li>在实体中替换值对象（创建后不能修改，只能用另外一个值对象替换）</li>
-<li>通过属性值判断相等</li>
-</ul>
-</li>
-<li>数据库形态<ul>
-<li>可以单独成表</li>
-<li>也可以嵌入在实体的表中</li>
-</ul>
-</li>
-</ul>
-<h3 id="两者关系"><a href="#两者关系" class="headerlink" title="两者关系"></a>两者关系</h3><p>值对象是对实体的描述。在不同的领域甚至是子域里面，实体和值对象是可以互换的，如</p>
+                <h3 id="1-什么是-Nacos"><a href="#1-什么是-Nacos" class="headerlink" title="1. 什么是 Nacos"></a>1. 什么是 Nacos</h3><p>官方文档： <a target="_blank" rel="noopener" href="https://nacos.io/zh-cn/docs/what-is-nacos.html">https://nacos.io/zh-cn/docs/what-is-nacos.html</a> Nacos 致力于帮助您发现、配置和管理微服务。Nacos 提供了一组简单易用的特性集，帮助您快速实现动态 服务发现、服务配置、服务元数据及流量管理。 </p>
+<p>Nacos 的关键特性包括:</p>
 <ul>
-<li>开立医嘱的业务中，医生作为被医嘱实体引用的描述，是一个值对象。</li>
-<li>在用户信息修改的业务中，医生就是存在唯一ID的实体了</li>
+<li>服务发现和服务健康监测 </li>
+<li>动态配置服务 </li>
+<li>动态 DNS 服务 </li>
+<li>服务及其元数据管理</li>
 </ul>
-<h1 id="聚合和聚合根"><a href="#聚合和聚合根" class="headerlink" title="聚合和聚合根"></a>聚合和聚合根</h1><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><ul>
-<li>聚合根是一个实体，相当于单个聚合的管理者</li>
-<li>聚合是指负责<strong>单一业务职责</strong>、<strong>高聚合</strong>的一系列实体和值对象</li>
-<li>聚合是通过充血模型实现的</li>
-<li>聚合存在上下文边界，边界之间是松耦合的</li>
-</ul>
-<h3 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h3><p>一个聚合诞生的完整过程：</p>
-<ol>
-<li>采用事件风暴，根据业务行为，梳理出在投保过程中发生这些行为的所有的实体和值对象，比如投保单、标的、客户、被保人等等。</li>
-<li>从众多实体中选出适合作为对象管理者的聚合根。判断一个实体是否是聚合根，可以结合场景分析：<ul>
-<li>是否有独立的什么周期（实体 / 值对象）</li>
-<li>是否有全局唯一ID（实体 / 值对象）</li>
-<li>是否可以创建或修改其他对象（实体 / 值对象）</li>
-<li>是否有专门的模块来管理这个实体（实体 / 聚合根）</li>
-<li>本例中两个聚合根分别是 <strong>投保单</strong> 和 <strong>客户</strong></li>
-</ul>
-</li>
-<li>根据业务单一职责和高内聚原则，找出与聚合根关联的所有紧密依赖的实体和值对象。构建出一个包含聚合根（唯一）、多个实体和值对象的对象集合，这个集合就是聚合。</li>
-<li>在聚合内根据聚合根、实体和值对象的依赖关系，理出对象的引用和依赖模型。在本例中，投保人和被保人的数据，是通过关联客户ID从客户聚合中获取的，在投保聚合里它们是投保单的值对象，这些值对象的数据是客户的冗余数据，即使未来客户聚合的数据发生了变更，也不会影响投保单的值对象数据。例子中，投保聚合里投保单聚合根引用了报价单实体，报价单实体则引用了报价规则实体。</li>
-<li>多个聚合根据业务语义和上下文一起划分到同一个限界上下文内。</li>
+<h4 id="1-1-Nacos-架构"><a href="#1-1-Nacos-架构" class="headerlink" title="1.1 Nacos 架构"></a>1.1 Nacos 架构</h4><p><img src="https://feng.mynatapp.cc/blog/1561217892717-1418fb9b-7faa-4324-87b9-f1740329f564.jpeg" alt="nacos_arch.jpg"></p>
+<p>NamingService：命名服务，注册中心核心接口 </p>
+<p>ConfigService：配置服务，配置中心核心接口 </p>
+<p>OpenAPI文档：<a target="_blank" rel="noopener" href="https://nacos.io/zh-cn/docs/open-api.html">https://nacos.io/zh-cn/docs/open-api.html</a></p>
+<p>nacos版本： v1.1.4 升级到v1.4.1</p>
+<h4 id="1-2-Nacos-Server部署"><a href="#1-2-Nacos-Server部署" class="headerlink" title="1.2 Nacos Server部署"></a>1.2 Nacos Server部署</h4><p>下载源码编译</p>
+<p>源码下载地址：<a target="_blank" rel="noopener" href="https://github.com/alibaba/nacos/">https://github.com/alibaba/nacos/</a></p>
+<pre class="line-numbers language-tex" data-language="tex"><code class="language-tex">cd nacos/ 
+# 编译1.4.1 增加 ‐Drat.skip=true 参数 ，跳过licensing 检查
+mvn -Prelease-nacos -Dmaven.test.skip=true clean install -U
+cd nacos/distribution/target/<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>下载安装包</p>
+<p>下载地址：<a target="_blank" rel="noopener" href="https://github.com/alibaba/Nacos/releases">https://github.com/alibaba/Nacos/releases</a></p>
+<h5 id="1-2-1-单机模式"><a href="#1-2-1-单机模式" class="headerlink" title="1.2.1 单机模式"></a>1.2.1 单机模式</h5><p>官方文档： <a target="_blank" rel="noopener" href="https://nacos.io/zh-cn/docs/deployment.html">https://nacos.io/zh-cn/docs/deployment.html</a> </p>
+<p>解压，进入nacos目录</p>
+<img src="https://feng.mynatapp.cc/blog/image-20220511140404789.png" alt="image-20220511140404789" style="zoom:50%;">
+
+<p>单机启动nacos，执行命令</p>
+<pre class="line-numbers language-tex" data-language="tex"><code class="language-tex">sh bin/startup.sh -m standalone<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>也可以修改默认启动方式</p>
+<img src="https://feng.mynatapp.cc/blog/image-20220511145533167.png" alt="image-20220511145533167" style="zoom:50%;">
+
+<p>访问nocas的管理端：<a target="_blank" rel="noopener" href="http://192.168.3.14:8848/nacos">http://192.168.3.14:8848/nacos</a> ，默认的用户名密码是 nocas/nocas</p>
+<h5 id="1-2-2-集群模式"><a href="#1-2-2-集群模式" class="headerlink" title="1.2.2 集群模式"></a>1.2.2 集群模式</h5><p>官网文档： <a target="_blank" rel="noopener" href="https://nacos.io/zh-cn/docs/cluster-mode-quick-start.html">https://nacos.io/zh-cn/docs/cluster-mode-quick-start.html</a></p>
+<p>集群部署架构图</p>
+<img src="https://feng.mynatapp.cc/blog/image-20220511150219719.png" alt="image-20220511150219719" style="zoom:50%;">
+
+<p>1）单机搭建伪集群，复制nacos安装包，修改为nacos8850，nacos8854，nacos8856</p>
+<img src="https://feng.mynatapp.cc/blog/image-20220511162435600.png" alt="image-20220511162435600" style="zoom:50%;">
+
+<p>2）以nacos8850为例，进入nacos8850目录</p>
+<p>2.1）修改conf\application.properties的配置，使用外置数据源</p>
+<pre class="line-numbers language-properties" data-language="properties"><code class="language-properties"><span class="token attr-name">spring.datasource.platform</span><span class="token punctuation">=</span><span class="token attr-value">mysql</span>
+
+<span class="token comment">### Count of DB:</span>
+<span class="token attr-name">db.num</span><span class="token punctuation">=</span><span class="token attr-value">1</span>
+
+<span class="token comment">### Connect URL of DB:</span>
+<span class="token attr-name">db.url.0</span><span class="token punctuation">=</span><span class="token attr-value">jdbc:mysql://127.0.0.1:3306/nacos?characterEncoding=utf8&amp;connectTimeout=1000&amp;socketTimeout=3000&amp;autoReconnect=true&amp;useUnicode=true&amp;useSSL=false&amp;serverTimezone=UTC</span>
+<span class="token attr-name">db.user</span><span class="token punctuation">=</span><span class="token attr-value">root</span>
+<span class="token attr-name">db.password</span><span class="token punctuation">=</span><span class="token attr-value">123456</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>2.2）将conf\cluster.conf.example改为cluster.conf,添加节点配置</p>
+<pre class="line-numbers language-tex" data-language="tex"><code class="language-tex"># ip:port
+192.168.10.110:8850
+192.168.10.110:8854
+192.168.10.110:8856<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>3）创建mysql数据库,sql文件位置：conf\nacos­-mysql.sql</p>
+<p>4）修改启动脚本（bin\startup.sh）的jvm参数</p>
+<p><img src="https://feng.mynatapp.cc/blog/image-20220511162929569.png" alt="image-20220511162929569"></p>
+<p>nacos8854，nacos8856 按同样的方式配置。</p>
+<p>5）修改端口号，分别启动nacos8850，nacos8854，nacos8856</p>
+<p>以nacos8850为例，进入nacos8850目录，启动nacos</p>
+<pre class="line-numbers language-tex" data-language="tex"><code class="language-tex">sh bin/startup.sh<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="https://feng.mynatapp.cc/blog/image-20220511163145895.png" alt="image-20220511163145895"></p>
+<pre class="line-numbers language-tex" data-language="tex"><code class="language-tex"># 查看输出日志
+tail -f ./logs/start.out<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<ol start="6">
+<li>测试</li>
 </ol>
-<h3 id="设计原则"><a href="#设计原则" class="headerlink" title="设计原则"></a>设计原则</h3><ul>
-<li>聚合在一致性边界内建模真正的不变条件</li>
-<li>设计小聚合（聚合不宜包含太多的实体）</li>
-<li>通过ID引用其他聚合</li>
-<li>聚合内的数据，在边界之外使用最终一致性</li>
-<li>通过应用层实现跨聚合的服务调用（领域层内，不应该进行跨聚合之间的调用）</li>
-</ul>
-<h1 id="领域事件"><a href="#领域事件" class="headerlink" title="领域事件"></a>领域事件</h1><p>CDSS系统中暂时没有业务步骤，也不需要领域事件</p>
+<p>登录 <a target="_blank" rel="noopener" href="http://localhost:8850/nacos">http://localhost:8850/nacos</a> ，用户名和密码都是nacos</p>
+<p><img src="https://feng.mynatapp.cc/blog/image-20220511163413406.png" alt="image-20220511163413406"></p>
+<p>7）官方推荐，nginx反向代理</p>
+<p><img src="https://feng.mynatapp.cc/blog/image-20220511163522112.png" alt="image-20220511163522112"></p>
+<p>访问： <a target="_blank" rel="noopener" href="http://localhost:8847/nacos">http://localhost:8847/nacos</a></p>
+<h4 id="1-3-prometheus-grafana监控Nacos"><a href="#1-3-prometheus-grafana监控Nacos" class="headerlink" title="1.3 prometheus+grafana监控Nacos"></a>1.3 prometheus+grafana监控Nacos</h4><p><a target="_blank" rel="noopener" href="https://nacos.io/zh-cn/docs/monitor-guide.html">https://nacos.io/zh-cn/docs/monitor-guide.html</a></p>
+<p>Nacos 0.8.0版本完善了监控系统，支持通过暴露metrics数据接入第三方监控系统监控Nacos运 行状态。</p>
 <ol>
-<li>事件构建和发布</li>
-<li>事件数据持久化</li>
-<li>事件总线</li>
-<li>消息中间件</li>
-<li>事件接收和处理</li>
+<li>nacos暴露metrics数据</li>
 </ol>
-<p>事件基类：</p>
-<ul>
-<li>ID: String</li>
-<li>createTime: Date</li>
-<li>eventType: String</li>
-<li>eventSource: String</li>
-<li>BusinessData: T</li>
-</ul>
-<h1 id="领域模型架构"><a href="#领域模型架构" class="headerlink" title="领域模型架构"></a>领域模型架构</h1><h3 id="传统三层架构"><a href="#传统三层架构" class="headerlink" title="传统三层架构"></a>传统三层架构</h3><ul>
-<li>业务接口层<ul>
-<li>Module - API</li>
-</ul>
+<pre class="line-numbers language-properties" data-language="properties"><code class="language-properties"><span class="token attr-name">management.endpoints.web.exposure.include</span><span class="token punctuation">=</span><span class="token attr-value">*</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>测试：<a target="_blank" rel="noopener" href="http://localhost:8848/nacos/actuator/prometheus">http://localhost:8848/nacos/actuator/prometheus</a></p>
+<p><img src="https://feng.mynatapp.cc/blog/image-20220511164629102.png" alt="image-20220511164629102"></p>
+<ol start="2">
+<li><p>prometheus采集Nacos metrics数据</p>
 </li>
-<li>业务逻辑层<ul>
-<li>VO</li>
-<li>Service</li>
-</ul>
+<li><p>grafana展示metrics数据</p>
 </li>
-<li>数据访问层<ul>
-<li>PO</li>
-<li>MapperXML</li>
-<li>Dao</li>
-</ul>
-</li>
-</ul>
-<h3 id="★DDD分层模型"><a href="#★DDD分层模型" class="headerlink" title="★DDD分层模型"></a>★DDD分层模型</h3><ul>
-<li>用户接口层<ul>
-<li>API</li>
-<li>DTO</li>
-</ul>
-</li>
-<li>应用层（应对快速的业务变化）<ul>
-<li>Application Service</li>
-</ul>
-</li>
-<li>领域层（核心业务能力）<ul>
-<li>Aggregate<ul>
-<li>Domain Service</li>
-<li>Entity</li>
-<li>Value Object</li>
-</ul>
-</li>
-<li>MapperXML</li>
-<li>Repository</li>
-</ul>
-</li>
-<li>基础层<ul>
-<li>Repository AOP</li>
-<li>网关</li>
-<li>第三方库</li>
-<li>文件</li>
-<li>其他</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://feng.mynatapp.cc/blog/image-20220509175728519.png" alt="image-20220509175728519"></p>
-<h3 id="★整洁架构"><a href="#★整洁架构" class="headerlink" title="★整洁架构"></a>★整洁架构</h3><p><img src="https://feng.mynatapp.cc/blog/image-20220509175757890.png" alt="image-20220509175757890"></p>
+</ol>
+<h3 id="2-Nacos注册中心"><a href="#2-Nacos注册中心" class="headerlink" title="2. Nacos注册中心"></a>2. Nacos注册中心</h3><h4 id="2-1-注册中心演变及其设计思想"><a href="#2-1-注册中心演变及其设计思想" class="headerlink" title="2.1 注册中心演变及其设计思想"></a>2.1 注册中心演变及其设计思想</h4><p><img src="https://feng.mynatapp.cc/blog/image-20220511170508079.png" alt="image-20220511170508079"></p>
+<p><img src="https://feng.mynatapp.cc/blog/image-20220511170534111.png" alt="image-20220511170534111"></p>
+<h4 id="2-2-Nacos注册中心架构"><a href="#2-2-Nacos注册中心架构" class="headerlink" title="2.2 Nacos注册中心架构"></a>2.2 Nacos注册中心架构</h4><p><img src="https://feng.mynatapp.cc/blog/image-20220511170604520.png" alt="image-20220511170604520"></p>
+<h4 id="2-3-核心功能"><a href="#2-3-核心功能" class="headerlink" title="2.3 核心功能"></a>2.3 核心功能</h4><p><code>服务注册</code>：Nacos Client会通过发送REST请求的方式向Nacos Server注册自己的服务，提供自 身的元数据，比如ip地址、端口等信息。Nacos Server接收到注册请求后，就会把这些元数据信 息存储在一个双层的内存Map中。 </p>
+<p><code>服务心跳</code>：在服务注册后，Nacos Client会维护一个定时心跳来持续通知Nacos Server，说明服 务一直处于可用状态，防止被剔除。默认5s发送一次心跳。 </p>
+<p><code>服务同步</code>：Nacos Server集群之间会互相同步服务实例，用来保证服务信息的一致性。 </p>
+<p><code>服务发现</code>：服务消费者（Nacos Client）在调用服务提供者的服务时，会发送一个REST请求给 Nacos Server，获取上面注册的服务清单，并且缓存在Nacos Client本地，同时会在Nacos Client本地开启一个定时任务定时拉取服务端最新的注册表信息更新到本地缓存 </p>
+<p><code>服务健康检查</code>：Nacos Server会开启一个定时任务用来检查注册服务实例的健康情况，对于超过 15s没有收到客户端心跳的实例会将它的healthy属性置为false(客户端服务发现时不会发现)，如 果某个实例超过30秒没有收到心跳，直接剔除该实例(被剔除的实例如果恢复发送心跳则会重新 注册)</p>
+<h4 id="2-4-服务注册表结构"><a href="#2-4-服务注册表结构" class="headerlink" title="2.4 服务注册表结构"></a>2.4 服务注册表结构</h4><p><img src="https://feng.mynatapp.cc/blog/image-20220511170802268.png" alt="image-20220511170802268"></p>
+<h4 id="2-5-服务领域模型"><a href="#2-5-服务领域模型" class="headerlink" title="2.5 服务领域模型"></a>2.5 服务领域模型</h4><p><img src="https://feng.mynatapp.cc/blog/image-20220511170832255.png" alt="image-20220511170832255"></p>
+<h4 id="2-6-服务实例数据"><a href="#2-6-服务实例数据" class="headerlink" title="2.6 服务实例数据"></a>2.6 服务实例数据</h4><p><img src="https://feng.mynatapp.cc/blog/image-20220511170916488.png" alt="image-20220511170916488"></p>
+<h3 id="3-Spring-Cloud-Alibaba-Nacos快速开始"><a href="#3-Spring-Cloud-Alibaba-Nacos快速开始" class="headerlink" title="3. Spring Cloud Alibaba Nacos快速开始"></a>3. Spring Cloud Alibaba Nacos快速开始</h3><h4 id="3-1-Spring-Cloud-Alibaba版本选型"><a href="#3-1-Spring-Cloud-Alibaba版本选型" class="headerlink" title="3.1 Spring Cloud Alibaba版本选型"></a>3.1 Spring Cloud Alibaba版本选型</h4><p><strong>组件版本关系</strong></p>
+<p><img src="https://feng.mynatapp.cc/blog/image-20220511171027442.png" alt="image-20220511171027442"></p>
+<p><strong>毕业版本依赖关系（推荐使用）</strong></p>
+<p><img src="https://feng.mynatapp.cc/blog/image-20220511171137516.png" alt="image-20220511171137516"></p>
+<h4 id="3-2-搭建Nacos­client服务"><a href="#3-2-搭建Nacos­client服务" class="headerlink" title="3.2 搭建Nacos­client服务"></a>3.2 搭建Nacos­client服务</h4><p>1）引入依赖</p>
+<p>父Pom中支持spring cloud&amp;spring cloud alibaba, 引入依赖</p>
+<pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependencyManagement</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependencies</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>org.springframework.cloud<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>spring-cloud-dependencies<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>Hoxton.SR8<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>type</span><span class="token punctuation">&gt;</span></span>pom<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>type</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>scope</span><span class="token punctuation">&gt;</span></span>import<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>scope</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>com.alibaba.cloud<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>spring-cloud-alibaba-dependencies<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>2.2.4.RELEASE<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>type</span><span class="token punctuation">&gt;</span></span>pom<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>type</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>scope</span><span class="token punctuation">&gt;</span></span>import<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>scope</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependencies</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependencyManagement</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>当前项目pom中引入依赖</p>
+<pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>com.alibaba.cloud<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>spring-cloud-starter-alibaba-nacos-discovery<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>2）application.properties中配置</p>
+<pre class="line-numbers language-properties" data-language="properties"><code class="language-properties"><span class="token attr-name">server.port</span><span class="token punctuation">=</span><span class="token attr-value">8002</span>
+<span class="token comment"># 微服务名称</span>
+<span class="token attr-name">spring.application.name</span><span class="token punctuation">=</span><span class="token attr-value">nacos-service-test</span>
+<span class="token comment">#配置 Nacos server 的地址</span>
+<span class="token attr-name">spring.cloud.nacos.discovery.server‐addr</span><span class="token punctuation">=</span><span class="token attr-value">localhost:8848</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>更多配置：<a target="_blank" rel="noopener" href="https://github.com/alibaba/spring-cloud-alibaba/wiki/Nacos-discovery">https://github.com/alibaba/spring-cloud-alibaba/wiki/Nacos-discovery</a></p>
+<p>3）启动springboot应用，nacos管理端界面查看是否成功注册</p>
 
                 
             </div>
@@ -791,7 +764,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://fenggithub8.github.io/2022/03/22/lingyumoxinglingyumoxingtx/">https://fenggithub8.github.io/2022/03/22/lingyumoxinglingyumoxingtx/</a>
+                    <a href="https://fenggithub8.github.io/2022/05/11/weifuwu03alibabaweifuwuzujiannacoszhucezhongxinshizhan/">https://fenggithub8.github.io/2022/05/11/weifuwu03alibabaweifuwuzujiannacoszhucezhongxinshizhan/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -829,8 +802,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3/">
-                                    <span class="chip bg-color">设计思想</span>
+                                <a href="/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/">
+                                    <span class="chip bg-color">微服务</span>
                                 </a>
                             
                         </div>
@@ -1006,13 +979,13 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2022/03/29/weifuwu01springbootzidongpeizhiyuanli/">
+                <a href="/2022/05/11/weifuwuweifuwujiagoujieshao/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="SpringBoot自动配置原理">
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="微服务架构介绍">
                         
-                        <span class="card-title">SpringBoot自动配置原理</span>
+                        <span class="card-title">微服务架构介绍</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1023,7 +996,7 @@
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-03-29
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-05-11
                         </span>
                         <span class="publish-author">
                             
@@ -1055,13 +1028,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/03/22/xingnengdiaoyou02jvmneicunmoxingshendupouxiyuyouhua/">
+                <a href="/2022/05/10/weifuwu02springbootqidongyuanli/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="JVM内存模型">
+                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="SpringBoot启动原理">
                         
-                        <span class="card-title">JVM内存模型</span>
+                        <span class="card-title">SpringBoot启动原理</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1072,7 +1045,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-03-22
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-10
                             </span>
                         <span class="publish-author">
                             
@@ -1089,8 +1062,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/JVM/">
-                        <span class="chip bg-color">JVM</span>
+                    <a href="/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/">
+                        <span class="chip bg-color">微服务</span>
                     </a>
                     
                 </div>

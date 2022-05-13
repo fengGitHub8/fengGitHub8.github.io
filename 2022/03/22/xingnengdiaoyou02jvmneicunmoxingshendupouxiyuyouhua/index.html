@@ -37,9 +37,9 @@ java ‐Xms2048">
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.0.0"><link rel="alternate" href="/atom.xml" title="偶染风寒" type="application/atom+xml">
-
+<meta name="generator" content="Hexo 5.0.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="偶染风寒" type="application/atom+xml">
 </head>
 
 
@@ -601,11 +601,11 @@ java ‐Xms2048">
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h4 id="JDK体系结构"><a href="#JDK体系结构" class="headerlink" title="JDK体系结构"></a>JDK体系结构</h4><p><img src="http://feng.mynatapp.cc/blog/20220329154246.png"></p>
-<h4 id="Java语言的跨平台特性"><a href="#Java语言的跨平台特性" class="headerlink" title="Java语言的跨平台特性"></a>Java语言的跨平台特性</h4><img src="http://feng.mynatapp.cc/blog/20220329154313.png" style="zoom:50%;">
+                <h4 id="JDK体系结构"><a href="#JDK体系结构" class="headerlink" title="JDK体系结构"></a>JDK体系结构</h4><p><img src="https://feng.mynatapp.cc/blog/20220329154246.png"></p>
+<h4 id="Java语言的跨平台特性"><a href="#Java语言的跨平台特性" class="headerlink" title="Java语言的跨平台特性"></a>Java语言的跨平台特性</h4><img src="https://feng.mynatapp.cc/blog/20220329154313.png" style="zoom:50%;">
 
-<h4 id="JVM整体结构及内存模型"><a href="#JVM整体结构及内存模型" class="headerlink" title="JVM整体结构及内存模型"></a>JVM整体结构及内存模型</h4><p><img src="http://feng.mynatapp.cc/blog/20220329154345.png"></p>
-<h4 id="二、JVM内存参数设置"><a href="#二、JVM内存参数设置" class="headerlink" title="二、JVM内存参数设置"></a>二、JVM内存参数设置</h4><img src="http://feng.mynatapp.cc/blog/20220329154411.png" style="zoom:50%;">
+<h4 id="JVM整体结构及内存模型"><a href="#JVM整体结构及内存模型" class="headerlink" title="JVM整体结构及内存模型"></a>JVM整体结构及内存模型</h4><p><img src="https://feng.mynatapp.cc/blog/20220329154345.png"></p>
+<h4 id="二、JVM内存参数设置"><a href="#二、JVM内存参数设置" class="headerlink" title="二、JVM内存参数设置"></a>二、JVM内存参数设置</h4><img src="https://feng.mynatapp.cc/blog/20220329154411.png" style="zoom:50%;">
 
 <p>Spring Boot程序的JVM参数设置格式(Tomcat启动直接加在bin目录下catalina.sh文件里)：</p>
 <pre class="line-numbers language-none"><code class="language-none">java ‐Xms2048M ‐Xmx2048M ‐Xmn1024M ‐Xss512K ‐XX:MetaspaceSize=256M ‐XX:MaxMetaspaceSize=256M ‐jar microservice‐eurek a‐server.jar<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
@@ -655,8 +655,8 @@ java ‐Xms2048">
 <p><strong>JVM内存参数大小该如何设置？</strong></p>
 <p>JVM参数大小设置并没有固定标准，需要根据实际项目情况分析，给大家举个例子</p>
 <p><strong>日均百万级订单交易系统如何设置JVM参数</strong></p>
-<p><img src="http://feng.mynatapp.cc/blog/20220329154624.png"></p>
-<p><img src="http://feng.mynatapp.cc/blog/20220329154641.png"></p>
+<p><img src="https://feng.mynatapp.cc/blog/20220329154624.png"></p>
+<p><img src="https://feng.mynatapp.cc/blog/20220329154641.png"></p>
 <p><strong>结论：通过上面这些内容介绍，大家应该对JVM优化有些概念了，就是尽可能让对象都在新生代里分配和回收，尽量别 让太多对象频繁进入老年代，避免频繁对老年代进行垃圾回收，同时给系统充足的内存大小，避免新生代频繁的进行垃圾回收。</strong></p>
 
                 
@@ -920,11 +920,23 @@ java ‐Xms2048">
                         </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            Yang Feng
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Java%E5%90%8E%E7%AB%AF/" class="post-category">
+                                    Java后端
+                                </a>
+                            
                             
                         </span>
                     </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3/">
+                        <span class="chip bg-color">设计思想</span>
+                    </a>
+                    
                 </div>
                 
             </div>
@@ -1175,7 +1187,7 @@ java ‐Xms2048">
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">14.5k</span>
+                        class="white-color">30.7k</span>
             
             
             

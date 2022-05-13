@@ -30,9 +30,9 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.0.0"><link rel="alternate" href="/atom.xml" title="偶染风寒" type="application/atom+xml">
-
+<meta name="generator" content="Hexo 5.0.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="偶染风寒" type="application/atom+xml">
 </head>
 
 
@@ -538,12 +538,25 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/">
+                                <span class="chip bg-color">微服务</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/Java%E5%90%8E%E7%AB%AF/" class="post-category">
+                                Java后端
+                            </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -802,7 +815,7 @@ ActiveMQAutoConfiguration:
 ...省略...<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>下面我么就以<strong>HttpEncodingAutoConfiguration（Http编码自动配置）</strong>为例说明自动配置原理； 该注解如下：</p>
-<p><img src="http://feng.mynatapp.cc/blog/20220330134658.png"></p>
+<p><img src="https://feng.mynatapp.cc/blog/20220330134658.png"></p>
 <ul>
 <li>@Configuration：表示这是一个配置类，以前编写的配置文件一样，也可以给容器中添加组件。</li>
 <li>@ConditionalOnWebApplication：Spring底层@Conditional注解（Spring注解版），根据不同的条件，如果满足指定的条件，整个配置类里面的配置就会生效； 判断当前应用是否是web应用，如果是，当前配置类生效。</li>
@@ -811,12 +824,12 @@ ActiveMQAutoConfiguration:
 <li>@EnableConfigurationProperties({ServerProperties.class})：将配置文件中对应的值和 ServerProperties绑定起来； 并把 ServerProperties加入到 IOC 容器中。并注册ConfigurationPropertiesBindingPostProcessor用于将@ConfigurationProperties的类和配置进行绑定</li>
 </ul>
 <p><strong>ServerProperties</strong></p>
-<p><img src="http://feng.mynatapp.cc/blog/20220330135024.png"></p>
+<p><img src="https://feng.mynatapp.cc/blog/20220330135024.png"></p>
 <p>ServerProperties通过 @ConfigurationProperties 注解将配置文件与自身属性绑定。</p>
 <p>对于@ConfigurationProperties注解小伙伴们应该知道吧，我们如何获取全局配置文件的属性中用到，它的作用就是把全局配置文件中的值绑定到实体类JavaBean上面（将配置文件中的值与ServerProperites绑定起来），而@EnableConfigurationProperties主要是把以绑定值JavaBean加入到spring容器中。 到这里，小伙伴们应该明白</p>
 <p>我们在application.properties 声明spring.application.name 是通过@ConfigurationProperties注解，绑定到对应的XxxxProperties配 置实体类上，然后再通过@EnableConfigurationProperties注解导入到Spring容器中.</p>
 <p>所以只有知道了自动配置的原理及源码 才能灵活的配置SpringBoot</p>
-<p><img src="http://feng.mynatapp.cc/blog/20220330135322.png"></p>
+<p><img src="https://feng.mynatapp.cc/blog/20220330135322.png"></p>
 <h4 id="2、自定义starter"><a href="#2、自定义starter" class="headerlink" title="2、自定义starter"></a>2、自定义starter</h4><h5 id="一、简介-1"><a href="#一、简介-1" class="headerlink" title="一、简介"></a>一、简介</h5><p>SpringBoot 最强大的功能就是把我们常用的场景抽取成了一个个starter（场景启动器），我们通过引入springboot 为我提供的这些场景启动器，我们再进行少量的配置就能使用相应的功能。即使是这样，springboot也不能囊括我们所有的使用场景，往往我们需要自定义starter，来简化我们对springboot的使用。</p>
 <h5 id="二、如何自定义starter"><a href="#二、如何自定义starter" class="headerlink" title="二、如何自定义starter"></a>二、如何自定义starter</h5><h6 id="1-实例"><a href="#1-实例" class="headerlink" title="1.实例"></a>1.实例</h6><p><strong>如何编写自动配置 ？</strong></p>
 <p>我们参照@WebMvcAutoConfiguration为例，我们看看们需要准备哪些东西，下面是WebMvcAutoConfiguration的部分代码：</p>
@@ -844,11 +857,11 @@ ActiveMQAutoConfiguration:
 
 <p><strong>模式</strong></p>
 <p>我们参照 spring-boot-starter 我们发现其中没有代码：</p>
-<p><img src="http://feng.mynatapp.cc/blog/20220330140554.png"></p>
+<p><img src="https://feng.mynatapp.cc/blog/20220330140554.png"></p>
 <p>我们在看它的pom中的依赖中有个 springboot-starter</p>
-<p><img src="http://feng.mynatapp.cc/blog/20220330141159.png"></p>
+<p><img src="https://feng.mynatapp.cc/blog/20220330141159.png"></p>
 <p>我们再看看 spring-boot-starter 有个 spring-boot-autoconfigure</p>
-<p><img src="http://feng.mynatapp.cc/blog/20220330141245.png"></p>
+<p><img src="https://feng.mynatapp.cc/blog/20220330141245.png"></p>
 <p>关于web的一些自动配置都写在了这里 ，所以我们有总结：</p>
 <ul>
 <li>启动器（starter）是一个空的jar文件，仅仅提供辅助性依赖管理，这些依赖可能用于自动装配或其他类库。</li>
@@ -1062,9 +1075,9 @@ ActiveMQAutoConfiguration:
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p><strong>spring.factories</strong></p>
-<img src="http://feng.mynatapp.cc/blog/20220330170814.png" style="zoom:50%;">
+<img src="https://feng.mynatapp.cc/blog/20220330170814.png" style="zoom:50%;">
 
-<p><img src="http://feng.mynatapp.cc/blog/20220330170845.png"></p>
+<p><img src="https://feng.mynatapp.cc/blog/20220330170845.png"></p>
 <p>到这儿，我们的配置自定义的starter就写完了 ，我们demo-spring-boot-starter-autoconfigurer、demo-spring-boot-starter 安装成本地jar包。</p>
 <h5 id="三、测试自定义starter"><a href="#三、测试自定义starter" class="headerlink" title="三、测试自定义starter"></a>三、测试自定义starter</h5><p>引入依赖，启动Application</p>
 <pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
@@ -1074,18 +1087,18 @@ ActiveMQAutoConfiguration:
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>浏览<a target="_blank" rel="noopener" href="http://localhost:8080/">http://localhost:8080/</a>  报错</p>
-<p><img src="http://feng.mynatapp.cc/blog/20220330171219.png"></p>
+<p><img src="https://feng.mynatapp.cc/blog/20220330171219.png"></p>
 <p>application.yml 添加</p>
-<pre class="line-numbers language-tex" data-language="tex"><code class="language-tex">#debug=true
-server:
-  port: 8080
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token comment">#debug=true</span>
+<span class="token key atrule">server</span><span class="token punctuation">:</span>
+  <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">8080</span>
 
-demo:
-  hello:
-    name: 自动配置demo演示成功<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token key atrule">demo</span><span class="token punctuation">:</span>
+  <span class="token key atrule">hello</span><span class="token punctuation">:</span>
+    <span class="token key atrule">name</span><span class="token punctuation">:</span> 自动配置demo演示成功<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>再次访问 <a target="_blank" rel="noopener" href="http://localhost:8080/">http://localhost:8080/</a> </p>
-<p><img src="http://feng.mynatapp.cc/blog/20220330174004.png"></p>
+<p><img src="https://feng.mynatapp.cc/blog/20220330174004.png"></p>
 
                 
             </div>
@@ -1149,7 +1162,11 @@ demo:
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
+                            
+                                <a href="/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/">
+                                    <span class="chip bg-color">微服务</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -1319,18 +1336,17 @@ demo:
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2022/03/29/weifuwu01springbootzidongpeizhiyuanli/">
+                <a href="/2022/05/10/weifuwu02springbootqidongyuanli/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="SpringBoot自动配置原理">
+                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="SpringBoot启动原理">
                         
-                        <span class="card-title">SpringBoot自动配置原理</span>
+                        <span class="card-title">SpringBoot启动原理</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1340,18 +1356,29 @@ demo:
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-03-29
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-05-10
+                        </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            Yang Feng
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Java%E5%90%8E%E7%AB%AF/" class="post-category">
+                                    Java后端
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
-
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/">
+                        <span class="chip bg-color">微服务</span>
+                    </a>
+                    
+                </div>
                 
             </div>
         </div>
@@ -1383,11 +1410,23 @@ demo:
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            Yang Feng
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Java%E5%90%8E%E7%AB%AF/" class="post-category">
+                                    Java后端
+                                </a>
+                            
                             
                         </span>
                     </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3/">
+                        <span class="chip bg-color">设计思想</span>
+                    </a>
+                    
                 </div>
                 
             </div>
@@ -1589,7 +1628,7 @@ demo:
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">14.5k</span>
+                        class="white-color">30.7k</span>
             
             
             

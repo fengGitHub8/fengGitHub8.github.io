@@ -6,7 +6,7 @@
   <link href="https://fenggithub8.github.io/atom.xml" rel="self"/>
   
   <link href="https://fenggithub8.github.io/"/>
-  <updated>2022-05-10T05:29:35.270Z</updated>
+  <updated>2022-05-13T08:09:28.291Z</updated>
   <id>https://fenggithub8.github.io/</id>
   
   <author>
@@ -17,11 +17,186 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>微服务调用组件Dubbo实战</title>
+    <link href="https://fenggithub8.github.io/2022/05/13/weifuwu051weifuwudiaoyongzujiandubboshizhan/"/>
+    <id>https://fenggithub8.github.io/2022/05/13/weifuwu051weifuwudiaoyongzujiandubboshizhan/</id>
+    <published>2022-05-13T08:02:06.000Z</published>
+    <updated>2022-05-13T08:09:28.291Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;1-Spring-Cloud整合Dubbo&quot;&gt;&lt;a href=&quot;#1-Spring-Cloud整合Dubbo&quot; class=&quot;headerlink&quot; title=&quot;1. Spring Cloud整合Dubbo&quot;&gt;&lt;/a&gt;1. Spring</summary>
+        
+      
+    
+    
+    
+    <category term="Java后端" scheme="https://fenggithub8.github.io/categories/Java%E5%90%8E%E7%AB%AF/"/>
+    
+    
+    <category term="微服务" scheme="https://fenggithub8.github.io/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>微服务调用组件Feign实战</title>
+    <link href="https://fenggithub8.github.io/2022/05/13/weifuwu05weifuwudiaoyongzujianfeignshizhan/"/>
+    <id>https://fenggithub8.github.io/2022/05/13/weifuwu05weifuwudiaoyongzujianfeignshizhan/</id>
+    <published>2022-05-13T06:41:52.000Z</published>
+    <updated>2022-05-13T07:59:55.623Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;JAVA-项目中如何实现接口调用？&quot;&gt;&lt;a href=&quot;#JAVA-项目中如何实现接口调用？&quot; class=&quot;headerlink&quot; title=&quot;JAVA 项目中如何实现接口调用？&quot;&gt;&lt;/a&gt;JAVA 项目中如何实现接口调用？&lt;/h3&gt;&lt;h4</summary>
+        
+      
+    
+    
+    
+    <category term="Java后端" scheme="https://fenggithub8.github.io/categories/Java%E5%90%8E%E7%AB%AF/"/>
+    
+    
+    <category term="微服务" scheme="https://fenggithub8.github.io/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>微服务负载均衡器LoadBalancer实战</title>
+    <link href="https://fenggithub8.github.io/2022/05/13/weifuwu041weifuwufuzaijunhengqiloadbalancershizhan/"/>
+    <id>https://fenggithub8.github.io/2022/05/13/weifuwu041weifuwufuzaijunhengqiloadbalancershizhan/</id>
+    <published>2022-05-13T02:34:57.000Z</published>
+    <updated>2022-05-13T06:38:44.498Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;1-什么是Spring-Cloud-LoadBalancer&quot;&gt;&lt;a href=&quot;#1-什么是Spring-Cloud-LoadBalancer&quot; class=&quot;headerlink&quot; title=&quot;1. 什么是Spring Cloud</summary>
+        
+      
+    
+    
+    
+    <category term="Java后端" scheme="https://fenggithub8.github.io/categories/Java%E5%90%8E%E7%AB%AF/"/>
+    
+    
+    <category term="微服务" scheme="https://fenggithub8.github.io/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>微服务负载均衡器Ribbon实战</title>
+    <link href="https://fenggithub8.github.io/2022/05/12/weifuwu04weifuwufuzaijunhengqiribbonshizhan/"/>
+    <id>https://fenggithub8.github.io/2022/05/12/weifuwu04weifuwufuzaijunhengqiribbonshizhan/</id>
+    <published>2022-05-12T07:49:08.000Z</published>
+    <updated>2022-05-13T02:29:38.805Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;1-什么是Ribbon&quot;&gt;&lt;a href=&quot;#1-什么是Ribbon&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Java后端" scheme="https://fenggithub8.github.io/categories/Java%E5%90%8E%E7%AB%AF/"/>
+    
+    
+    <category term="微服务" scheme="https://fenggithub8.github.io/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>微服务架构介绍</title>
+    <link href="https://fenggithub8.github.io/2022/05/11/weifuwuweifuwujiagoujieshao/"/>
+    <id>https://fenggithub8.github.io/2022/05/11/weifuwuweifuwujiagoujieshao/</id>
+    <published>2022-05-11T03:01:31.000Z</published>
+    <updated>2022-05-12T06:38:13.721Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;1-单体架构vs微服务架构&quot;&gt;&lt;a href=&quot;#1-单体架构vs微服务架构&quot; class=&quot;headerlink&quot; title=&quot;1. 单体架构vs微服务架构&quot;&gt;&lt;/a&gt;1. 单体架构vs微服务架构&lt;/h3&gt;&lt;h4 id=&quot;1-1-单机架构&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="Java后端" scheme="https://fenggithub8.github.io/categories/Java%E5%90%8E%E7%AB%AF/"/>
+    
+    
+    <category term="微服务" scheme="https://fenggithub8.github.io/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Alibaba微服务组件Nacos注册中心实战</title>
+    <link href="https://fenggithub8.github.io/2022/05/11/weifuwu03alibabaweifuwuzujiannacoszhucezhongxinshizhan/"/>
+    <id>https://fenggithub8.github.io/2022/05/11/weifuwu03alibabaweifuwuzujiannacoszhucezhongxinshizhan/</id>
+    <published>2022-05-11T02:58:24.000Z</published>
+    <updated>2022-05-12T07:41:38.143Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;1-什么是-Nacos&quot;&gt;&lt;a href=&quot;#1-什么是-Nacos&quot; class=&quot;headerlink&quot; title=&quot;1. 什么是 Nacos&quot;&gt;&lt;/a&gt;1. 什么是 Nacos&lt;/h3&gt;&lt;p&gt;官方文档： &lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="Java后端" scheme="https://fenggithub8.github.io/categories/Java%E5%90%8E%E7%AB%AF/"/>
+    
+    
+    <category term="微服务" scheme="https://fenggithub8.github.io/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SpringBoot启动原理</title>
+    <link href="https://fenggithub8.github.io/2022/05/10/weifuwu02springbootqidongyuanli/"/>
+    <id>https://fenggithub8.github.io/2022/05/10/weifuwu02springbootqidongyuanli/</id>
+    <published>2022-05-10T06:06:09.000Z</published>
+    <updated>2022-05-12T06:38:13.709Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h4 id=&quot;SpringBoot-是如何通过jar包启动的&quot;&gt;&lt;a href=&quot;#SpringBoot-是如何通过jar包启动的&quot; class=&quot;headerlink&quot; title=&quot;SpringBoot 是如何通过jar包启动的&quot;&gt;&lt;/a&gt;SpringBoot</summary>
+        
+      
+    
+    
+    
+    <category term="Java后端" scheme="https://fenggithub8.github.io/categories/Java%E5%90%8E%E7%AB%AF/"/>
+    
+    
+    <category term="微服务" scheme="https://fenggithub8.github.io/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"/>
+    
+  </entry>
+  
+  <entry>
     <title>SpringBoot自动配置原理</title>
     <link href="https://fenggithub8.github.io/2022/03/29/weifuwu01springbootzidongpeizhiyuanli/"/>
     <id>https://fenggithub8.github.io/2022/03/29/weifuwu01springbootzidongpeizhiyuanli/</id>
     <published>2022-03-29T08:04:09.000Z</published>
-    <updated>2022-05-10T05:29:35.270Z</updated>
+    <updated>2022-05-12T06:38:13.721Z</updated>
     
     
       
@@ -34,6 +209,10 @@
     
     
     
+    <category term="Java后端" scheme="https://fenggithub8.github.io/categories/Java%E5%90%8E%E7%AB%AF/"/>
+    
+    
+    <category term="微服务" scheme="https://fenggithub8.github.io/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"/>
     
   </entry>
   
@@ -42,7 +221,7 @@
     <link href="https://fenggithub8.github.io/2022/03/22/lingyumoxinglingyumoxingtx/"/>
     <id>https://fenggithub8.github.io/2022/03/22/lingyumoxinglingyumoxingtx/</id>
     <published>2022-03-22T07:29:08.000Z</published>
-    <updated>2022-05-09T09:59:34.967Z</updated>
+    <updated>2022-05-12T06:42:19.909Z</updated>
     
     
       
@@ -55,6 +234,10 @@
     
     
     
+    <category term="Java后端" scheme="https://fenggithub8.github.io/categories/Java%E5%90%8E%E7%AB%AF/"/>
+    
+    
+    <category term="设计思想" scheme="https://fenggithub8.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3/"/>
     
   </entry>
   
@@ -63,7 +246,7 @@
     <link href="https://fenggithub8.github.io/2022/03/22/xingnengdiaoyou02jvmneicunmoxingshendupouxiyuyouhua/"/>
     <id>https://fenggithub8.github.io/2022/03/22/xingnengdiaoyou02jvmneicunmoxingshendupouxiyuyouhua/</id>
     <published>2022-03-22T02:51:09.000Z</published>
-    <updated>2022-05-09T09:14:54.151Z</updated>
+    <updated>2022-05-12T06:38:13.721Z</updated>
     
     
       
@@ -113,7 +296,7 @@
     <link href="https://fenggithub8.github.io/2022/03/21/xingnengdiaoyou01congjdkyuanmajibiechedipouxijvmleijiazaijizhi/"/>
     <id>https://fenggithub8.github.io/2022/03/21/xingnengdiaoyou01congjdkyuanmajibiechedipouxijvmleijiazaijizhi/</id>
     <published>2022-03-21T05:43:09.000Z</published>
-    <updated>2022-05-09T09:15:11.417Z</updated>
+    <updated>2022-05-12T06:38:13.745Z</updated>
     
     
       
