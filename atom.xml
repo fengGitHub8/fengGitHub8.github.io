@@ -6,7 +6,7 @@
   <link href="https://fenggithub8.github.io/atom.xml" rel="self"/>
   
   <link href="https://fenggithub8.github.io/"/>
-  <updated>2022-05-13T09:06:55.506Z</updated>
+  <updated>2022-05-31T09:29:00.866Z</updated>
   <id>https://fenggithub8.github.io/</id>
   
   <author>
@@ -17,11 +17,112 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>JAVA线程池原理详解二</title>
+    <link href="https://fenggithub8.github.io/2022/05/31/mianshijavaxianchengchiyuanlixiangjieer/"/>
+    <id>https://fenggithub8.github.io/2022/05/31/mianshijavaxianchengchiyuanlixiangjieer/</id>
+    <published>2022-05-31T06:06:19.000Z</published>
+    <updated>2022-05-31T09:29:00.866Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;Executor框架的两级调度模型&quot;&gt;&lt;a href=&quot;#Executor框架的两级调度模型&quot; class=&quot;headerlink&quot; title=&quot;Executor框架的两级调度模型&quot;&gt;&lt;/a&gt;Executor框架的两级调度模型&lt;/h3&gt;&lt;p&gt;在HotSpot</summary>
+        
+      
+    
+    
+    
+    <category term="Java后端" scheme="https://fenggithub8.github.io/categories/Java%E5%90%8E%E7%AB%AF/"/>
+    
+    
+    <category term="线程池" scheme="https://fenggithub8.github.io/tags/%E7%BA%BF%E7%A8%8B%E6%B1%A0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JAVA线程池原理详解一</title>
+    <link href="https://fenggithub8.github.io/2022/05/31/mianshijavaxianchengchiyuanlixiangjieyi/"/>
+    <id>https://fenggithub8.github.io/2022/05/31/mianshijavaxianchengchiyuanlixiangjieyi/</id>
+    <published>2022-05-31T02:27:59.000Z</published>
+    <updated>2022-05-31T06:02:14.425Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;线程池的优点&quot;&gt;&lt;a href=&quot;#线程池的优点&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Java后端" scheme="https://fenggithub8.github.io/categories/Java%E5%90%8E%E7%AB%AF/"/>
+    
+    
+    <category term="线程池" scheme="https://fenggithub8.github.io/tags/%E7%BA%BF%E7%A8%8B%E6%B1%A0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Bat面试题</title>
+    <link href="https://fenggithub8.github.io/2022/05/31/mianshibatmianshiti/"/>
+    <id>https://fenggithub8.github.io/2022/05/31/mianshibatmianshiti/</id>
+    <published>2022-05-31T01:20:57.000Z</published>
+    <updated>2022-05-31T09:29:10.643Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;阿里云面试分享&quot;&gt;&lt;a href=&quot;#阿里云面试分享&quot; class=&quot;headerlink&quot; title=&quot;阿里云面试分享&quot;&gt;&lt;/a&gt;阿里云面试分享&lt;/h3&gt;&lt;h4 id=&quot;一、开场白&quot;&gt;&lt;a href=&quot;#一、开场白&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Java后端" scheme="https://fenggithub8.github.io/categories/Java%E5%90%8E%E7%AB%AF/"/>
+    
+    
+    <category term="面试" scheme="https://fenggithub8.github.io/tags/%E9%9D%A2%E8%AF%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JVM调优工具详解及调优实战</title>
+    <link href="https://fenggithub8.github.io/2022/05/18/xingnengdiaoyou07jvmdiaoyougongjuxiangjiejidiaoyoushizhan/"/>
+    <id>https://fenggithub8.github.io/2022/05/18/xingnengdiaoyou07jvmdiaoyougongjuxiangjiejidiaoyoushizhan/</id>
+    <published>2022-05-18T08:09:33.000Z</published>
+    <updated>2022-05-31T01:21:42.422Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h4 id=&quot;前置启动程序&quot;&gt;&lt;a href=&quot;#前置启动程序&quot; class=&quot;headerlink&quot; title=&quot;前置启动程序&quot;&gt;&lt;/a&gt;前置启动程序&lt;/h4&gt;&lt;p&gt;事先启动一个web应用程序，用jps查看其进程id，接着用各种jdk自带命令优化应用&lt;/p&gt;
+&lt;img</summary>
+        
+      
+    
+    
+    
+    <category term="Java后端" scheme="https://fenggithub8.github.io/categories/Java%E5%90%8E%E7%AB%AF/"/>
+    
+    
+    <category term="JVM" scheme="https://fenggithub8.github.io/tags/JVM/"/>
+    
+  </entry>
+  
+  <entry>
     <title>微服务调用组件Dubbo实战</title>
     <link href="https://fenggithub8.github.io/2022/05/13/weifuwu051weifuwudiaoyongzujiandubboshizhan/"/>
     <id>https://fenggithub8.github.io/2022/05/13/weifuwu051weifuwudiaoyongzujiandubboshizhan/</id>
     <published>2022-05-13T08:02:06.000Z</published>
-    <updated>2022-05-13T09:06:55.506Z</updated>
+    <updated>2022-05-13T09:22:18.892Z</updated>
     
     
       

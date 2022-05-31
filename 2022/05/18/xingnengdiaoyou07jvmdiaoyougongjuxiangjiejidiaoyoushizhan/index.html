@@ -4,8 +4,16 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Alibaba微服务组件Nacos注册中心实战, 菜鸟，努力">
-    <meta name="description" content="1. 什么是 Nacos官方文档： https://nacos.io/zh-cn/docs/what-is-nacos.html Nacos 致力于帮助您发现、配置和管理微服务。Nacos 提供了一组简单易用的特性集，帮助您快速实现动态 服">
+    <meta name="keywords" content="JVM调优工具详解及调优实战, 菜鸟，努力">
+    <meta name="description" content="前置启动程序事先启动一个web应用程序，用jps查看其进程id，接着用各种jdk自带命令优化应用
+
+
+jmap此命令可以用来查看内存信息，实例个数以及占用内存大小
+jmap -histo 83659 &amp;gt; ./log.txt
+
+
+
+打开">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +25,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Alibaba微服务组件Nacos注册中心实战 | 偶染风寒</title>
+    <title>JVM调优工具详解及调优实战 | 偶染风寒</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -419,12 +427,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/16.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Alibaba微服务组件Nacos注册中心实战</h1>
+                    <h1 class="description center-align post-title">JVM调优工具详解及调优实战</h1>
                 </div>
             </div>
         </div>
@@ -540,8 +548,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/">
-                                <span class="chip bg-color">微服务</span>
+                            <a href="/tags/JVM/">
+                                <span class="chip bg-color">JVM</span>
                             </a>
                         
                     </div>
@@ -565,7 +573,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-05-11
+                    2022-05-18
                 </div>
                 
 
@@ -574,7 +582,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.4k
+                    692
                 </div>
                 
 
@@ -594,150 +602,149 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="1-什么是-Nacos"><a href="#1-什么是-Nacos" class="headerlink" title="1. 什么是 Nacos"></a>1. 什么是 Nacos</h3><p>官方文档： <a target="_blank" rel="noopener" href="https://nacos.io/zh-cn/docs/what-is-nacos.html">https://nacos.io/zh-cn/docs/what-is-nacos.html</a> Nacos 致力于帮助您发现、配置和管理微服务。Nacos 提供了一组简单易用的特性集，帮助您快速实现动态 服务发现、服务配置、服务元数据及流量管理。 </p>
-<p>Nacos 的关键特性包括:</p>
+                <h4 id="前置启动程序"><a href="#前置启动程序" class="headerlink" title="前置启动程序"></a>前置启动程序</h4><p>事先启动一个web应用程序，用jps查看其进程id，接着用各种jdk自带命令优化应用</p>
+<img src="/Users/panyangfeng/Pictures/images/image-20220518161844452.png" alt="image-20220518161844452" style="zoom:50%;">
+
+<h4 id="jmap"><a href="#jmap" class="headerlink" title="jmap"></a>jmap</h4><p>此命令可以用来查看内存信息，实例个数以及占用内存大小</p>
+<pre class="line-numbers language-tex" data-language="tex"><code class="language-tex">jmap -histo 83659 &gt; ./log.txt<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<img src="/Users/panyangfeng/Pictures/images/image-20220518162209863.png" alt="image-20220518162209863" style="zoom:50%;">
+
+<p>打开log.txt，文件内容如下：</p>
+<img src="/Users/panyangfeng/Pictures/images/image-20220518162238643.png" alt="image-20220518162238643" style="zoom:50%;">
+
 <ul>
-<li>服务发现和服务健康监测 </li>
-<li>动态配置服务 </li>
-<li>动态 DNS 服务 </li>
-<li>服务及其元数据管理</li>
+<li>num：序号 </li>
+<li>instances：实例数量 </li>
+<li>bytes：占用空间大小 </li>
+<li>class name：类名称，[C is a char[]，[S is a short[]，[I is a int[]，[B is a byte[]，[[I is a int[][]</li>
 </ul>
-<h4 id="1-1-Nacos-架构"><a href="#1-1-Nacos-架构" class="headerlink" title="1.1 Nacos 架构"></a>1.1 Nacos 架构</h4><p><img src="https://feng.mynatapp.cc/blog/1561217892717-1418fb9b-7faa-4324-87b9-f1740329f564.jpeg" alt="nacos_arch.jpg"></p>
-<p>NamingService：命名服务，注册中心核心接口 </p>
-<p>ConfigService：配置服务，配置中心核心接口 </p>
-<p>OpenAPI文档：<a target="_blank" rel="noopener" href="https://nacos.io/zh-cn/docs/open-api.html">https://nacos.io/zh-cn/docs/open-api.html</a></p>
-<p>nacos版本： v1.1.4 升级到v1.4.1</p>
-<h4 id="1-2-Nacos-Server部署"><a href="#1-2-Nacos-Server部署" class="headerlink" title="1.2 Nacos Server部署"></a>1.2 Nacos Server部署</h4><p>下载源码编译</p>
-<p>源码下载地址：<a target="_blank" rel="noopener" href="https://github.com/alibaba/nacos/">https://github.com/alibaba/nacos/</a></p>
-<pre class="line-numbers language-tex" data-language="tex"><code class="language-tex">cd nacos/ 
-# 编译1.4.1 增加 ‐Drat.skip=true 参数 ，跳过licensing 检查
-mvn -Prelease-nacos -Dmaven.test.skip=true clean install -U
-cd nacos/distribution/target/<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>堆信息</p>
+<pre class="line-numbers language-tex" data-language="tex"><code class="language-tex">// mac jdk8版本命令运行有问题
+jmap -heap 83659<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
-<p>下载安装包</p>
-<p>下载地址：<a target="_blank" rel="noopener" href="https://github.com/alibaba/Nacos/releases">https://github.com/alibaba/Nacos/releases</a></p>
-<h5 id="1-2-1-单机模式"><a href="#1-2-1-单机模式" class="headerlink" title="1.2.1 单机模式"></a>1.2.1 单机模式</h5><p>官方文档： <a target="_blank" rel="noopener" href="https://nacos.io/zh-cn/docs/deployment.html">https://nacos.io/zh-cn/docs/deployment.html</a> </p>
-<p>解压，进入nacos目录</p>
-<img src="https://feng.mynatapp.cc/blog/image-20220511140404789.png" alt="image-20220511140404789" style="zoom:50%;">
+<p>堆内存dump</p>
+<pre class="line-numbers language-tex" data-language="tex"><code class="language-tex">// mac jdk8版本命令运行有问题
+jmap ‐dump:format=b,file=eureka.hprof 83659<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
-<p>单机启动nacos，执行命令</p>
-<pre class="line-numbers language-tex" data-language="tex"><code class="language-tex">sh bin/startup.sh -m standalone<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>也可以修改默认启动方式</p>
-<img src="https://feng.mynatapp.cc/blog/image-20220511145533167.png" alt="image-20220511145533167" style="zoom:50%;">
-
-<p>访问nocas的管理端：<a target="_blank" rel="noopener" href="http://192.168.3.14:8848/nacos">http://192.168.3.14:8848/nacos</a> ，默认的用户名密码是 nocas/nocas</p>
-<h5 id="1-2-2-集群模式"><a href="#1-2-2-集群模式" class="headerlink" title="1.2.2 集群模式"></a>1.2.2 集群模式</h5><p>官网文档： <a target="_blank" rel="noopener" href="https://nacos.io/zh-cn/docs/cluster-mode-quick-start.html">https://nacos.io/zh-cn/docs/cluster-mode-quick-start.html</a></p>
-<p>集群部署架构图</p>
-<img src="https://feng.mynatapp.cc/blog/image-20220511150219719.png" alt="image-20220511150219719" style="zoom:50%;">
-
-<p>1）单机搭建伪集群，复制nacos安装包，修改为nacos8850，nacos8854，nacos8856</p>
-<img src="https://feng.mynatapp.cc/blog/image-20220511162435600.png" alt="image-20220511162435600" style="zoom:50%;">
-
-<p>2）以nacos8850为例，进入nacos8850目录</p>
-<p>2.1）修改conf\application.properties的配置，使用外置数据源</p>
-<pre class="line-numbers language-properties" data-language="properties"><code class="language-properties"><span class="token attr-name">spring.datasource.platform</span><span class="token punctuation">=</span><span class="token attr-value">mysql</span>
-
-<span class="token comment">### Count of DB:</span>
-<span class="token attr-name">db.num</span><span class="token punctuation">=</span><span class="token attr-value">1</span>
-
-<span class="token comment">### Connect URL of DB:</span>
-<span class="token attr-name">db.url.0</span><span class="token punctuation">=</span><span class="token attr-value">jdbc:mysql://127.0.0.1:3306/nacos?characterEncoding=utf8&amp;connectTimeout=1000&amp;socketTimeout=3000&amp;autoReconnect=true&amp;useUnicode=true&amp;useSSL=false&amp;serverTimezone=UTC</span>
-<span class="token attr-name">db.user</span><span class="token punctuation">=</span><span class="token attr-value">root</span>
-<span class="token attr-name">db.password</span><span class="token punctuation">=</span><span class="token attr-value">123456</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>2.2）将conf\cluster.conf.example改为cluster.conf,添加节点配置</p>
-<pre class="line-numbers language-tex" data-language="tex"><code class="language-tex"># ip:port
-192.168.10.110:8850
-192.168.10.110:8854
-192.168.10.110:8856<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>3）创建mysql数据库,sql文件位置：conf\nacos­-mysql.sql</p>
-<p>4）修改启动脚本（bin\startup.sh）的jvm参数</p>
-<p><img src="https://feng.mynatapp.cc/blog/image-20220511162929569.png" alt="image-20220511162929569"></p>
-<p>nacos8854，nacos8856 按同样的方式配置。</p>
-<p>5）修改端口号，分别启动nacos8850，nacos8854，nacos8856</p>
-<p>以nacos8850为例，进入nacos8850目录，启动nacos</p>
-<pre class="line-numbers language-tex" data-language="tex"><code class="language-tex">sh bin/startup.sh<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p><img src="https://feng.mynatapp.cc/blog/image-20220511163145895.png" alt="image-20220511163145895"></p>
-<pre class="line-numbers language-tex" data-language="tex"><code class="language-tex"># 查看输出日志
-tail -f ./logs/start.out<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
-<ol start="6">
-<li>测试</li>
-</ol>
-<p>登录 <a target="_blank" rel="noopener" href="http://localhost:8850/nacos">http://localhost:8850/nacos</a> ，用户名和密码都是nacos</p>
-<p><img src="https://feng.mynatapp.cc/blog/image-20220511163413406.png" alt="image-20220511163413406"></p>
-<p>7）官方推荐，nginx反向代理</p>
-<p><img src="https://feng.mynatapp.cc/blog/image-20220511163522112.png" alt="image-20220511163522112"></p>
-<p>访问： <a target="_blank" rel="noopener" href="http://localhost:8847/nacos">http://localhost:8847/nacos</a></p>
-<h4 id="1-3-prometheus-grafana监控Nacos"><a href="#1-3-prometheus-grafana监控Nacos" class="headerlink" title="1.3 prometheus+grafana监控Nacos"></a>1.3 prometheus+grafana监控Nacos</h4><p><a target="_blank" rel="noopener" href="https://nacos.io/zh-cn/docs/monitor-guide.html">https://nacos.io/zh-cn/docs/monitor-guide.html</a></p>
-<p>Nacos 0.8.0版本完善了监控系统，支持通过暴露metrics数据接入第三方监控系统监控Nacos运 行状态。</p>
+<p>也可以设置内存溢出自动导出dump文件(内存很大的时候，可能会导不出来) </p>
 <ol>
-<li>nacos暴露metrics数据</li>
-</ol>
-<pre class="line-numbers language-properties" data-language="properties"><code class="language-properties"><span class="token attr-name">management.endpoints.web.exposure.include</span><span class="token punctuation">=</span><span class="token attr-value">*</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>测试：<a target="_blank" rel="noopener" href="http://localhost:8848/nacos/actuator/prometheus">http://localhost:8848/nacos/actuator/prometheus</a></p>
-<p><img src="https://feng.mynatapp.cc/blog/image-20220511164629102.png" alt="image-20220511164629102"></p>
-<ol start="2">
-<li><p>prometheus采集Nacos metrics数据</p>
+<li><p>-XX:+HeapDumpOnOutOfMemoryError</p>
 </li>
-<li><p>grafana展示metrics数据</p>
+<li><p>-XX:HeapDumpPath=./ （路径）</p>
 </li>
 </ol>
-<h3 id="2-Nacos注册中心"><a href="#2-Nacos注册中心" class="headerlink" title="2. Nacos注册中心"></a>2. Nacos注册中心</h3><h4 id="2-1-注册中心演变及其设计思想"><a href="#2-1-注册中心演变及其设计思想" class="headerlink" title="2.1 注册中心演变及其设计思想"></a>2.1 注册中心演变及其设计思想</h4><p><img src="https://feng.mynatapp.cc/blog/image-20220511170508079.png" alt="image-20220511170508079"></p>
-<p><img src="https://feng.mynatapp.cc/blog/image-20220511170534111.png" alt="image-20220511170534111"></p>
-<h4 id="2-2-Nacos注册中心架构"><a href="#2-2-Nacos注册中心架构" class="headerlink" title="2.2 Nacos注册中心架构"></a>2.2 Nacos注册中心架构</h4><p><img src="https://feng.mynatapp.cc/blog/image-20220511170604520.png" alt="image-20220511170604520"></p>
-<h4 id="2-3-核心功能"><a href="#2-3-核心功能" class="headerlink" title="2.3 核心功能"></a>2.3 核心功能</h4><p><code>服务注册</code>：Nacos Client会通过发送REST请求的方式向Nacos Server注册自己的服务，提供自 身的元数据，比如ip地址、端口等信息。Nacos Server接收到注册请求后，就会把这些元数据信 息存储在一个双层的内存Map中。 </p>
-<p><code>服务心跳</code>：在服务注册后，Nacos Client会维护一个定时心跳来持续通知Nacos Server，说明服 务一直处于可用状态，防止被剔除。默认5s发送一次心跳。 </p>
-<p><code>服务同步</code>：Nacos Server集群之间会互相同步服务实例，用来保证服务信息的一致性。 </p>
-<p><code>服务发现</code>：服务消费者（Nacos Client）在调用服务提供者的服务时，会发送一个REST请求给 Nacos Server，获取上面注册的服务清单，并且缓存在Nacos Client本地，同时会在Nacos Client本地开启一个定时任务定时拉取服务端最新的注册表信息更新到本地缓存 </p>
-<p><code>服务健康检查</code>：Nacos Server会开启一个定时任务用来检查注册服务实例的健康情况，对于超过 15s没有收到客户端心跳的实例会将它的healthy属性置为false(客户端服务发现时不会发现)，如 果某个实例超过30秒没有收到心跳，直接剔除该实例(被剔除的实例如果恢复发送心跳则会重新 注册)</p>
-<h4 id="2-4-服务注册表结构"><a href="#2-4-服务注册表结构" class="headerlink" title="2.4 服务注册表结构"></a>2.4 服务注册表结构</h4><p><img src="https://feng.mynatapp.cc/blog/image-20220511170802268.png" alt="image-20220511170802268"></p>
-<h4 id="2-5-服务领域模型"><a href="#2-5-服务领域模型" class="headerlink" title="2.5 服务领域模型"></a>2.5 服务领域模型</h4><p><img src="https://feng.mynatapp.cc/blog/image-20220511170832255.png" alt="image-20220511170832255"></p>
-<h4 id="2-6-服务实例数据"><a href="#2-6-服务实例数据" class="headerlink" title="2.6 服务实例数据"></a>2.6 服务实例数据</h4><p><img src="https://feng.mynatapp.cc/blog/image-20220511170916488.png" alt="image-20220511170916488"></p>
-<h3 id="3-Spring-Cloud-Alibaba-Nacos快速开始"><a href="#3-Spring-Cloud-Alibaba-Nacos快速开始" class="headerlink" title="3. Spring Cloud Alibaba Nacos快速开始"></a>3. Spring Cloud Alibaba Nacos快速开始</h3><h4 id="3-1-Spring-Cloud-Alibaba版本选型"><a href="#3-1-Spring-Cloud-Alibaba版本选型" class="headerlink" title="3.1 Spring Cloud Alibaba版本选型"></a>3.1 Spring Cloud Alibaba版本选型</h4><p><strong>组件版本关系</strong></p>
-<p><img src="https://feng.mynatapp.cc/blog/image-20220511171027442.png" alt="image-20220511171027442"></p>
-<p><strong>毕业版本依赖关系（推荐使用）</strong></p>
-<p><img src="https://feng.mynatapp.cc/blog/image-20220511171137516.png" alt="image-20220511171137516"></p>
-<h4 id="3-2-搭建Nacos­client服务"><a href="#3-2-搭建Nacos­client服务" class="headerlink" title="3.2 搭建Nacos­client服务"></a>3.2 搭建Nacos­client服务</h4><p>1）引入依赖</p>
-<p>父Pom中支持spring cloud&amp;spring cloud alibaba, 引入依赖</p>
-<pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependencyManagement</span><span class="token punctuation">&gt;</span></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependencies</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
-      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>org.springframework.cloud<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
-      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>spring-cloud-dependencies<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
-      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>Hoxton.SR8<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
-      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>type</span><span class="token punctuation">&gt;</span></span>pom<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>type</span><span class="token punctuation">&gt;</span></span>
-      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>scope</span><span class="token punctuation">&gt;</span></span>import<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>scope</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
-      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>com.alibaba.cloud<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
-      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>spring-cloud-alibaba-dependencies<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
-      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>2.2.4.RELEASE<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
-      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>type</span><span class="token punctuation">&gt;</span></span>pom<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>type</span><span class="token punctuation">&gt;</span></span>
-      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>scope</span><span class="token punctuation">&gt;</span></span>import<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>scope</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependencies</span><span class="token punctuation">&gt;</span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependencyManagement</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">OomTest</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Object</span><span class="token punctuation">&gt;</span></span> list <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-<p>当前项目pom中引入依赖</p>
-<pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>com.alibaba.cloud<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>spring-cloud-starter-alibaba-nacos-discovery<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+    <span class="token comment">/**
+     * JVM设置
+     * -Xms5M -Xmx5M -XX:+PrintGCDetails -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/Users/panyangfeng/test/sever
+     * @param args
+     */</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Object</span><span class="token punctuation">&gt;</span></span> list <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">User</span><span class="token punctuation">(</span>i<span class="token operator">++</span><span class="token punctuation">,</span> UUID<span class="token punctuation">.</span><span class="token function">randomUUID</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">new</span> <span class="token class-name">User</span><span class="token punctuation">(</span>j<span class="token operator">--</span><span class="token punctuation">,</span> UUID<span class="token punctuation">.</span><span class="token function">randomUUID</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p>2）application.properties中配置</p>
-<pre class="line-numbers language-properties" data-language="properties"><code class="language-properties"><span class="token attr-name">server.port</span><span class="token punctuation">=</span><span class="token attr-value">8002</span>
-<span class="token comment"># 微服务名称</span>
-<span class="token attr-name">spring.application.name</span><span class="token punctuation">=</span><span class="token attr-value">nacos-service-test</span>
-<span class="token comment">#配置 Nacos server 的地址</span>
-<span class="token attr-name">spring.cloud.nacos.discovery.server‐addr</span><span class="token punctuation">=</span><span class="token attr-value">localhost:8848</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>可以用<code>jvisualvm</code>命令工具导入该dump文件分析</p>
+<img src="/Users/panyangfeng/Pictures/images/image-20220519170749881.png" alt="image-20220519170749881" style="zoom:50%;">
 
-<p>更多配置：<a target="_blank" rel="noopener" href="https://github.com/alibaba/spring-cloud-alibaba/wiki/Nacos-discovery">https://github.com/alibaba/spring-cloud-alibaba/wiki/Nacos-discovery</a></p>
-<p>3）启动springboot应用，nacos管理端界面查看是否成功注册</p>
+<h4 id="jstack"><a href="#jstack" class="headerlink" title="jstack"></a>jstack</h4><p>用jstack加进程id查找死锁，见如下示例</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">DeadLockTest</span> <span class="token punctuation">{</span>
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token class-name">Object</span> lock1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Object</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token class-name">Object</span> lock2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Object</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token punctuation">{</span>
+            <span class="token keyword">synchronized</span> <span class="token punctuation">(</span>lock1<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">try</span> <span class="token punctuation">{</span>
+                    <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"thread1 begin"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token class-name">Thread</span><span class="token punctuation">.</span><span class="token function">sleep</span><span class="token punctuation">(</span><span class="token number">5000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">InterruptedException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token punctuation">}</span>
+                <span class="token keyword">synchronized</span> <span class="token punctuation">(</span>lock2<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"thread1 end"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token punctuation">{</span>
+            <span class="token keyword">synchronized</span> <span class="token punctuation">(</span>lock2<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">try</span> <span class="token punctuation">{</span>
+                    <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"thread2 begin"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token class-name">Thread</span><span class="token punctuation">.</span><span class="token function">sleep</span><span class="token punctuation">(</span><span class="token number">5000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">InterruptedException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token punctuation">}</span>
+                <span class="token keyword">synchronized</span> <span class="token punctuation">(</span>lock1<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"thread2 end"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"main thread end"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<img src="/Users/panyangfeng/Pictures/images/image-20220519171421648.png" alt="image-20220519171421648" style="zoom:50%;">
+
+<p>“Thread-1” 线程名 </p>
+<p>prio=5 优先级=5 </p>
+<p>tid=0x00007fbc7a82d000 </p>
+<p>线程id nid=0x5b03 线程对应的本地线程标识nid </p>
+<p>java.lang.Thread.State: BLOCKED 线程状态</p>
+<img src="/Users/panyangfeng/Pictures/images/image-20220519171533386.png" alt="image-20220519171533386" style="zoom:50%;">
+
+<p>还可以用<code>jvisualvm</code>自动检测死锁</p>
+<img src="/Users/panyangfeng/Pictures/images/image-20220519172040613.png" alt="image-20220519172040613" style="zoom:50%;">
+
+<p>远程连接jvisualvm</p>
+<p>启动普通的jar程序JMX端口配置：</p>
+<pre class="line-numbers language-tex" data-language="tex"><code class="language-tex">java ‐Dcom.sun.management.jmxremote.port=8888 ‐Djava.rmi.server.hostname=192.168.50.60 ‐Dcom.sun.management.jmxremot e.ssl=false ‐Dcom.sun.management.jmxremote.authenticate=false ‐jar microservice‐eureka‐server.jar<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>PS：</p>
+<p>-Dcom.sun.management.jmxremote.port 为远程机器的JMX端口</p>
+<p>-Djava.rmi.server.hostname 为远程机器IP</p>
+<p><strong>tomcat的JMX配置：在catalina.sh文件里的最后一个JAVA_OPTS的赋值语句下一行增加如下配置行</strong></p>
+<pre class="line-numbers language-tex" data-language="tex"><code class="language-tex">JAVA_OPTS="$JAVA_OPTS ‐Dcom.sun.management.jmxremote.port=8888 ‐Djava.rmi.server.hostname=192.168.50.60 ‐Dcom.sun.management.jmxremote.ssl=false ‐Dcom.sun.management.jmxremote.authenticate=false"<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h5 id="jstack找出占用cpu最高的线程堆栈信息"><a href="#jstack找出占用cpu最高的线程堆栈信息" class="headerlink" title="jstack找出占用cpu最高的线程堆栈信息"></a>jstack找出占用cpu最高的线程堆栈信息</h5><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">/**
+ * &lt;p&gt;
+ * 运行此代码，cpu会飙高
+ * &lt;/p&gt;
+ *
+ * @author pyf 2022-05-19
+ */</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Math</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token keyword">int</span> initData <span class="token operator">=</span> <span class="token number">666</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token class-name">User</span> user <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">User</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">compute</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">//一个方法对应一块栈帧内存区域</span>
+        <span class="token keyword">int</span> a <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> b <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> c <span class="token operator">=</span> <span class="token punctuation">(</span>a <span class="token operator">+</span> b<span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">10</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> c<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">Math</span> math <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Math</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            math<span class="token punctuation">.</span><span class="token function">compute</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>使用命令top -pid <pid> ，显示你的java进程的内存情况，pid是你的java进程号，比如91974</pid></p>
+<img src="/Users/panyangfeng/Pictures/images/image-20220519174710408.png" alt="image-20220519174710408" style="zoom:50%;">
+
+<p>使用命令top -H -pid <pid>，获取每个线程的内存情况</pid></p>
 
                 
             </div>
@@ -764,7 +771,7 @@ tail -f ./logs/start.out<span aria-hidden="true" class="line-numbers-rows"><span
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://fenggithub8.github.io/2022/05/11/weifuwu03alibabaweifuwuzujiannacoszhucezhongxinshizhan/">https://fenggithub8.github.io/2022/05/11/weifuwu03alibabaweifuwuzujiannacoszhucezhongxinshizhan/</a>
+                    <a href="https://fenggithub8.github.io/2022/05/18/xingnengdiaoyou07jvmdiaoyougongjuxiangjiejidiaoyoushizhan/">https://fenggithub8.github.io/2022/05/18/xingnengdiaoyou07jvmdiaoyougongjuxiangjiejidiaoyoushizhan/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -802,8 +809,8 @@ tail -f ./logs/start.out<span aria-hidden="true" class="line-numbers-rows"><span
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/">
-                                    <span class="chip bg-color">微服务</span>
+                                <a href="/tags/JVM/">
+                                    <span class="chip bg-color">JVM</span>
                                 </a>
                             
                         </div>
@@ -979,13 +986,13 @@ tail -f ./logs/start.out<span aria-hidden="true" class="line-numbers-rows"><span
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2022/05/11/weifuwuweifuwujiagoujieshao/">
+                <a href="/2022/05/31/mianshibatmianshiti/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="微服务架构介绍">
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="Bat面试题">
                         
-                        <span class="card-title">微服务架构介绍</span>
+                        <span class="card-title">Bat面试题</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -996,7 +1003,7 @@ tail -f ./logs/start.out<span aria-hidden="true" class="line-numbers-rows"><span
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-05-11
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-05-31
                         </span>
                         <span class="publish-author">
                             
@@ -1013,8 +1020,8 @@ tail -f ./logs/start.out<span aria-hidden="true" class="line-numbers-rows"><span
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/">
-                        <span class="chip bg-color">微服务</span>
+                    <a href="/tags/%E9%9D%A2%E8%AF%95/">
+                        <span class="chip bg-color">面试</span>
                     </a>
                     
                 </div>
@@ -1028,13 +1035,13 @@ tail -f ./logs/start.out<span aria-hidden="true" class="line-numbers-rows"><span
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/05/10/weifuwu02springbootqidongyuanli/">
+                <a href="/2022/05/13/weifuwu051weifuwudiaoyongzujiandubboshizhan/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="SpringBoot启动原理">
+                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="微服务调用组件Dubbo实战">
                         
-                        <span class="card-title">SpringBoot启动原理</span>
+                        <span class="card-title">微服务调用组件Dubbo实战</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1045,7 +1052,7 @@ tail -f ./logs/start.out<span aria-hidden="true" class="line-numbers-rows"><span
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-10
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-13
                             </span>
                         <span class="publish-author">
                             
